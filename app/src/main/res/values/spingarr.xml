@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spingarr">
+    <item>北京仓库</item>
+    <item>上海仓库</item>
+    <item>广州仓库</item>
+    <item>深圳仓库</item>
+    </string-array>
+</resources>

@@ -11,11 +11,11 @@ import android.view.ViewGroup;
  * Created by heziwen on 2017/3/7.
  */
 
-public class MeFragment extends Fragment {
+public class SettingFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.me,container,false);
+        return inflater.inflate(R.layout.setting,container,false);
     }
 }
