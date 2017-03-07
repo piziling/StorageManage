@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/layout_textlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_item_djbm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="单据编号："/>
+
+        <TextView
+            android:id="@+id/tv_item_djlx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#4D4D4D"
+            android:text="单据类型："/>
+        <TextView
+            android:id="@+id/tv_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#4D4D4D"
+            android:text="2017-03-02 14:39:00"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_border"
+        android:text="已完成"
+        android:textSize="16sp"
+        android:textColor="#ff0000"
+        android:id="@+id/tv_item_djzt"
+        android:layout_gravity="center_vertical"
+        android:padding="4dp"
+        android:layout_marginLeft="0dp"
+        />
+
+
+</LinearLayout>

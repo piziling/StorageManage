@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#eee"
+    android:layout_height="40dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="3dp"
+            android:id="@+id/ll_topfirst"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_top_first"
+                android:textColor="#008000"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp"
+                android:text="新任务" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_top_secont"
+                android:textColor="#000000"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp"
+                android:text="待处理" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_top_third"
+                android:textColor="#000000"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp"
+                android:text="已完成" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="3dp"
+        android:id="@+id/iv_top_line"
+        android:background="@color/themeColor"/>
+
+</LinearLayout>
