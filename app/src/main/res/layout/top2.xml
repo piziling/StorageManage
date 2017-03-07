@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_top_first"
-                android:textColor="#008000"
+                android:textColor="@color/themeColor"
                 android:paddingRight="15dp"
                 android:paddingTop="8dp"
                 android:text="新任务" />
