@@ -59,8 +59,8 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
     private List<Map<String,Object>> getData(){
         for (int i = 0; i < 20; i++) {
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("djbm","单据编号：DJ"+i*1000000+i*i*5);
-            map.put("djlx","单据类型：生产出库单");
+            map.put("djbm","单据编号：DJ"+(i*1000000+i*i*5));
+            map.put("djlx","生产出库单");
             SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String date = sDateFormat.format(new java.util.Date());
             map.put("time",date);

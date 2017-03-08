@@ -149,14 +149,14 @@ class ReFlashListView extends ListView implements AbsListView.OnScrollListener{
                 }
                 break;
             case PULL:
-                if(space>headerHeigth+30){
+                if(space>headerHeigth){
                     state = RELESE;
                     reflashViewByState();
                 }
                 topPadding(topPadding);
                 break;
             case RELESE:
-                if(space<headerHeigth+30){
+                if(space<headerHeigth){
                     state = PULL;
                     reflashViewByState();
                 }else if(space<=0){
@@ -198,14 +198,14 @@ class ReFlashListView extends ListView implements AbsListView.OnScrollListener{
             case PULL:
                 arrow.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
-                tip.setText("下拉可以刷新！");
+                tip.setText("下拉刷新！");
                 arrow.clearAnimation();
                 arrow.setAnimation(anim1);
                 break;
             case RELESE:
                 arrow.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
-                tip.setText("松开可以刷新！");
+                tip.setText("松开立即刷新！");
                 arrow.clearAnimation();
                 arrow.setAnimation(anim);
                 break;

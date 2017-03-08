@@ -78,8 +78,7 @@ public class MeFragment extends Fragment {
         mthirdTopTv = (TextView)getView().findViewById(R.id.tv_top_third);
 
         addBadgeView(mfirstTopTv,5);
-        addBadgeView(msecondTopTv,6);
-        addBadgeView(mthirdTopTv,222);
+
 
         mDatas = new ArrayList<Fragment>();
         FirstTabFragment tab01 =new FirstTabFragment();
