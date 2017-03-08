@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#FFf7f7f7">
+        android:background="#FFffffff">
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -47,66 +47,11 @@
             android:background="@drawable/textview_border"
             android:padding="4dp"/>
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+    <ListView
+        android:layout_marginTop="7dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FFf7f7f7">
+        android:layout_height="match_parent"
+        android:id="@+id/setting_list">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="18dp"
-            android:src="@drawable/setting_password"
-            android:layout_centerVertical="true"
-            android:padding="8dp"
-            android:id="@+id/setting_image"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/setting_image"
-            android:text="密码管理"
-            android:textSize="20sp"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/setting_right"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#FFf7f7f7">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="18dp"
-            android:src="@drawable/setting_password"
-            android:layout_centerVertical="true"
-            android:padding="8dp"
-            android:id="@+id/setting_image2"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/setting_image2"
-            android:text="密码管理"
-            android:textSize="20sp"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/setting_right"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
+    </ListView>
 </LinearLayout>

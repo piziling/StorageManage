@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +27,14 @@ import static android.content.ContentValues.TAG;
 public class SettingFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener{
 
     private ListView listView;
-    private ArrayAdapter<String > arry_adapter;
     private SimpleAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
+
+    private int[] imageList = {R.drawable.setting_password,
+            R.drawable.setting_parameter,R.drawable.setting_manage,
+            R.drawable.setting_user_add,R.drawable.setting_parameter,
+            R.drawable.setting_manage};
+    private String[] textList = {"密码管理","设置仓库","物资类型","往来单位","入库类型","出库类型"};
 
     @Nullable
     @Override
@@ -43,9 +46,9 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (ListView)getView().findViewById(R.id.lv_listview);
+        listView = (ListView)getView().findViewById(R.id.setting_list);
         datalist = new ArrayList<Map<String,Object>>();
-        simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.dj_item,new String[]{"djbm","djlx","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_time,R.id.tv_item_djzt});
+        simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.setting_item,new String[]{"image","text"},new int[]{R.id.setting_image,R.id.setting_text});
         //3.视图（ListView）加载适配器
         listView.setAdapter(simp_adapter);
         //加载监听器
@@ -54,14 +57,10 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
     }
 
     private List<Map<String,Object>> getData(){
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < imageList.length; i++) {
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("djbm","单据编号：DJ"+i*1000000+i*i*5);
-            map.put("djlx","单据类型：生产出库单");
-            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String date = sDateFormat.format(new java.util.Date());
-            map.put("time",date);
-            map.put("djzt","新任务");
+            map.put("image",imageList[i]);
+            map.put("text",textList[i]);
             datalist.add(map);
         }
         return  datalist;
