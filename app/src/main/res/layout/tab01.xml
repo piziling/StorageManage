@@ -5,11 +5,11 @@
     android:gravity="center"
     android:layout_height="match_parent">
 
-    <com.whieenz.storagemanage.ReFlashListView
+    <com.whieenz.storagemanage.view.ReFlashListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          android:id="@+id/lv_listview">
 
-    </com.whieenz.storagemanage.ReFlashListView>
+    </com.whieenz.storagemanage.view.ReFlashListView>
 
 </LinearLayout>
