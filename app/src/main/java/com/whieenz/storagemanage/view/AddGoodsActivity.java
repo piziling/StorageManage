@@ -243,7 +243,7 @@ public class AddGoodsActivity extends Activity{
         }else{
             //返回二维码bitmap
             //bitmap = EncodingUtils.createQRCode(getQRcodeText(),600,600,null);
-            bitmap = EncodingUtils.createQRCode(getQRcodeText(),600,600, BitmapFactory.decodeResource(getResources(),R.drawable.yg_logo));
+            bitmap = EncodingUtils.createQRCode(getQRcodeText(),600,600, BitmapFactory.decodeResource(getResources(),R.drawable.yg));
         }
         return bitmap;
     }
