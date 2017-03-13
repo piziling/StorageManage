@@ -76,6 +76,9 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
             case 2:
                 startActivity(new Intent(getActivity(),AddInStorage.class));
                 break;
+            case 3:
+                startActivity(new Intent(getActivity(),AddOutStorage.class));
+                break;
         }
     }
 }

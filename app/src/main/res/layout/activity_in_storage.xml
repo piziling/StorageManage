@@ -184,15 +184,42 @@
        </LinearLayout>
    </LinearLayout>
 
-    <Button
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:onClick="onAdd"-->
+        <!--android:id="@+id/in_add"-->
+        <!--android:text="添加物资"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textColor="#ffffffff"-->
+        <!--android:background="#555555"-->
+        <!--android:layout_alignParentBottom="true"/>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:onClick="onCkPicker"
-        android:id="@+id/in_add"
-        android:text="添加物资"
-        android:textSize="20sp"
-        android:textColor="#ffffffff"
-        android:background="#555555"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="wrap_content"
+        android:background="#99555555"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:onClick="onAdd">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/add"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:onClick="onAdd"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:id="@+id/in_add"
+            android:text="添加物资"
+            android:textSize="24sp"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onAdd"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

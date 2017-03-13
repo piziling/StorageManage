@@ -57,7 +57,7 @@ public class AddInStorage extends Activity {
         OptionPicker picker = new OptionPicker(this, new String[]{
                 "采购入库", "产成品入库", "其它入库"
         });
-        picker.setCycleDisable(false);
+        picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
         picker.setTextSize(15);
@@ -76,7 +76,7 @@ public class AddInStorage extends Activity {
         OptionPicker picker = new OptionPicker(this, new String[]{
                 "武汉仓库", "北京仓库", "上海仓库"
         });
-        picker.setCycleDisable(false);
+        picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
         picker.setTextSize(15);
@@ -95,7 +95,27 @@ public class AddInStorage extends Activity {
         OptionPicker picker = new OptionPicker(this, new String[]{
                 "远光软件", "中国移动", "中国航天"
         });
-        picker.setCycleDisable(false);
+        picker.setCycleDisable(true);
+        picker.setLineVisible(false);
+        //picker.setShadowVisible(true);
+        picker.setTextSize(15);
+        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+            @Override
+            public void onOptionPicked(int index, String item) {
+                wldw.setText(item);
+            }
+        });
+        picker.show();
+    }
+
+    /**
+     *
+     */
+    public void onAdd(View view){
+        OptionPicker picker = new OptionPicker(this, new String[]{
+                "远光软件", "中国移动", "中国航天"
+        });
+        picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
         picker.setTextSize(15);

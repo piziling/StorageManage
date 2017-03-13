@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.whieenz.storagemanage">
-
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -17,6 +18,7 @@
         </activity>
         <activity android:name=".view.AddGoodsActivity"></activity>
         <activity android:name=".view.AddInStorage"></activity>
+        <activity android:name=".view.AddOutStorage"></activity>
     </application>
 
 </manifest>
