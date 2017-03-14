@@ -150,9 +150,7 @@ public class AddGoodsActivity extends Activity{
 
     public void click(View view) {
         switch (view.getId()){
-            case R.id.btn_goods_save:
-                Toast.makeText(this,getEdittext().toString(),Toast.LENGTH_SHORT).show();
-                break;
+
         }
     }
 

@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"
-            android:text="我的"
+            android:text="仓库主页"
             android:textSize="22sp"
             android:id="@+id/tv_main_title"
             android:layout_centerInParent="true"/>

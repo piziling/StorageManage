@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\Android\AndroidWorkspace\MStorageManage\libzxing\src\main\shaders"/></dataSet><dataSet config="debug"><source path="D:\Android\AndroidWorkspace\MStorageManage\libzxing\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\Android\AndroidProjects\StorageManage\libzxing\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\Android\AndroidProjects\StorageManage\libzxing\src\debug\shaders"/></dataSet></merger>

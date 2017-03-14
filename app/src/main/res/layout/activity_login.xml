@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#eee"
+    tools:context=".view.LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/login_image"/>
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="用户名"
+        android:id="@+id/user_name"
+        android:background="@drawable/add_goods_bg"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingLeft="10dp"
+        android:hint="密码"
+        android:id="@+id/user_key"
+        android:background="@drawable/add_goods_bg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="登录"
+        android:onClick="login"
+        android:textSize="20sp"
+        android:textColor="#FFFFFFFF"
+        android:background="@drawable/btn_bg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00BFFF"
+            android:text="忘记密码？"
+            android:onClick="findKey"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册新账户"
+            android:textColor="#00BFFF"
+            android:onClick="doRegister"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -21,7 +21,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private NoScrollViewPager mainViewPage;
     private List<Fragment> mainTabs = new ArrayList<Fragment>();
     private String[] mTitles = new String[]{
-            "我的工作台","主页","设置"
+            "我的工作台","仓库主页","设置"
     };
 
     private FragmentPagerAdapter mAdater;
@@ -39,20 +39,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initView();
         initDatas();
         mainViewPage.setAdapter(mAdater);
+        mainViewPage.setCurrentItem(1);
     }
 
     /**
      * 初始化数据
      */
     private void initDatas() {
-//        for (String title:mTexts) {
-//            MainFragment mainFragment = new MainFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(MainFragment.TITLE,title);
-//            mainFragment.setArguments(bundle);
-//            mainTabs.add(mainFragment);
-//        }
-
         mAdater = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -93,7 +86,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         storage = (ChangeColorInconWithText) findViewById(R.id.indicator_storage);
        // pic = (ChangeColorInconWithText) findViewById(R.id.indicator_pic);
         setting = (ChangeColorInconWithText) findViewById(R.id.indicator_setting);
-        me.getWidth();
         mTabIndicators.add(me);
         mTabIndicators.add(storage);
        // mTabIndicators.add(pic);
@@ -102,7 +94,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         storage.setOnClickListener(this);
        // pic.setOnClickListener(this);
         setting.setOnClickListener(this);
-        me.setIconAlpha(1.0f);
+        storage.setIconAlpha(1.0f);
 
 
 
