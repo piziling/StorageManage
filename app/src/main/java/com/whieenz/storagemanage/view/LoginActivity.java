@@ -54,6 +54,14 @@ public class LoginActivity extends Activity {
     public void login(View view){
         String num = uesrName.getText().toString();
         String key = uesrKey.getText().toString();
+        if (uesrName.getText().toString().equals("")){
+            Toast.makeText(this,"请输入账号！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (uesrKey.getText().toString().equals("")){
+            Toast.makeText(this,"请输入密码！",Toast.LENGTH_SHORT).show();
+            return;
+        }
         SQLiteDatabase db = helper.getReadableDatabase();
 
         String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
@@ -61,8 +69,11 @@ public class LoginActivity extends Activity {
         Cursor cursor = DBManger.QueryDataBySql(db,sql,new String[]{num});
         //Cursor cursor = db.query(SQLitConstant.TABLE_USER,null," num =? ",new String[]{num},null,null,null);
         List<UserInfo> list  = DBManger.cursorToUserList(cursor);
-        Log.d(TAG, "login: List<UserInfo> list  :"+list.get(0).toString());
-        if (list.get(0).getKey().equals(key)){ //判断密码是否正确
+      //  Log.d(TAG, "login: List<UserInfo> list  :"+list.get(0).toString());
+
+       if(list.size()==0){
+           Toast.makeText(this,"密码错误！",Toast.LENGTH_SHORT).show();
+       } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             db.close();
