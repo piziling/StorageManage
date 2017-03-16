@@ -69,14 +69,14 @@ public class LoginActivity extends Activity {
         }
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
+        //String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
 
         //Cursor cursor = DBManger.QueryDataBySql(db,sql,new String[]{num});
-        Cursor cursor = db.query(SQLitConstant.TABLE_USER,null," NUM = ? ",new String[]{num},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_USER,null,SQLitConstant.USER_NUM+"= ? ",new String[]{num},null,null,null);
         List<UserInfo> list  = DBManger.cursorToUserList(cursor);
 
 
-       if(list.size()==0||list ==null){
+       if(list ==null||list.size()==0){
            Toast.makeText(this,"ddd密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);
