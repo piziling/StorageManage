@@ -1,10 +1,12 @@
 package com.whieenz.storagemanage.base;
 
+import java.io.Serializable;
+
 /**
  * Created by heziwen on 2017/3/15.
  */
 
-public class UserInfo {
+public class UserInfo implements Serializable {
     private String name;
     private String job;
     private String num;

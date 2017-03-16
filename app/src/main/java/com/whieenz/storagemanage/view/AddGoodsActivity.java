@@ -1,7 +1,9 @@
 package com.whieenz.storagemanage.view;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,10 +17,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.utls.DBManger;
+import com.whieenz.storagemanage.utls.SQLitConstant;
 import com.xys.libzxing.zxing.encoding.EncodingUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,19 +160,23 @@ public class AddGoodsActivity extends Activity{
         }
     }
 
-    public Map<String,Object> getEdittext() {
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("wzbm",wzbm.getText().toString());
-        map.put("wzmc",wzmc.getText().toString());
-        map.put("ggxh",ggxh.getText().toString());
-        map.put("wzlx",wzlx.getText().toString());
-        map.put("jldw",jldw.getText().toString());
-        map.put("bzq", bzq.getText().toString());
-        map.put("scrq",scrq.getText().toString());
-        map.put("cd",  cd.getText().toString());
-        map.put("dj",  dj.getText().toString());
-        map.put("bz",  bz.getText().toString());
-        return  map;
+    public ContentValues getEdittext() {
+        ContentValues values = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String time = formatter.format(curDate);
+        values.put("WZBM",wzbm.getText().toString());
+        values.put("WZMC",wzmc.getText().toString());
+        values.put("GGXH",ggxh.getText().toString());
+        values.put("WZLX",wzlx.getText().toString());
+        values.put("JLDW",jldw.getText().toString());
+        values.put("BZQ", bzq.getText().toString());
+        values.put("SCRQ",scrq.getText().toString());
+        values.put("CD",  cd.getText().toString());
+        values.put("DJ",  dj.getText().toString());
+        values.put("BZ",  bz.getText().toString());
+        values.put("TIME",time);
+        return  values;
     }
 
     public void onSave(View view) {
@@ -176,13 +186,21 @@ public class AddGoodsActivity extends Activity{
         if (!checkIsNull()) {
             return;
         }
-        if (createQB.isChecked()){
-            mbitmap = createQRcode();
-            saveQRcode(mbitmap);
+
+        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
+
+
+        long result = db.insert(SQLitConstant.TABLE_GOODS,null,getEdittext());
+        db.close();
+        if(result == -1){
+            Toast.makeText(this,"新增物资失败！",Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            if (createQB.isChecked()){
+                mbitmap = createQRcode();
+                saveQRcode(mbitmap);
+            }
         }
-
-
-
 
     }
 
@@ -294,7 +312,7 @@ public class AddGoodsActivity extends Activity{
             return;
         }
         //设置生成二维码的文件名称
-        String fileName = getEdittext().get("wzmc").toString()+getEdittext().get("wzbm").toString();
+        String fileName = wzmc.getText().toString()+wzbm.getText().toString();
 
         try {
             File file = new File(dir + fileName + ".jpg");

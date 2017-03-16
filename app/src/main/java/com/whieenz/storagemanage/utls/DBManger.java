@@ -3,11 +3,14 @@ package com.whieenz.storagemanage.utls;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.whieenz.storagemanage.base.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * 对数据库操作的数据类
@@ -56,13 +59,19 @@ public class DBManger {
     public static List<UserInfo> cursorToUserList(Cursor cursor){
         List<UserInfo> list = new ArrayList<>();
         //moveToNext() 返回true 表示下一条记录存在 否则表示游标中数据读取完毕
+        Log.d(TAG, "cursorToUserList: cursor.getCount() :"+cursor.getCount());
+        if (cursor.getCount()==0){
+            return null;
+        }
         while (cursor.moveToNext()){
+            Log.d(TAG, "cursorToUserList: in moveToNext() ");
             String name = cursor.getString(cursor.getColumnIndex(SQLitConstant.USER_NAME));
             String job = cursor.getString(cursor.getColumnIndex(SQLitConstant.USER_JOB));
             String num = cursor.getString(cursor.getColumnIndex(SQLitConstant.USER_NUM));
             String key = cursor.getString(cursor.getColumnIndex(SQLitConstant.USER_KEY));
 
             UserInfo user =new UserInfo(name,job,num,key);
+            Log.d(TAG, "cursorToUserList: "+user.getNum()+user.getKey());
             list.add(user);
         }
         return list;

@@ -54,9 +54,9 @@ public class RegisterActivity extends Activity {
                 return;
             }
             Toast.makeText(this,"注册成功，请登录！",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this,LoginActivity.class);
-            intent.putExtra("userName",name.getText().toString());
-            startActivity(intent);
+            Intent intent = new Intent();
+            intent.putExtra("num",num.getText().toString());
+            setResult(RESULT_OK,intent);
             finish();
         }
     }
@@ -73,11 +73,11 @@ public class RegisterActivity extends Activity {
         values.put(SQLitConstant.USER_KEY,secondKey.getText().toString());
         values.put(SQLitConstant.USER_TIME,time);
         long result = db.insert(SQLitConstant.TABLE_USER,null,values);
+        db.close();
         if (result ==-1){
             return  false;
         }
         return true;
-
     }
 
     /**
@@ -109,7 +109,7 @@ public class RegisterActivity extends Activity {
             Toast.makeText(this,"两次输入密码不一致！",Toast.LENGTH_SHORT).show();
             return false;
         }
-        return  true;
+        return true;
     }
 
 }

@@ -34,6 +34,8 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         uesrName = (EditText) findViewById(R.id.user_name);
         uesrKey = (EditText) findViewById(R.id.user_key);
+        uesrKey.setText("111");
+        uesrName.setText("whieenz");
         //创建数据库
         createSQLite();
 
@@ -47,7 +49,10 @@ public class LoginActivity extends Activity {
         helper = DBManger.getIntance(this);
         SQLiteDatabase db = helper.getWritableDatabase();
         //创建User表
-        db.execSQL(SQLitConstant.INSERT_USER);
+        db.execSQL(SQLitConstant.CREATE_USER);
+        //创建GOODS
+        db.execSQL(SQLitConstant.CREATE_GOODS);
+
         db.close();
     }
 
@@ -66,15 +71,18 @@ public class LoginActivity extends Activity {
 
         String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
 
-        Cursor cursor = DBManger.QueryDataBySql(db,sql,new String[]{num});
-        //Cursor cursor = db.query(SQLitConstant.TABLE_USER,null," num =? ",new String[]{num},null,null,null);
+        //Cursor cursor = DBManger.QueryDataBySql(db,sql,new String[]{num});
+        Cursor cursor = db.query(SQLitConstant.TABLE_USER,null," NUM = ? ",new String[]{num},null,null,null);
         List<UserInfo> list  = DBManger.cursorToUserList(cursor);
-      //  Log.d(TAG, "login: List<UserInfo> list  :"+list.get(0).toString());
 
-       if(list.size()==0){
-           Toast.makeText(this,"密码错误！",Toast.LENGTH_SHORT).show();
+
+       if(list.size()==0||list ==null){
+           Toast.makeText(this,"ddd密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("userInfo",list.get(0));
+            intent.putExtras(bundle);
             startActivity(intent);
             db.close();
             finish();
@@ -86,7 +94,21 @@ public class LoginActivity extends Activity {
 
     public void doRegister(View view){
         Intent intent = new Intent(this,RegisterActivity.class);
-        startActivity(intent);
+       // startActivity(intent);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 1:
+                if(resultCode == RESULT_OK){
+                    uesrName.setText(data.getStringExtra("num"));
+                }
+                break;
+            default:
+        }
     }
 
     /**

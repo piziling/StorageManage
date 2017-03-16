@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.base.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ChangeColorInconWithText storage;
     //private ChangeColorInconWithText pic;
     private ChangeColorInconWithText setting;
+
+
+    MeFragment meFragment = new MeFragment();
+    StorageFragment storageFragment = new StorageFragment();
+    //        PicFragment picFragment = new PicFragment();
+    SettingFragment settingFragment =new SettingFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 return mainTabs.size();
             }
         };
+
+        //加载登录信息
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        //UserInfo userInfo = (UserInfo) bundle.getSerializable("userInfo");
+        settingFragment.setArguments(bundle);
     }
 
     /**
@@ -65,10 +79,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void initView() {
         mainViewPage = (NoScrollViewPager) findViewById(R.id.main_viewPage);
         mainTitle = (TextView) findViewById(R.id.tv_main_title);
-        MeFragment meFragment = new MeFragment();
-        StorageFragment storageFragment = new StorageFragment();
-//        PicFragment picFragment = new PicFragment();
-        SettingFragment settingFragment =new SettingFragment();
+
         mainTabs.add(meFragment);
         mainTabs.add(storageFragment);
 //        mainTabs.add(picFragment);
