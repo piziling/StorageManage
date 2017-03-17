@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.myView;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

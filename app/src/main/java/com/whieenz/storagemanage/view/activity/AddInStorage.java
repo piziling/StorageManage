@@ -1,6 +1,7 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -112,19 +113,7 @@ public class AddInStorage extends Activity {
      *
      */
     public void onAdd(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "远光软件", "中国移动", "中国航天"
-        });
-        picker.setCycleDisable(true);
-        picker.setLineVisible(false);
-        //picker.setShadowVisible(true);
-        picker.setTextSize(15);
-        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
-            @Override
-            public void onOptionPicked(int index, String item) {
-                wldw.setText(item);
-            }
-        });
-        picker.show();
+        Intent intent = new Intent(this,SelectGoodsActivity.class);
+        startActivity(intent);
     }
 }

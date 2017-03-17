@@ -1,9 +1,5 @@
 [
     {
-        "merged": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\qr_code_bg.9.png",
-        "source": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\qr_code_bg.9.png"
-    },
-    {
         "merged": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\shadow.png",
         "source": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\shadow.png"
     },

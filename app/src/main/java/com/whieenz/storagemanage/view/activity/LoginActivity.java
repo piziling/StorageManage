@@ -1,11 +1,10 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,8 +16,6 @@ import com.whieenz.storagemanage.utls.MySqlitHelper;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by heziwen on 2017/3/14.
@@ -69,14 +66,14 @@ public class LoginActivity extends Activity {
         }
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
+       // String sql = "SELECT * FROM "+SQLitConstant.TABLE_USER+" WHERE NUM = ? ";
 
         //Cursor cursor = DBManger.QueryDataBySql(db,sql,new String[]{num});
         Cursor cursor = db.query(SQLitConstant.TABLE_USER,null," NUM = ? ",new String[]{num},null,null,null);
         List<UserInfo> list  = DBManger.cursorToUserList(cursor);
 
 
-       if(list.size()==0||list ==null){
+       if(list ==null||list.size()==0){
            Toast.makeText(this,"ddd密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);

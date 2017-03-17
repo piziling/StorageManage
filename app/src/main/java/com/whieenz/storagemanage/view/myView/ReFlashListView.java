@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.myView;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -20,7 +20,7 @@ import com.whieenz.storagemanage.R;
  * Created by heziwen on 2017/3/1.
  */
 
-class ReFlashListView extends ListView implements AbsListView.OnScrollListener{
+public class ReFlashListView extends ListView implements AbsListView.OnScrollListener{
     private static final String TAG = "自定义VIEW";
     
     private View header; //顶部布局文件

@@ -15,7 +15,7 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="150dp"-->
         <!--android:background="@color/themeColor"></LinearLayout>-->
-    <com.whieenz.storagemanage.view.WaterWaveView
+    <com.whieenz.storagemanage.view.myView.WaterWaveView
         android:layout_marginTop="20dp"
         android:id="@+id/waterWaveView"
         android:layout_width="200dp"
