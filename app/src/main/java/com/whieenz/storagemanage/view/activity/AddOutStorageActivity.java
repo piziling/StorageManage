@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import java.util.Date;
 import cn.qqtheme.framework.picker.OptionPicker;
 
 /**
- * Created by heziwen on 2017/310.
+ * Created by heziwen on 2017/3/13.
  */
 
-public class AddInStorage extends Activity {
+public class AddOutStorageActivity extends Activity {
     private TextView djrq;
     private Button djlx;
     private Button wldw;
@@ -30,19 +30,19 @@ public class AddInStorage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_storage);
+        setContentView(R.layout.activity_out_storage);
         initView();
     }
 
     private void initView() {
-        djrq =(TextView) findViewById(R.id.in_value_djrq);
-        djbh =(EditText) findViewById(R.id.in_value_djbh);
-        jbr =(EditText) findViewById(R.id.in_value_jbr);
-        bz =(EditText) findViewById(R.id.in_value_bz);
-        ck = (Button) findViewById(R.id.in_value_ck);
-        wldw = (Button) findViewById(R.id.in_value_wldw);
-        djlx = (Button) findViewById(R.id.in_value_djlx);
-        add = (Button) findViewById(R.id.in_add);
+        djrq =(TextView) findViewById(R.id.out_value_djrq);
+        djbh =(EditText) findViewById(R.id.out_value_djbh);
+        jbr =(EditText) findViewById(R.id.out_value_jbr);
+        bz =(EditText) findViewById(R.id.out_value_bz);
+        ck = (Button) findViewById(R.id.out_value_ck);
+        wldw = (Button) findViewById(R.id.out_value_wldw);
+        djlx = (Button) findViewById(R.id.out_value_djlx);
+        add = (Button) findViewById(R.id.out_add);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间

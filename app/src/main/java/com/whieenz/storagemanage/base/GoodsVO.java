@@ -14,9 +14,19 @@ public class GoodsVO {
     private String jldw;
     private String bzq;
     private String scrq;
+    private String time;
     private String cd;
     private double dj;
+
     private String bz;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getWzmc() {
         return wzmc;

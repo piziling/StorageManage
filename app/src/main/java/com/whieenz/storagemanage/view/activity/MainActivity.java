@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.whieenz.storagemanage.R;
-import com.whieenz.storagemanage.base.UserInfo;
+import com.whieenz.storagemanage.view.myView.ChangeColorInconWithText;
+import com.whieenz.storagemanage.view.fragment.MeFragment;
+import com.whieenz.storagemanage.view.myView.NoScrollViewPager;
+import com.whieenz.storagemanage.view.fragment.SettingFragment;
+import com.whieenz.storagemanage.view.fragment.StorageFragment;
 
 import java.util.ArrayList;
 import java.util.List;

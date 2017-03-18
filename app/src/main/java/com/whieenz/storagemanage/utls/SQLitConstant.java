@@ -94,8 +94,9 @@ public class SQLitConstant {
     public static final  String KCDJ_DCLR="DCLR";
     public static final  String KCDJ_YWID="YWID";
     public static final  String KCDJ_YWRQ="YWRQ";
-    public static final  String YWID_TIME="TIME";
-    public static final  String YWID_BZ="BZ";
+    public static final  String KCDJ_YWFX="YWFX";
+    public static final  String KCDJ_TIME="TIME";
+    public static final  String KCDJ_BZ="BZ";
 
 
 
@@ -173,5 +174,26 @@ public class SQLitConstant {
             KCTZ_TIME+" TEXT NOT NULL,"+
             KCTZ_BZ+" TEXT)";
 
+
+
+    //创建库存单据
+    public static final  String CREATE_KCDJ = "CREATE TABLE IF NOT EXISTS "+
+            TABLE_KCTZ+"("+
+            KCDJ_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            KCDJ_DJBM+" TEXT UNIQUE,"+
+            KCDJ_DJMC+" TEXT,"+
+            KCDJ_DJLX+" TEXT,"+
+            KCDJ_ZDRQ+" TEXT,"+
+            KCDJ_WLDW+" TEXT,"+
+            KCDJ_DJZT+" TEXT,"+
+            KCDJ_CK+" TEXT,"+
+            KCDJ_ZJR+" INTEGER,"+
+            KCDJ_ZDR+" TEXT,"+
+            KCDJ_DCLR+" TEXT,"+
+            KCDJ_YWID+" TEXT UNIQUE,"+
+            KCDJ_YWRQ+" TEXT,"+
+            KCDJ_YWFX+" TEXT,"+
+            KCDJ_TIME+" TEXT,"+
+            KCDJ_BZ+" TEXT)";
 
 }

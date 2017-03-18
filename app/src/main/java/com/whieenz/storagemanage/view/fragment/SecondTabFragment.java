@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.view.myView.ReFlashListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

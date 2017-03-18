@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.whieenz.storagemanage.view.MainActivity">
+    tools:context="com.whieenz.storagemanage.view.activity.MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -21,13 +21,13 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
-    <com.whieenz.storagemanage.view.NoScrollViewPager
+    <com.whieenz.storagemanage.view.myView.NoScrollViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/main_viewPage">
 
-    </com.whieenz.storagemanage.view.NoScrollViewPager>
+    </com.whieenz.storagemanage.view.myView.NoScrollViewPager>
 
 
     <LinearLayout
@@ -37,7 +37,7 @@
         android:orientation="horizontal"
         android:background="@drawable/tab_bg">
 
-        <com.whieenz.storagemanage.view.ChangeColorInconWithText
+        <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:icon="@drawable/me"
@@ -47,7 +47,7 @@
             android:padding="5dp"
             android:id="@+id/indicator_me"
             android:layout_weight="1"/>
-        <com.whieenz.storagemanage.view.ChangeColorInconWithText
+        <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:icon="@drawable/storage"
@@ -57,7 +57,7 @@
             android:padding="5dp"
             android:id="@+id/indicator_storage"
             android:layout_weight="1"/>
-        <!--<com.whieenz.storagemanage.view.ChangeColorInconWithText-->
+        <!--<com.whieenz.storagemanage.view.myView.ChangeColorInconWithText-->
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="match_parent"-->
             <!--app:icon="@drawable/pic"-->
@@ -67,7 +67,7 @@
             <!--android:padding="5dp"-->
             <!--android:id="@+id/indicator_pic"-->
             <!--android:layout_weight="1"/>-->
-        <com.whieenz.storagemanage.view.ChangeColorInconWithText
+        <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:icon="@drawable/setting"

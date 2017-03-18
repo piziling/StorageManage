@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
 import android.content.ContentValues;

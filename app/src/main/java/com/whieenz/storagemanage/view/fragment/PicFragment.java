@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.view.activity.AddGoodsActivity;
+import com.whieenz.storagemanage.view.activity.AddInStorage;
+import com.whieenz.storagemanage.view.activity.AddOutStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;

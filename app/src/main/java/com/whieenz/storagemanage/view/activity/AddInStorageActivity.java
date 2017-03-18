@@ -1,6 +1,7 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +16,10 @@ import java.util.Date;
 import cn.qqtheme.framework.picker.OptionPicker;
 
 /**
- * Created by heziwen on 2017/3/13.
+ * Created by heziwen on 2017/310.
  */
 
-public class AddOutStorage extends Activity {
+public class AddInStorageActivity extends Activity {
     private TextView djrq;
     private Button djlx;
     private Button wldw;
@@ -30,19 +31,19 @@ public class AddOutStorage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_out_storage);
+        setContentView(R.layout.activity_in_storage);
         initView();
     }
 
     private void initView() {
-        djrq =(TextView) findViewById(R.id.out_value_djrq);
-        djbh =(EditText) findViewById(R.id.out_value_djbh);
-        jbr =(EditText) findViewById(R.id.out_value_jbr);
-        bz =(EditText) findViewById(R.id.out_value_bz);
-        ck = (Button) findViewById(R.id.out_value_ck);
-        wldw = (Button) findViewById(R.id.out_value_wldw);
-        djlx = (Button) findViewById(R.id.out_value_djlx);
-        add = (Button) findViewById(R.id.out_add);
+        djrq =(TextView) findViewById(R.id.in_value_djrq);
+        djbh =(EditText) findViewById(R.id.in_value_djbh);
+        jbr =(EditText) findViewById(R.id.in_value_jbr);
+        bz =(EditText) findViewById(R.id.in_value_bz);
+        ck = (Button) findViewById(R.id.in_value_ck);
+        wldw = (Button) findViewById(R.id.in_value_wldw);
+        djlx = (Button) findViewById(R.id.in_value_djlx);
+        add = (Button) findViewById(R.id.in_add);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
@@ -112,19 +113,7 @@ public class AddOutStorage extends Activity {
      *
      */
     public void onAdd(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "远光软件", "中国移动", "中国航天"
-        });
-        picker.setCycleDisable(true);
-        picker.setLineVisible(false);
-        //picker.setShadowVisible(true);
-        picker.setTextSize(15);
-        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
-            @Override
-            public void onOptionPicked(int index, String item) {
-                wldw.setText(item);
-            }
-        });
-        picker.show();
+        Intent intent = new Intent(this,SelectGoodsActivity.class);
+        startActivity(intent);
     }
 }

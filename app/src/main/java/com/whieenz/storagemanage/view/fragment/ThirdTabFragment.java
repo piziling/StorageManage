@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,14 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
-import com.whieenz.storagemanage.base.UserInfo;
+import com.whieenz.storagemanage.view.myView.ReFlashListView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,58 +25,48 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by heziwen on 2017/3/7.
+ * Created by K2 on 2017/3/4.
+ *
+ * 第一个标签  聊天
  */
-
-public class SettingFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener{
-
-    private ListView listView;
+public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
+    private ReFlashListView listView;
+    private ArrayAdapter<String > arry_adapter;
     private SimpleAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
-    private TextView userName;
-    private TextView userJob;
-
-    private int[] imageList = {R.drawable.setting_password,
-            R.drawable.setting_parameter,R.drawable.setting_manage,
-            R.drawable.setting_user_add,R.drawable.setting_parameter,
-            R.drawable.setting_manage,R.drawable.setting_help};
-    private String[] textList = {"密码管理","设置仓库","物资类型","往来单位","入库类型","出库类型","关于"};
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.setting,container,false);
+
+
+
+        return inflater.inflate(R.layout.tab01,container,false);
 
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (ListView)getView().findViewById(R.id.setting_list);
-        userName =(TextView)getView().findViewById(R.id.tv_user_name);
-        userJob =(TextView) getView().findViewById(R.id.tv_user_job);
+        listView = (ReFlashListView)getView().findViewById(R.id.lv_listview);
         datalist = new ArrayList<Map<String,Object>>();
-        simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.setting_item,new String[]{"image","text"},new int[]{R.id.setting_image,R.id.setting_text});
+        simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.dj_item,new String[]{"djbm","djlx","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_time,R.id.tv_item_djzt});
         //3.视图（ListView）加载适配器
         listView.setAdapter(simp_adapter);
         //加载监听器
         listView.setOnItemClickListener(this);
         listView.setOnScrollListener(this);
-
-        //加载用户信息
-        Bundle bundle = getArguments();
-        UserInfo userInfo = (UserInfo) bundle.getSerializable("userInfo");
-        userName.setText(userInfo.getName());
-        userJob.setText(userInfo.getJob());
-
     }
 
     private List<Map<String,Object>> getData(){
-        for (int i = 0; i < imageList.length; i++) {
+        for (int i = 0; i < 20; i++) {
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("image",imageList[i]);
-            map.put("text",textList[i]);
+            map.put("djbm","单据编号：DJ"+i*1000000+i*i*5);
+            map.put("djlx","单据类型：生产出库单");
+            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String date = sDateFormat.format(new java.util.Date());
+            map.put("time",date);
+            map.put("djzt","已完成");
             datalist.add(map);
         }
         return  datalist;

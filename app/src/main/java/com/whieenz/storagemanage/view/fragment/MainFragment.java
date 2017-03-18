@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;

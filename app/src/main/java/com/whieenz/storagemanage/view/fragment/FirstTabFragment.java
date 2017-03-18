@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.view.myView.ReFlashListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,11 +25,12 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by K2 on 2017/3/4.
+ * Created by whieenz on 2017/3/4.
  *
  * 第一个标签  聊天
  */
-public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
+public class FirstTabFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
+
     private ReFlashListView listView;
     private ArrayAdapter<String > arry_adapter;
     private SimpleAdapter simp_adapter;
@@ -58,14 +60,14 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private List<Map<String,Object>> getData(){
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("djbm","单据编号：DJ"+i*1000000+i*i*5);
-            map.put("djlx","单据类型：生产出库单");
+            map.put("djbm","单据编号：DJ"+(i*1000000+i*i*5));
+            map.put("djlx","生产出库单");
             SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String date = sDateFormat.format(new java.util.Date());
             map.put("time",date);
-            map.put("djzt","已完成");
+            map.put("djzt","新任务");
             datalist.add(map);
         }
         return  datalist;
