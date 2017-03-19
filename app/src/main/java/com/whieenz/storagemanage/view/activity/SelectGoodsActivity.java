@@ -1,6 +1,7 @@
 package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.utls.DBManger;
@@ -33,11 +35,16 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
     private LoadListView listView;
     private SGAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
+
+
+
+    private TextView selectInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_goods);
         listView = (LoadListView) findViewById(R.id.select_loadlist);
+        selectInfo = (TextView) findViewById(R.id.tv_select_info);
         datalist = new ArrayList<Map<String,Object>>();
         simp_adapter = new SGAdapter(this,getData(),R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc});
         //3.视图（ListView）加载适配器
@@ -72,7 +79,7 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
         }
         while (cursor.moveToNext()){
             Map<String,Object> map = new HashMap<String,Object>();
-            Log.d(TAG, "cursorToUserList: in moveToNext() ");
+            Log.d(TAG, "SelextGoods moveTonest ");
             String wzbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZBM));
             String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZMC));
             String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_GGXH));
@@ -81,9 +88,56 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
             map.put("wzmc",wzmc);
             map.put("ggxh","规格型号："+ggxh);
             map.put("zkc","总库存："+0+" "+jldw);
+            Log.d(TAG, " SelextGoods moveTonest 66666"+map.toString());
             datalist.add(map);
         }
-
+        db.close();
         return  datalist;
+    }
+
+    /***
+     * 确定按钮响应事件
+     * @param view
+     */
+    public void onYes(View view){
+        int nums[] = simp_adapter.getNums();
+        ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i]>0){
+                HashMap<String,String> map=(HashMap<String,String>)listView.getItemAtPosition(i);
+                map.put("num",String.valueOf(nums[i]));
+                list.add(map);
+            }
+        }
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        ArrayList bundlelist = new ArrayList();
+        bundlelist.add(list);
+        bundle.putParcelableArrayList("result",bundlelist);
+        intent.putExtras(bundle);
+        setResult(RESULT_OK,intent);
+        finish();
+
+    }
+
+    /**
+     * 清除按钮相应事件
+     * @param view
+     */
+    public void onDelete(View view){
+        int nums[] = simp_adapter.getNums();
+        ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
+        for (int i = 0; i < nums.length; i++) {
+
+        }
+    }
+
+
+    public TextView getSelectInfo() {
+        return selectInfo;
+    }
+
+    public void setSelectInfo(TextView selectInfo) {
+        this.selectInfo = selectInfo;
     }
 }

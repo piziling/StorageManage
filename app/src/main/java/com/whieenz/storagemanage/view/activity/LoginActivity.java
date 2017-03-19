@@ -1,4 +1,4 @@
-package com.whieenz.storagemanage.view;
+package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
         List<UserInfo> list  = DBManger.cursorToUserList(cursor);
 
 
-       if(list.size()==0||list ==null){
+       if(list ==null||list.size()==0){
            Toast.makeText(this,"ddd密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);

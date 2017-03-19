@@ -13,8 +13,8 @@ import android.widget.SimpleAdapter;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.view.activity.AddGoodsActivity;
-import com.whieenz.storagemanage.view.activity.AddInStorage;
-import com.whieenz.storagemanage.view.activity.AddOutStorage;
+import com.whieenz.storagemanage.view.activity.AddInStorageActivity;
+import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,10 +77,10 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 startActivity(new Intent(getActivity(),AddGoodsActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(getActivity(),AddInStorage.class));
+                startActivity(new Intent(getActivity(),AddInStorageActivity.class));
                 break;
             case 3:
-                startActivity(new Intent(getActivity(),AddOutStorage.class));
+                startActivity(new Intent(getActivity(),AddOutStorageActivity.class));
                 break;
         }
     }

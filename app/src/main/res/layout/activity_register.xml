@@ -21,121 +21,126 @@
             android:id="@+id/tv_main_title"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="用户姓名："
-                android:gravity="right|center_vertical"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:id="@+id/et_register_name"
-                android:background="@drawable/et_bg"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="用户姓名："
+                    android:gravity="right|center_vertical"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_register_name"
+                    android:background="@drawable/et_bg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="用户职位："
+                    android:gravity="right|center_vertical"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_register_job"
+                    android:background="@drawable/et_bg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="用户账号："
+                    android:gravity="right|center_vertical"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:id="@+id/et_register_num"
+                    android:background="@drawable/et_bg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="账号密码："
+                    android:gravity="right|center_vertical"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/et_bg"
+                    android:id="@+id/et_register_firstkey"
+                    android:inputType="textPassword"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text="确认密码："
+                    android:gravity="right|center_vertical"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:inputType="textPassword"
+                    android:id="@+id/et_register_secondkey"
+                    android:background="@drawable/et_bg"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="15dp"
+                android:text="注册"
+                android:textSize="20sp"
+                android:textColor="#FFFFFFFF"
+                android:onClick="register"
+                android:background="@drawable/btn_bg"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="用户职位："
-                android:gravity="right|center_vertical"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:id="@+id/et_register_job"
-                android:background="@drawable/et_bg"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="用户账号："
-                android:gravity="right|center_vertical"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:id="@+id/et_register_num"
-                android:background="@drawable/et_bg"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="账号密码："
-                android:gravity="right|center_vertical"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@drawable/et_bg"
-                android:id="@+id/et_register_firstkey"
-                android:inputType="textPassword"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:text="确认密码："
-                android:gravity="right|center_vertical"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:inputType="textPassword"
-                android:id="@+id/et_register_secondkey"
-                android:background="@drawable/et_bg"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="15dp"
-            android:text="注册"
-            android:textSize="20sp"
-            android:textColor="#FFFFFFFF"
-            android:onClick="register"
-            android:background="@drawable/btn_bg"/>
-    </LinearLayout>
 
 
 </LinearLayout>

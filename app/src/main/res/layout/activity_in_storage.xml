@@ -201,6 +201,8 @@
         android:background="#99555555"
         android:layout_alignParentBottom="true"
         android:gravity="center"
+        android:id="@+id/bottom_first_layout"
+        android:visibility="visible"
         android:onClick="onAdd">
         <ImageButton
             android:layout_width="40dp"
@@ -221,5 +223,66 @@
             android:onClick="onAdd"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#99555555"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:id="@+id/bottom_result_layout"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:id="@+id/tv_result"
+                android:layout_gravity="center_vertical"
+                android:textSize="22sp"
+                android:text="合计:"/>
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_gravity="center_vertical">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:text="共 2 种"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:text="合计 10 件"/>-->
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="修改"
+            android:textColor="#ffffff"
+            android:background="#EE0000"
+            android:layout_toLeftOf="@+id/btn_insert"/>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="提交"
+            android:textColor="#ffffff"
+            android:background="@color/themeColor"
+            android:id="@+id/btn_insert"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

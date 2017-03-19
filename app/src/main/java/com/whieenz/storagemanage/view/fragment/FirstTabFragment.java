@@ -101,6 +101,9 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String text = listView.getItemAtPosition(i)+"";
-        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+        HashMap<String,String> map=(HashMap<String,String>)listView.getItemAtPosition(i);
+        String djbm=map.get("djbm");
+        String time=map.get("time");
+        Toast.makeText(getActivity(),"position:"+i+"\ndjbm:"+djbm+"\ntime:"+time,Toast.LENGTH_SHORT).show();
     }
 }

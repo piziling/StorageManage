@@ -24,16 +24,19 @@ import static android.content.ContentValues.TAG;
 public class SGAdapter extends SimpleAdapter {
     private int[] nums;
     private Context context;
+    private TextView textView;
 
     public SGAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);
         //Map<Integer,Integer> map = new HashMap<>();
+
         nums = new int[getCount()];
         for (int i = 0; i < nums.length ; i++) {
             nums[i] = 0;
             Log.e(TAG, "SGAdapter: "+i+"   ==  "+nums[i]);
         }
         this.context = context;
+
 
     }
 
@@ -77,4 +80,22 @@ public class SGAdapter extends SimpleAdapter {
         });
         return view;
     }
+
+
+    public int[] getNums() {
+        return nums;
+    }
+
+    public void setNums(int[] nums) {
+        this.nums = nums;
+    }
+
+    public void cleanAll() {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+
+    }
+
+
 }
