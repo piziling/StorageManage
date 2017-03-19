@@ -158,7 +158,7 @@ public class AddInStorageActivity extends Activity {
                     if (lists!=null&&lists.size()>0){
                         resultBottom.setVisibility(View.VISIBLE);
                         firstBottom.setVisibility(View.GONE);
-                        resultTv.setText("合计：已选 "+lists.size()+" 种，共" + sum );
+                        resultTv.setText("合计：已选 "+lists.size()+" 种，总数量 " + sum );
                     }
                 }
                 break;
