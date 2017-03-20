@@ -64,8 +64,9 @@
 
         <com.whieenz.storagemanage.view.myView.LoadListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/select_second_layout"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_second_layout"
+            android:layout_above="@+id/select_bottom_layout"
             android:isScrollContainer="false"
             android:id="@+id/select_loadlist">
 
@@ -73,6 +74,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/select_bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -93,8 +95,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:id="@+id/tv_select_info"
-            android:text="已选2种共计4件"/>
+            android:id="@+id/tv_select_info" />
         <Button
             android:layout_width="80dp"
             android:layout_height="match_parent"

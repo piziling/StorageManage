@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.whieenz.storagemanage.base.GoodsVO;
 import com.whieenz.storagemanage.base.UserInfo;
 
 import java.util.ArrayList;
@@ -73,6 +74,38 @@ public class DBManger {
             UserInfo user =new UserInfo(name,job,num,key);
             Log.d(TAG, "cursorToUserList: "+user.getNum()+user.getKey());
             list.add(user);
+        }
+        return list;
+    }
+
+    /**
+     * 将查询结果转化为 goodslist
+     * @param
+     * @return
+     */
+    public static List<GoodsVO> cursorToGoodsList(Cursor cursor){
+        List<GoodsVO> list = new ArrayList<>();
+        //moveToNext() 返回true 表示下一条记录存在 否则表示游标中数据读取完毕
+        Log.d(TAG, "cursorToGoodsList: cursor.getCount() :"+cursor.getCount());
+        if (cursor.getCount()==0){
+            return null;
+        }
+        while (cursor.moveToNext()){
+            GoodsVO goodsVO = new GoodsVO();
+            goodsVO.setWzbm(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZBM)));
+            goodsVO.setWzmc(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZMC)));
+            goodsVO.setWzlx(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZLX)));
+            goodsVO.setGgxh(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_GGXH)));
+            goodsVO.setJldw(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_JLDW)));
+            goodsVO.setScrq(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_SCRQ)));
+            goodsVO.setCd(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_CD)));
+            goodsVO.setBz(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_BZ)));
+            goodsVO.setBzq(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_BZQ)));
+            goodsVO.setDj(Integer.valueOf(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_DJ))));
+            goodsVO.setSize(Double.parseDouble(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_SIZE))));
+            goodsVO.setTime(cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_TIME)));
+            list.add(goodsVO);
+            Log.d(TAG, "cursorToGoodsList: Wzbm  :"+goodsVO.getWzbm());
         }
         return list;
     }

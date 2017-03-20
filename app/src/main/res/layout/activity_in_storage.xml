@@ -91,6 +91,29 @@
        </LinearLayout>
        <LinearLayout
            android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:gravity="center_vertical"
+           android:orientation="horizontal"
+           android:background="@drawable/add_goods_bg">
+           <TextView
+               android:layout_marginLeft="5dp"
+               android:layout_width="80dp"
+               android:layout_height="wrap_content"
+               android:id="@+id/in_key_kw"
+               android:textSize="18sp"
+               android:text="库位"/>
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:onClick="onKwPicker"
+               android:layout_marginLeft="5dp"
+               android:layout_weight="1"
+               android:gravity="center_vertical|left"
+               android:id="@+id/in_value_kw"
+               android:background="#00ffffff"/>
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal"
            android:background="@drawable/add_goods_bg">
@@ -280,6 +303,7 @@
             android:textColor="#ffffff"
             android:background="@color/themeColor"
             android:id="@+id/btn_insert"
+            android:onClick="doIn"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>

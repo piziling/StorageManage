@@ -30,7 +30,7 @@ import static android.content.ContentValues.TAG;
  * Created by heziwen on 2017/3/17.
  */
 
-public class SelectGoodsActivity extends Activity implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener{
+public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapterCallback,AbsListView.OnScrollListener,AdapterView.OnItemClickListener{
 
     private LoadListView listView;
     private SGAdapter simp_adapter;
@@ -46,7 +46,7 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
         listView = (LoadListView) findViewById(R.id.select_loadlist);
         selectInfo = (TextView) findViewById(R.id.tv_select_info);
         datalist = new ArrayList<Map<String,Object>>();
-        simp_adapter = new SGAdapter(this,getData(),R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc});
+        simp_adapter = new SGAdapter(this,getData(),R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc},this);
         //3.视图（ListView）加载适配器
         listView.setAdapter(simp_adapter);
         //加载监听器
@@ -84,7 +84,7 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
             String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZMC));
             String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_GGXH));
             String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_JLDW));
-            map.put("wzbm","物资编码："+wzbm);
+            map.put("wzbm",wzbm);
             map.put("wzmc",wzmc);
             map.put("ggxh","规格型号："+ggxh);
             map.put("zkc","总库存："+0+" "+jldw);
@@ -125,19 +125,21 @@ public class SelectGoodsActivity extends Activity implements AbsListView.OnScrol
      * @param view
      */
     public void onDelete(View view){
-        int nums[] = simp_adapter.getNums();
-        ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
-        for (int i = 0; i < nums.length; i++) {
-
-        }
+        simp_adapter.initNums();
+        simp_adapter.notifyDataSetChanged();
+        selectInfo.setText("");
     }
 
 
-    public TextView getSelectInfo() {
-        return selectInfo;
+
+    /**
+     * 接口方法，响应ListView按钮点击事件
+     * @param view
+     */
+    @Override
+    public void click(View view) {
+        String  info =  "已选"+simp_adapter.getSelect()+"种共计"+simp_adapter.getSelects()+"件";
+        selectInfo.setText(info);
     }
 
-    public void setSelectInfo(TextView selectInfo) {
-        this.selectInfo = selectInfo;
-    }
 }

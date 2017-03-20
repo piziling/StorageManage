@@ -16,6 +16,8 @@ import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.MySqlitHelper;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -52,6 +54,10 @@ public class LoginActivity extends Activity {
         db.execSQL(SQLitConstant.CREATE_USER);
         //创建GOODS
         db.execSQL(SQLitConstant.CREATE_GOODS);
+        //创建KCTZ
+        db.execSQL(SQLitConstant.CREATE_KCTZ);
+        //创建KCDJ
+        db.execSQL(SQLitConstant.CREATE_KCDJ);
 
         db.close();
     }
@@ -77,7 +83,7 @@ public class LoginActivity extends Activity {
 
 
        if(list ==null||list.size()==0){
-           Toast.makeText(this,"ddd密码错误！",Toast.LENGTH_SHORT).show();
+           Toast.makeText(this,"密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
             Intent intent = new Intent(this,MainActivity.class);
             Bundle bundle = new Bundle();
@@ -89,7 +95,6 @@ public class LoginActivity extends Activity {
         }else {
             Toast.makeText(this,"密码错误！",Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void doRegister(View view){
@@ -105,6 +110,7 @@ public class LoginActivity extends Activity {
             case 1:
                 if(resultCode == RESULT_OK){
                     uesrName.setText(data.getStringExtra("num"));
+
                 }
                 break;
             default:

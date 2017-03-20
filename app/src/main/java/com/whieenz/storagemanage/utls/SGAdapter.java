@@ -14,6 +14,7 @@ import com.whieenz.storagemanage.R;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.attr.tag;
 import static android.content.ContentValues.TAG;
 
 
@@ -21,15 +22,16 @@ import static android.content.ContentValues.TAG;
  * Created by heziwen on 2017/3/17.
  */
 
-public class SGAdapter extends SimpleAdapter {
+public class SGAdapter extends SimpleAdapter implements View.OnClickListener{
     private int[] nums;
     private Context context;
     private TextView textView;
+    private SGAdapterCallback callback;
 
-    public SGAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+    public SGAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to,SGAdapterCallback callback) {
         super(context, data, resource, from, to);
         //Map<Integer,Integer> map = new HashMap<>();
-
+        this.callback = callback;
         nums = new int[getCount()];
         for (int i = 0; i < nums.length ; i++) {
             nums[i] = 0;
@@ -50,6 +52,12 @@ public class SGAdapter extends SimpleAdapter {
         final TextView textView = (TextView) view.findViewById(R.id.tv_goods_num);
         addBtn.setTag(position);
         deleteBtn.setTag(position);
+        textView.setTag(position);
+
+        if(nums[position]==0){   //判断是否隐藏按钮
+            textView.setVisibility(View.GONE);
+            deleteBtn.setVisibility(View.GONE);
+        }
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +69,8 @@ public class SGAdapter extends SimpleAdapter {
                 deleteBtn.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.VISIBLE);
                 textView.setText(""+nums[tag]);
+
+                callback.click(v);
             }
         });
 
@@ -76,6 +86,8 @@ public class SGAdapter extends SimpleAdapter {
                 }else{
                     textView.setText(""+nums[tag]);
                 }
+
+                callback.click(v);
             }
         });
         return view;
@@ -97,5 +109,47 @@ public class SGAdapter extends SimpleAdapter {
 
     }
 
+    /**
+     * 获取选择了几类物资
+     */
+    public int getSelect(){
+        int tag = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i]>0){
+                tag++;
+            }
+        }
+        return tag;
+    }
 
+    /**
+     * 获取选择物资的总数量
+     */
+    public int getSelects(){
+        int tag = 0;
+        for (int i = 0; i < nums.length; i++) {
+
+                tag+= nums[i];
+
+        }
+        return tag;
+    }
+
+    /**
+     * 初始化选择数据  当点击清除按钮时执行
+     */
+    public void initNums(){
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    public interface SGAdapterCallback{
+        public void click(View view);
+    }
 }

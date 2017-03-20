@@ -17,6 +17,7 @@ public class GoodsVO {
     private String time;
     private String cd;
     private double dj;
+    private double size;
 
     private String bz;
 
@@ -106,5 +107,13 @@ public class GoodsVO {
 
     public void setWzbm(String wzbm) {
         this.wzbm = wzbm;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 }

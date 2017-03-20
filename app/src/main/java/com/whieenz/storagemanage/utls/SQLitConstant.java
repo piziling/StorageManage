@@ -33,9 +33,10 @@ public class SQLitConstant {
     public static final  String GOODS_JLDW="JLDW";
     public static final  String GOODS_SCRQ="SCRQ";
     public static final  String GOODS_BZQ="BZQ";
-    public static final  String GOODS_CD="DJ";
-    public static final  String GOODS_DJ="CD";
+    public static final  String GOODS_CD="CD";
+    public static final  String GOODS_DJ="DJ";
     public static final  String GOODS_BZ="BZ";
+    public static final  String GOODS_SIZE="SIZE";
     public static final  String GOODS_TIME="TIME"; //物资新增时间
 
     //仓库表字段
@@ -66,8 +67,8 @@ public class SQLitConstant {
     public static final  String KCTZ_JLDW="JLDW";
     public static final  String KCTZ_SCRQ="SCRQ";
     public static final  String KCTZ_BZQ="BZQ";
-    public static final  String KCTZ_CD="DJ";
-    public static final  String KCTZ_DJ="CD";
+    public static final  String KCTZ_CD="CD";
+    public static final  String KCTZ_DJ="DJ";
     public static final  String KCTZ_SL="SL";
     public static final  String KCTZ_BZ="BZ";
     public static final  String KCTZ_CK="CK";
@@ -88,11 +89,13 @@ public class SQLitConstant {
     public static final  String KCDJ_ZDRQ="ZDRQ";
     public static final  String KCDJ_WLDW="WLDW";
     public static final  String KCDJ_CK="CK";
-    public static final  String KCDJ_ZJR="ZJR";
+    public static final  String KCDJ_KW="KW";
+    public static final  String KCDJ_ZJE="ZJE";
     public static final  String KCDJ_DJZT="DJZT";
     public static final  String KCDJ_ZDR="ZDR";
     public static final  String KCDJ_DCLR="DCLR";
     public static final  String KCDJ_YWID="YWID";
+    public static final  String KCDJ_YWMC="YWMC";
     public static final  String KCDJ_YWRQ="YWRQ";
     public static final  String KCDJ_YWFX="YWFX";
     public static final  String KCDJ_TIME="TIME";
@@ -120,7 +123,8 @@ public class SQLitConstant {
             GOODS_JLDW+" TEXT NOT NULL,"+
             GOODS_BZQ+" TEXT NOT NULL,"+
             GOODS_CD+" TEXT NOT NULL,"+
-            GOODS_DJ+" INTEGER,"+
+            GOODS_DJ+" TEXT,"+
+            GOODS_SIZE+" TEXT,"+
             GOODS_SCRQ+" TEXT NOT NULL,"+
             GOODS_TIME+" TEXT NOT NULL,"+
             GOODS_BZ+" TEXT)";
@@ -153,7 +157,7 @@ public class SQLitConstant {
     public static final  String CREATE_KCTZ = "CREATE TABLE IF NOT EXISTS "+
             TABLE_KCTZ+"("+
             KCTZ_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-            KCTZ_YWID+" TEXT UNIQUE,"+
+            KCTZ_YWID+" TEXT,"+
             KCTZ_YWMC+" TEXT,"+
             KCTZ_YWFX+" TEXT,"+
             KCTZ_YWRQ+" TEXT,"+
@@ -161,15 +165,15 @@ public class SQLitConstant {
             KCTZ_WZMC+" TEXT,"+
             KCTZ_GGXH+" TEXT,"+
             KCTZ_WZLX+" TEXT NOT NULL,"+
-            KCTZ_JLDW+" TEXT NOT NULL,"+
-            KCTZ_BZQ+" TEXT NOT NULL,"+
-            KCTZ_CD+" TEXT NOT NULL,"+
-            KCTZ_SIZE+" TEXT NOT NULL,"+
             KCTZ_DJ+" INTEGER,"+
             KCTZ_SL+" INTEGER,"+
+            KCTZ_JLDW+" TEXT NOT NULL,"+
+            KCTZ_SIZE+" TEXT NOT NULL,"+
             KCTZ_SCRQ+" TEXT NOT NULL,"+
+            KCTZ_CD+" TEXT NOT NULL,"+
             KCTZ_CK+" TEXT NOT NULL,"+
             KCTZ_KW+" TEXT NOT NULL,"+
+            KCTZ_BZQ+" TEXT NOT NULL,"+
             KCTZ_JBR+" TEXT NOT NULL,"+
             KCTZ_TIME+" TEXT NOT NULL,"+
             KCTZ_BZ+" TEXT)";
@@ -178,21 +182,23 @@ public class SQLitConstant {
 
     //创建库存单据
     public static final  String CREATE_KCDJ = "CREATE TABLE IF NOT EXISTS "+
-            TABLE_KCTZ+"("+
+            TABLE_KCDJ+"("+
             KCDJ_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
             KCDJ_DJBM+" TEXT UNIQUE,"+
             KCDJ_DJMC+" TEXT,"+
             KCDJ_DJLX+" TEXT,"+
-            KCDJ_ZDRQ+" TEXT,"+
             KCDJ_WLDW+" TEXT,"+
-            KCDJ_DJZT+" TEXT,"+
             KCDJ_CK+" TEXT,"+
-            KCDJ_ZJR+" INTEGER,"+
+            KCDJ_KW+" TEXT,"+
+            KCDJ_ZJE+" INTEGER,"+
             KCDJ_ZDR+" TEXT,"+
             KCDJ_DCLR+" TEXT,"+
+            KCDJ_DJZT+" TEXT,"+
             KCDJ_YWID+" TEXT UNIQUE,"+
-            KCDJ_YWRQ+" TEXT,"+
             KCDJ_YWFX+" TEXT,"+
+            KCDJ_YWMC+" TEXT,"+
+            KCDJ_YWRQ+" TEXT,"+
+            KCDJ_ZDRQ+" TEXT,"+
             KCDJ_TIME+" TEXT,"+
             KCDJ_BZ+" TEXT)";
 

@@ -46,6 +46,7 @@ public class AddGoodsActivity extends Activity{
     private EditText bzq;
     private EditText cd;
     private EditText dj;
+    private EditText size;
     private EditText bz;
     private Button   jldw;
     private Button   wzlx;
@@ -71,6 +72,7 @@ public class AddGoodsActivity extends Activity{
         scrq = (Button) findViewById(R.id.goods_value_scrq);
         cd = (EditText) findViewById(R.id.goods_value_cd);
         dj = (EditText) findViewById(R.id.goods_value_dj);
+        size = (EditText) findViewById(R.id.goods_value_size);
         bz = (EditText) findViewById(R.id.goods_value_bz);
         createQB = (CheckBox) findViewById(R.id.cb_createQB);
 
@@ -174,6 +176,7 @@ public class AddGoodsActivity extends Activity{
         values.put("SCRQ",scrq.getText().toString());
         values.put("CD",  cd.getText().toString());
         values.put("DJ",  dj.getText().toString());
+        values.put("SIZE",size.getText().toString());
         values.put("BZ",  bz.getText().toString());
         values.put("TIME",time);
         return  values;
@@ -245,6 +248,10 @@ public class AddGoodsActivity extends Activity{
             Toast.makeText(this,"单价不能为空！",Toast.LENGTH_SHORT).show();
             return false;
         }
+        if ( size.getText().toString().equals("")) {
+            Toast.makeText(this,"单价不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
@@ -275,10 +282,11 @@ public class AddGoodsActivity extends Activity{
         input = input +";"+getEdittext().get("ggxh");
         input = input +";"+getEdittext().get("wzlx");
         input = input +";"+getEdittext().get("jldw");
-        input = input +";"+getEdittext().get("bzq");
-        input = input +";"+getEdittext().get("scrq");
-        input = input +";"+getEdittext().get("cd");
         input = input +";"+getEdittext().get("dj");
+        input = input +";"+getEdittext().get("size");
+        input = input +";"+getEdittext().get("scrq");
+        input = input +";"+getEdittext().get("bzq");
+        input = input +";"+getEdittext().get("cd");
         input = input +";"+getEdittext().get("bz");
         Log.d(TAG, "getQRcodeText: 二维码的字符串"+input);
         return input;
