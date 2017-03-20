@@ -15,7 +15,7 @@ public class SQLitConstant {
     public static final  String TABLE_KW="KW";//数据库表名
     public static final  String TABLE_KCTZ="KCTZ";//数据库表名
     public static final  String TABLE_KCDJ="KCDJ";//数据库表名
-    public static final  String TABLE_CKMX="CKMX";//数据库表名
+    public static final  String TABLE_KCMX="KCMX";//数据库表名
     //用户表字段
     public static final  String USER_ID="_ID";//USER 表字段
     public static final  String USER_NAME="NAME";//USER 表字段
@@ -61,6 +61,7 @@ public class SQLitConstant {
     //库从台账
     public static final  String KCTZ_ID="_ID";
     public static final  String KCTZ_WZBM="WZBM";
+    public static final  String KCTZ_TZBM="TZBM";
     public static final  String KCTZ_WZMC="WZMC";
     public static final  String KCTZ_WZLX="WZLX";
     public static final  String KCTZ_GGXH="GGXH";
@@ -102,6 +103,24 @@ public class SQLitConstant {
     public static final  String KCDJ_BZ="BZ";
 
 
+    //库存物资明细表字段
+    public static final  String KCMX_ID="_ID";
+    public static final  String KCMX_WZBM="WZBM";
+    public static final  String KCMX_WZMC="WZMC";
+    public static final  String KCMX_WZLX="WZLX";
+    public static final  String KCMX_GGXH="GGXH";
+    public static final  String KCMX_JLDW="JLDW";
+    public static final  String KCMX_SCRQ="SCRQ";
+    public static final  String KCMX_BZQ="BZQ";
+    public static final  String KCMX_CD="CD";
+    public static final  String KCMX_CK="CK";
+    public static final  String KCMX_KW="KW";
+    public static final  String KCMX_DJ="DJ";
+    public static final  String KCMX_ZJE="ZJE";
+    public static final  String KCMX_SL="SL";
+    public static final  String KCMX_SIZE="SIZE";
+    public static final  String KCMX_BZ="BZ";
+    public static final  String KCMX_TIME="TIME"; //物资新增时间
 
 
     public static final  String CREATE_USER = "CREATE TABLE IF NOT EXISTS "+
@@ -161,7 +180,8 @@ public class SQLitConstant {
             KCTZ_YWMC+" TEXT,"+
             KCTZ_YWFX+" TEXT,"+
             KCTZ_YWRQ+" TEXT,"+
-            KCTZ_WZBM+" TEXT UNIQUE,"+
+            KCTZ_TZBM+" TEXT UNIQUE,"+
+            KCTZ_WZBM+" TEXT,"+
             KCTZ_WZMC+" TEXT,"+
             KCTZ_GGXH+" TEXT,"+
             KCTZ_WZLX+" TEXT NOT NULL,"+
@@ -201,5 +221,29 @@ public class SQLitConstant {
             KCDJ_ZDRQ+" TEXT,"+
             KCDJ_TIME+" TEXT,"+
             KCDJ_BZ+" TEXT)";
+
+
+    //创建仓库物资明细表
+    public static final  String CREATE_CKMX = "CREATE TABLE IF NOT EXISTS "+
+            TABLE_KCMX+"("+
+            KCMX_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            KCMX_WZBM+" TEXT UNIQUE,"+
+            KCMX_WZMC+" TEXT,"+
+            KCMX_GGXH+" TEXT,"+
+            KCMX_WZLX+" TEXT NOT NULL,"+
+            KCMX_JLDW+" TEXT NOT NULL,"+
+            KCMX_SL+" TEXT NOT NULL,"+
+            KCMX_SIZE+" TEXT NOT NULL,"+
+            KCMX_DJ+" TEXT NOT NULL,"+
+            KCMX_ZJE+" TEXT NOT NULL,"+
+            KCMX_CK+" TEXT NOT NULL,"+
+            KCMX_KW+" TEXT NOT NULL,"+
+            KCMX_BZQ+" TEXT NOT NULL,"+
+            KCMX_CD+" TEXT NOT NULL,"+
+            KCMX_DJ+" TEXT,"+
+            KCMX_SIZE+" TEXT,"+
+            KCMX_SCRQ+" TEXT NOT NULL,"+
+            KCMX_TIME+" TEXT NOT NULL,"+
+            KCMX_BZ+" TEXT)";
 
 }

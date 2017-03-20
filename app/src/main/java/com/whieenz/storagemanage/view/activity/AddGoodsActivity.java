@@ -182,6 +182,23 @@ public class AddGoodsActivity extends Activity{
         return  values;
     }
 
+    /**
+     * 初始化输入
+     */
+    private void initInput(){
+        wzbm.setText("");
+        wzmc.setText("");
+        ggxh.setText("");
+        jldw.setText("");
+        wzlx.setText("");
+        bzq.setText("");
+        scrq.setText("");
+        cd.setText("");
+        dj.setText("");
+        size.setText("");
+        bz.setText("");
+        createQB.setChecked(false);
+    }
     public void onSave(View view) {
         //1.判断是否有空
         //2.判断物资编码是否重复
@@ -203,6 +220,8 @@ public class AddGoodsActivity extends Activity{
                 mbitmap = createQRcode();
                 saveQRcode(mbitmap);
             }
+            Toast.makeText(this,"新增成功",Toast.LENGTH_SHORT).show();
+            initInput();
         }
 
     }
@@ -339,5 +358,4 @@ public class AddGoodsActivity extends Activity{
             e.printStackTrace();
         }
     }
-
 }

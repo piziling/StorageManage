@@ -239,12 +239,22 @@ public class AddInStorageActivity extends Activity {
         Boolean tag = true;
         for (int i = 0; i < kctzList.size(); i++) {
             long kctzResult = db.insert(SQLitConstant.TABLE_KCTZ,null,kctzList.get(i).getContentValues());
+//            //更新库从明细
+//            Cursor cursor = db.rawQuery("SELECT * FROM KCMX WHERE WZBM = ?",
+//                    new String[]{(String)kctzList.get(i).getContentValues().get("WZBM")});
+//            boolean isExist = false;
+//            while (cursor.moveToLast()){
+//                isExist = true;
+//
+//            }
+
             if (kcdjResult == -1||kctzResult == -1){
                 Log.d(TAG, "doIn: kcdjResult : "+ kcdjResult+"  kctzResult: "+kctzResult);
                 tag = false;
             }
        }
         if (tag){
+            initInput();
             Toast.makeText(this,"提交入库成功！",Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this,"提交入库失败！",Toast.LENGTH_SHORT).show();
@@ -295,6 +305,21 @@ public class AddInStorageActivity extends Activity {
         String time = formatter.format(curDate);
         return time;
 
+    }
+
+    /***
+     * 初始化输入
+     */
+    private void initInput(){
+        djbh.setText("");
+        djlx.setText("");
+        djrq.setText("");
+        jbr.setText("");
+        bz.setText("");
+        ck.setText("");
+        kw.setText("");
+        resultBottom.setVisibility(View.GONE);
+        firstBottom.setVisibility(View.VISIBLE);
     }
 
     @Override
