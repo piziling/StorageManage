@@ -22,7 +22,7 @@ public class KctzVO {
     private String bzq;
     private double dj;
     private String cd;
-    private String sl;
+    private int sl;
     private String bz;
     private String ck;
     private String kw;
@@ -141,11 +141,11 @@ public class KctzVO {
         this.cd = cd;
     }
 
-    public String getSl() {
+    public int getSl() {
         return sl;
     }
 
-    public void setSl(String sl) {
+    public void setSl(int sl) {
         this.sl = sl;
     }
 

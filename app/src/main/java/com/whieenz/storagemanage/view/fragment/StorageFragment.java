@@ -15,6 +15,8 @@ import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.view.activity.AddGoodsActivity;
 import com.whieenz.storagemanage.view.activity.AddInStorageActivity;
 import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
+import com.whieenz.storagemanage.view.activity.KcdjActivity;
+import com.whieenz.storagemanage.view.activity.KcmxActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,11 +78,17 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
             case 0:
                 startActivity(new Intent(getActivity(),AddGoodsActivity.class));
                 break;
+            case 1:
+                startActivity(new Intent(getActivity(),KcmxActivity.class));
+                break;
             case 2:
                 startActivity(new Intent(getActivity(),AddInStorageActivity.class));
                 break;
             case 3:
                 startActivity(new Intent(getActivity(),AddOutStorageActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(getActivity(),KcdjActivity.class));
                 break;
         }
     }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,9 @@ import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.GoodsVO;
+import com.whieenz.storagemanage.base.KcmxVO;
 import com.whieenz.storagemanage.base.KctzVO;
+import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 
@@ -32,12 +35,15 @@ import static android.R.attr.tag;
 import static android.content.ContentValues.TAG;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static android.media.CamcorderProfile.get;
+import static com.whieenz.storagemanage.R.id.time;
+import static com.whieenz.storagemanage.utls.DBManger.QueryDataBySql;
 
 /**
  * Created by heziwen on 2017/310.
  */
 
 public class AddInStorageActivity extends Activity {
+    private MyApp myApp;
     private TextView djrq;
     private Button djlx;
     private Button wldw;
@@ -55,6 +61,7 @@ public class AddInStorageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_storage);
+        myApp = (MyApp)getApplication();
         initView();
     }
 
@@ -76,10 +83,49 @@ public class AddInStorageActivity extends Activity {
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
         String str = formatter.format(curDate);
         djrq.setText(str);
+
+        jbr.setText(myApp.getUserInfo().getName());
     }
 
     /**
-     *
+     * 检查输入内容是否为空
+     * @return
+     */
+    private boolean checkIsNull() {
+        if ( djbh.getText().toString().equals("")) {
+            Toast.makeText(this,"单据编码不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( djlx.getText().toString().equals("")) {
+            Toast.makeText(this,"类型不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( djrq.getText().toString().equals("")) {
+            Toast.makeText(this,"日期不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( ck.getText().toString().equals("")) {
+            Toast.makeText(this,"仓库不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( kw.getText().toString().equals("")) {
+            Toast.makeText(this,"库位不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( jbr.getText().toString().equals("")) {
+            Toast.makeText(this,"经办人不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( wldw.getText().toString().equals("")) {
+            Toast.makeText(this,"往来单位不能为空！",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 单据类型选择器
      */
     public void onDjlxPicker(View view){
         OptionPicker picker = new OptionPicker(this, new String[]{
@@ -98,7 +144,7 @@ public class AddInStorageActivity extends Activity {
         picker.show();
     }
     /**
-     *
+     * 仓库选择器
      */
     public void onCkPicker(View view){
         OptionPicker picker = new OptionPicker(this, new String[]{
@@ -118,7 +164,7 @@ public class AddInStorageActivity extends Activity {
     }
 
     /**
-     *
+     *库位选择器、
      */
     public void onKwPicker(View view){
         OptionPicker picker = new OptionPicker(this, new String[]{
@@ -137,7 +183,7 @@ public class AddInStorageActivity extends Activity {
         picker.show();
     }
     /**
-     *
+     *  往来单位选择器
      */
     public void onWldwPicker(View view){
         OptionPicker picker = new OptionPicker(this, new String[]{
@@ -188,6 +234,15 @@ public class AddInStorageActivity extends Activity {
             Toast.makeText(this, "请添加要入库的物资信息！", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(!checkIsNull()){
+            return;
+        }
+        //判断单据编号是否存在
+        if(DBManger.isUniqueExist(SQLitConstant.TABLE_KCDJ,"DJBM =?",
+                new String[]{djbh.getText().toString()})){
+            Toast.makeText(this, "单据编号已存在！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         List<KctzVO> kctzList = new ArrayList<>();
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
         String ywid = getYwid();
@@ -198,7 +253,7 @@ public class AddInStorageActivity extends Activity {
             String time = formatter.format(curDate);
 
             String wzbm = resultlists.get(i).get("wzbm");
-            Log.d(TAG, "doIn: wzbm");
+            Log.d(TAG, "doIn: wzbm"+wzbm);
             Cursor cursor = db.query(SQLitConstant.TABLE_GOODS,null," WZBM = ? ",new String[]{wzbm},null,null,null);
             List<GoodsVO> goodsList = DBManger.cursorToGoodsList(cursor);
 
@@ -217,7 +272,7 @@ public class AddInStorageActivity extends Activity {
             kctzVO.setCd(goodsList.get(0).getCd());
             kctzVO.setDj(goodsList.get(0).getDj());
             kctzVO.setSize(goodsList.get(0).getSize()*Integer.valueOf(resultlists.get(i).get("num")));
-            kctzVO.setSl(resultlists.get(i).get("num"));
+            kctzVO.setSl(Integer.valueOf(resultlists.get(i).get("num")));
             kctzVO.setBz(bz.getText().toString());
             kctzVO.setJbr(jbr.getText().toString());
             kctzVO.setCk(ck.getText().toString());
@@ -235,20 +290,13 @@ public class AddInStorageActivity extends Activity {
         ContentValues kcdjValues = getKcdjContentValues(ywid, zje);
         long kcdjResult = db.insert(SQLitConstant.TABLE_KCDJ,null,kcdjValues);
 
-
         Boolean tag = true;
         for (int i = 0; i < kctzList.size(); i++) {
             long kctzResult = db.insert(SQLitConstant.TABLE_KCTZ,null,kctzList.get(i).getContentValues());
-//            //更新库从明细
-//            Cursor cursor = db.rawQuery("SELECT * FROM KCMX WHERE WZBM = ?",
-//                    new String[]{(String)kctzList.get(i).getContentValues().get("WZBM")});
-//            boolean isExist = false;
-//            while (cursor.moveToLast()){
-//                isExist = true;
-//
-//            }
+            //更新库从明细信息
+            updateKcmxInfo(kctzList, db, i);
 
-            if (kcdjResult == -1||kctzResult == -1){
+            if (kcdjResult == -1||kctzResult == -1 ){
                 Log.d(TAG, "doIn: kcdjResult : "+ kcdjResult+"  kctzResult: "+kctzResult);
                 tag = false;
             }
@@ -261,6 +309,75 @@ public class AddInStorageActivity extends Activity {
         }
         db.close();
 
+    }
+
+    /**
+     * 更新库从明细信息
+     * @param kctzList  库从台账
+     * @param db  数据库连接
+     * @param i
+     */
+    private void updateKcmxInfo(List<KctzVO> kctzList, SQLiteDatabase db, int i) {
+        //更新库从明细
+        String sql = "SELECT * FROM KCMX WHERE WZBM = ? AND CK = ?";
+        Cursor cursor = DBManger.QueryDataBySql(db,sql,
+                new String[]{kctzList.get(i).getWzbm(), kctzList.get(i).getCk()});
+        KcmxVO kcmxVO = new KcmxVO();
+        Log.e(TAG, "updateKcmxInfo: cursor : " +cursor.getCount());
+        boolean isExist = false;
+        if (cursor.moveToNext()){
+            Log.e(TAG, "cursor.moveToNext() : " );
+            isExist = true;
+            kcmxVO.getKcmxVOfromCursor(cursor);
+        }
+
+        if (isExist&&kcmxVO!=null&&!kcmxVO.getWzbm().equals("")){ //判断是否取到值(同一仓库存在该物资 -->更新)
+            ContentValues kcmxValues = new ContentValues();
+            kcmxValues.put(SQLitConstant.KCMX_SL,kcmxVO.getSl()+kctzList.get(i).getSl());
+            kcmxValues.put(SQLitConstant.KCMX_ZJE,kcmxVO.getZje()+kctzList.get(i).getSl()*kctzList.get(i).getDj());
+            kcmxValues.put(SQLitConstant.KCMX_SIZE,kcmxVO.getSize()+kctzList.get(i).getSize());
+            db.update(SQLitConstant.TABLE_KCMX,kcmxValues,
+                    " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
+        }else {   //同一仓库不存在该物资 -->新增
+            ContentValues values = getKcmxContentValues(kctzList, i);
+            long kcmxResult = db.insert(SQLitConstant.TABLE_KCMX,null,values);
+            if(kcmxResult == -1){
+                Toast.makeText(this,"新增库存明细失败！",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * 获取库存明细插入数据格式  ContentValues
+     * @param kctzList
+     * @param i
+     * @return
+     */
+    @NonNull
+    private ContentValues getKcmxContentValues(List<KctzVO> kctzList, int i) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String time = formatter.format(curDate);
+
+        ContentValues values = new ContentValues();
+        values.put(SQLitConstant.KCMX_WZBM,kctzList.get(i).getWzbm());
+        values.put(SQLitConstant.KCMX_KCBM,kctzList.get(i).getCk()+kctzList.get(i).getWzbm());
+        values.put(SQLitConstant.KCMX_WZMC,kctzList.get(i).getWzmc());
+        values.put(SQLitConstant.KCMX_WZLX,kctzList.get(i).getWzlx());
+        values.put(SQLitConstant.KCMX_GGXH,kctzList.get(i).getGgxh());
+        values.put(SQLitConstant.KCMX_JLDW,kctzList.get(i).getJldw());
+        values.put(SQLitConstant.KCMX_SCRQ,kctzList.get(i).getScrq());
+        values.put(SQLitConstant.KCMX_BZQ,kctzList.get(i).getBzq());
+        values.put(SQLitConstant.KCMX_CD,kctzList.get(i).getCd());
+        values.put(SQLitConstant.KCMX_DJ,kctzList.get(i).getDj());
+        values.put(SQLitConstant.KCMX_SL,kctzList.get(i).getSl());
+        values.put(SQLitConstant.KCMX_ZJE,kctzList.get(i).getSl()*kctzList.get(i).getDj());
+        values.put(SQLitConstant.KCMX_CK,kctzList.get(i).getCk());
+        values.put(SQLitConstant.KCMX_KW,kctzList.get(i).getKw());
+        values.put(SQLitConstant.KCMX_BZ,kctzList.get(i).getBz());
+        values.put(SQLitConstant.KCMX_SIZE,kctzList.get(i).getSize());
+        values.put(SQLitConstant.KCMX_TIME,time);
+        return values;
     }
 
     /**
@@ -290,8 +407,6 @@ public class AddInStorageActivity extends Activity {
         values.put(SQLitConstant.KCDJ_ZDRQ,djrq.getText().toString());
         values.put(SQLitConstant.KCDJ_TIME,time);
         values.put(SQLitConstant.KCDJ_ZJE,zje);
-
-
         return  values;
     }
 
@@ -313,7 +428,6 @@ public class AddInStorageActivity extends Activity {
     private void initInput(){
         djbh.setText("");
         djlx.setText("");
-        djrq.setText("");
         jbr.setText("");
         bz.setText("");
         ck.setText("");

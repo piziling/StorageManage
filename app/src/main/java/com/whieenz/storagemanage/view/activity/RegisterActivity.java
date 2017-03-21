@@ -49,6 +49,11 @@ public class RegisterActivity extends Activity {
 
     public void register(View view){
         if(checkInput()){
+            if(DBManger.isUniqueExist(SQLitConstant.TABLE_USER,"NUM =?",
+                    new String[]{num.getText().toString()})){
+                Toast.makeText(this,"该账号已存在！",Toast.LENGTH_SHORT).show();
+                return;
+            }
             if(!insertInfo()){
                 Toast.makeText(this,"注册失败！",Toast.LENGTH_SHORT).show();
                 return;

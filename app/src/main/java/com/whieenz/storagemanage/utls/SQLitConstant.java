@@ -106,6 +106,7 @@ public class SQLitConstant {
     //库存物资明细表字段
     public static final  String KCMX_ID="_ID";
     public static final  String KCMX_WZBM="WZBM";
+    public static final  String KCMX_KCBM="KCBM";
     public static final  String KCMX_WZMC="WZMC";
     public static final  String KCMX_WZLX="WZLX";
     public static final  String KCMX_GGXH="GGXH";
@@ -224,10 +225,11 @@ public class SQLitConstant {
 
 
     //创建仓库物资明细表
-    public static final  String CREATE_CKMX = "CREATE TABLE IF NOT EXISTS "+
+    public static final  String CREATE_KCMX = "CREATE TABLE IF NOT EXISTS "+
             TABLE_KCMX+"("+
             KCMX_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-            KCMX_WZBM+" TEXT UNIQUE,"+
+            KCMX_WZBM+" TEXT,"+
+            KCMX_KCBM+" TEXT UNIQUE,"+  //库存编码
             KCMX_WZMC+" TEXT,"+
             KCMX_GGXH+" TEXT,"+
             KCMX_WZLX+" TEXT NOT NULL,"+
@@ -240,8 +242,6 @@ public class SQLitConstant {
             KCMX_KW+" TEXT NOT NULL,"+
             KCMX_BZQ+" TEXT NOT NULL,"+
             KCMX_CD+" TEXT NOT NULL,"+
-            KCMX_DJ+" TEXT,"+
-            KCMX_SIZE+" TEXT,"+
             KCMX_SCRQ+" TEXT NOT NULL,"+
             KCMX_TIME+" TEXT NOT NULL,"+
             KCMX_BZ+" TEXT)";

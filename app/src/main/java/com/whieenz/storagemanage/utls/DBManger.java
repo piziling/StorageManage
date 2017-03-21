@@ -109,6 +109,22 @@ public class DBManger {
         }
         return list;
     }
+
+    /**
+     * 判断是否存在本条数据
+     * @param tableName
+     * @param whereCase
+     * @param whereCaseValues
+     * @return ture 为存在 false 不存在
+     */
+   public static boolean isUniqueExist(String tableName,String whereCase,String[] whereCaseValues){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor =  db.query(tableName,null,whereCase,whereCaseValues,null,null,null);
+        if(cursor.moveToFirst() ==false){
+            return  false;
+        }
+       return true;
+   }
 /**
  * String table :查询的表名
  * String[] columns :查询的表中的字段名称 null 表示查询所有

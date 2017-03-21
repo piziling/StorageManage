@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.base.UserInfo;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.MySqlitHelper;
@@ -30,18 +31,18 @@ public class LoginActivity extends Activity {
     private EditText uesrName;
     private EditText uesrKey;
     private MySqlitHelper helper;
+    private MyApp myApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        myApp = (MyApp) getApplication();
         uesrName = (EditText) findViewById(R.id.user_name);
         uesrKey = (EditText) findViewById(R.id.user_key);
         uesrKey.setText("111");
         uesrName.setText("whieenz");
         //创建数据库
         createSQLite();
-
-
     }
 
     /**
@@ -58,6 +59,8 @@ public class LoginActivity extends Activity {
         db.execSQL(SQLitConstant.CREATE_KCTZ);
         //创建KCDJ
         db.execSQL(SQLitConstant.CREATE_KCDJ);
+        //创建KCMX
+        db.execSQL(SQLitConstant.CREATE_KCMX);
 
         db.close();
     }
@@ -85,6 +88,7 @@ public class LoginActivity extends Activity {
        if(list ==null||list.size()==0){
            Toast.makeText(this,"密码错误！",Toast.LENGTH_SHORT).show();
        } else if (list.get(0).getKey().equals(key)){ //判断密码是否正确
+            myApp.setUserInfo(list.get(0));  //获取登录用户信息
             Intent intent = new Intent(this,MainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("userInfo",list.get(0));
@@ -110,7 +114,6 @@ public class LoginActivity extends Activity {
             case 1:
                 if(resultCode == RESULT_OK){
                     uesrName.setText(data.getStringExtra("num"));
-
                 }
                 break;
             default:

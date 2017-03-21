@@ -14,7 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
-import com.whieenz.storagemanage.view.myView.ReFlashListView;
+import com.whieenz.storagemanage.view.myView.LoadListView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import static android.content.ContentValues.TAG;
  * 第一个标签  聊天
  */
 public class SecondTabFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
-    private ReFlashListView listView;
+    private LoadListView listView;
     private ArrayAdapter<String > arry_adapter;
     private SimpleAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
@@ -48,7 +48,7 @@ public class SecondTabFragment extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        listView = (ReFlashListView)getView().findViewById(R.id.lv_listview);
+        listView = (LoadListView)getView().findViewById(R.id.lv_listview);
         datalist = new ArrayList<Map<String,Object>>();
         simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.dj_item,new String[]{"djbm","djlx","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_time,R.id.tv_item_djzt});
         //3.视图（ListView）加载适配器

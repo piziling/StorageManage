@@ -83,11 +83,19 @@ public class AddGoodsActivity extends Activity{
      * @param view
      */
     public void onYearMonthDayPicker(View view) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String str = formatter.format(curDate);
+        String times[] = str.split("-");
+        int year = Integer.valueOf(times[0]);
+        int month = Integer.valueOf(times[0]);
+        int day = Integer.valueOf(times[0]);
         final DatePicker picker = new DatePicker(this);
         picker.setTopPadding(2);
-        picker.setRangeStart(2016, 8, 29);
-        picker.setRangeEnd(2111, 1, 11);
-        picker.setSelectedItem(2017, 03, 10);
+        picker.setRangeStart(2001, 01, 01);
+        picker.setRangeEnd(2111, 01, 11);
+        picker.setSelectedItem(year, month, day);
         picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
             public void onDatePicked(String year, String month, String day) {
