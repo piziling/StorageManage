@@ -22,15 +22,24 @@
             android:textSize="12sp"
             android:textColor="#4D4D4D"
             android:text="单据编号："/>
-
         <TextView
-            android:id="@+id/tv_kcdj_djrq"
+            android:id="@+id/tv_kcdj_wzxx"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#4D4D4D"
-            android:text="2017-03-02"/>
+            android:text="物资信息"/>
+
+        <TextView
+            android:id="@+id/tv_kcdj_zje"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#4D4D4D"
+            android:text="总金额"/>
+
         <TextView
             android:id="@+id/tv_kcdj_djzt"
             android:layout_marginLeft="10dp"
@@ -39,5 +48,13 @@
             android:textSize="12sp"
             android:textColor="#4D4D4D"
             android:text="单据状态"/>
+        <TextView
+            android:id="@+id/tv_kcdj_djrq"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#4D4D4D"
+            android:text="2017-03-02"/>
 
 </LinearLayout>

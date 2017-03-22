@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.whieenz.storagemanage.view.activity.AddInStorageActivity;
 import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
 import com.whieenz.storagemanage.view.activity.KcdjActivity;
 import com.whieenz.storagemanage.view.activity.KcmxActivity;
+import com.whieenz.storagemanage.view.activity.KctzActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,6 +88,9 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 break;
             case 3:
                 startActivity(new Intent(getActivity(),AddOutStorageActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(getActivity(), KctzActivity.class));
                 break;
             case 7:
                 startActivity(new Intent(getActivity(),KcdjActivity.class));

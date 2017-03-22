@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by heziwen on 2017/3/21.
  */
 
-public class KcmxActivity extends Activity implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener {
+public class KctzActivity extends Activity implements AbsListView.OnScrollListener,AdapterView.OnItemClickListener {
 
     private LoadListView listView;
     private SimpleAdapter simp_adapter;
@@ -33,15 +33,15 @@ public class KcmxActivity extends Activity implements AbsListView.OnScrollListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kcmx);
+        setContentView(R.layout.activity_kctz);
 
-        listView = (LoadListView) findViewById(R.id.kcmx_list);
+        listView = (LoadListView) findViewById(R.id.kctz_list);
         datalist = new ArrayList<Map<String,Object>>();
         getData();
         if (datalist.size()>0){
-            simp_adapter = new SimpleAdapter(this,datalist,R.layout.kcmx_item,
-                    new String[]{"wzmc","wzbm","ggxh","sltj","zje","ckxx"},
-                    new int[]{R.id.tv_kcmx_wzmc,R.id.tv_kcmx_wzbm,R.id.tv_kcmx_ggxh,R.id.tv_kcmx_sltj,R.id.tv_kcmx_zje,R.id.tv_kcmx_ckxx});
+            simp_adapter = new SimpleAdapter(this,datalist,R.layout.kctz_item,
+                    new String[]{"ywmc","tzbm","wzmc","sltj","ckxx","time"},
+                    new int[]{R.id.tv_kctz_ywmc,R.id.tv_kctz_tzbm,R.id.tv_kctz_wzmc,R.id.tv_kctz_sltj,R.id.tv_kctz_ckxx,R.id.tv_kctz_time});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -53,26 +53,26 @@ public class KcmxActivity extends Activity implements AbsListView.OnScrollListen
 
     private List<Map<String,Object>> getData(){
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
-        //ContentValues values = new ContentValues();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCMX,null,null,null,null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCTZ,null,null,null,null,null,null);
         if (cursor.getCount()==0){
             return null;
         }
         while (cursor.moveToNext()){
             Map<String,Object> map = new HashMap<String,Object>();
-            String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_WZMC));
-            String wzbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_WZBM));
-            String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_GGXH));
-            String sl = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_SL));
-            String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_JLDW));
-            String ck = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_CK));
-            String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_ZJE));
-            map.put("wzmc",wzmc);
-            map.put("wzbm","物资编码："+wzbm);
-            map.put("ggxh","规格型号："+ggxh);
+            String ywmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_YWMC));
+            String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_WZMC));
+            String tzbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_TZBM));
+            String sl = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_SL));
+            String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_JLDW));
+            String ck = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_CK));
+            String time = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_TIME));
+
+            map.put("ywmc",ywmc);
+            map.put("tzbm","台账编码："+tzbm);
+            map.put("wzmc","物资名称："+wzmc);
             map.put("sltj","库存： "+sl+" "+jldw);
-            map.put("zje","总金额： "+zje+"RMB");
-            map.put("ckxx","所在仓库："+ck);
+            map.put("ckxx","定位："+ck);
+            map.put("time","时间："+time);
             datalist.add(map);
         }
         db.close();

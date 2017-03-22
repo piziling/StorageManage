@@ -1,14 +1,19 @@
 package com.whieenz.storagemanage.utls;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.whieenz.storagemanage.base.GoodsVO;
 import com.whieenz.storagemanage.base.UserInfo;
+import com.whieenz.storagemanage.view.activity.MainActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -21,7 +26,16 @@ import static android.content.ContentValues.TAG;
 public class DBManger {
     private static  MySqlitHelper helper;
 
-
+    private static String[] dxmc = {"远光软件","中国电网","中国石油",
+            "采购入库", "产成品入库","半成品入库","其它入库",
+            "采购出库","产成品出库","半成品出库","其它出库",
+            "个","打","台","部","件","瓶","袋","箱","克","千克","吨",
+            "半成品","产成品","原材料","其他"};
+    private static String[] dxfl = {"WLDW","WLDW","WLDW",
+            "RKLX", "RKLX","RKLX","RKLX",
+            "CKLX","CKLX","CKLX","CKLX",
+            "JLDW","JLDW","JLDW","JLDW","JLDW","JLDW","JLDW","JLDW","JLDW","JLDW","JLDW",
+            "WZFL","WZFL","WZFL","WZFL"};
     public static MySqlitHelper getIntance (Context context){
         if(helper==null){
             helper = new MySqlitHelper(context);
@@ -125,6 +139,28 @@ public class DBManger {
         }
        return true;
    }
+
+    public static boolean initInfo(){
+        boolean tag  = true;
+        SQLiteDatabase db = helper.getReadableDatabase();
+        for (int i = 0; i < dxmc.length; i++) {
+            ContentValues values  = new ContentValues();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+            String time = formatter.format(curDate);
+            values.put(SQLitConstant.GLDX_DXID,String.valueOf((int)(Math.random() * 10000)));
+            values.put(SQLitConstant.GLDX_DXMC,dxmc[i]);
+            values.put(SQLitConstant.GLDX_DXFL,dxfl[i]);
+            values.put(SQLitConstant.GLDX_USER,"admin");
+            values.put(SQLitConstant.GLDX_TIME,time);
+            values.put(SQLitConstant.GLDX_BZ,"系统初始化");
+            long result = db.insert(SQLitConstant.TABLE_GLDX,null,values);
+            if(result == -1){
+               tag = false;
+            }
+        }
+        return tag;
+    }
 /**
  * String table :查询的表名
  * String[] columns :查询的表中的字段名称 null 表示查询所有

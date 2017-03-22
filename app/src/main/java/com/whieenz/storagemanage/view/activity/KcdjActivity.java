@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.attr.y;
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -40,8 +44,9 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
         getData();
         if(datalist.size()>0){
             simp_adapter = new SimpleAdapter(this,datalist,R.layout.kcdj_item,
-                    new String[]{"djlx","djbm","djrq","djzt"},
-                    new int[]{R.id.tv_kcdj_djlx,R.id.tv_kcdj_djbm,R.id.tv_kcdj_djrq,R.id.tv_kcdj_djzt});
+                    new String[]{"djlx","djbm","wzxx","zje","djzt","djrq"},
+                    new int[]{R.id.tv_kcdj_djlx,R.id.tv_kcdj_djbm,R.id.tv_kcdj_wzxx,
+                            R.id.tv_kcdj_zje,R.id.tv_kcdj_djzt,R.id.tv_kcdj_djrq});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -62,12 +67,22 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
             Map<String,Object> map = new HashMap<String,Object>();
             String djlx = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJLX));
             String djbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJBM));
-            String djrq = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZDRQ));
+            String djrq = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_TIME));
             String djzt = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJZT));
+            String ywid = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_YWID));
+            String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
+            String wzxx = "";
+            Cursor kctzCursor = db.query(SQLitConstant.TABLE_KCTZ,null,"YWID=?",new String[]{ywid},null,null,null);
+
+            while (kctzCursor.moveToNext()){
+                wzxx += kctzCursor.getString(kctzCursor.getColumnIndex(SQLitConstant.KCTZ_WZMC))+"|";
+            }
             map.put("djlx",djlx);
             map.put("djbm","单据编号："+djbm);
-            map.put("djrq","制单日期："+djrq);
+            map.put("djrq","制单时间："+djrq);
             map.put("djzt","单据状态："+djzt);
+            map.put("zje","总金额："+zje+"RMB");
+            map.put("wzxx","物资信息："+wzxx);
             datalist.add(map);
         }
         db.close();

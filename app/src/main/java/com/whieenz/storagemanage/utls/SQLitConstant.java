@@ -16,6 +16,20 @@ public class SQLitConstant {
     public static final  String TABLE_KCTZ="KCTZ";//数据库表名
     public static final  String TABLE_KCDJ="KCDJ";//数据库表名
     public static final  String TABLE_KCMX="KCMX";//数据库表名
+    public static final  String TABLE_GLDX="GLDX";//数据库表名
+    public static final  String TABLE_APPINFO="APPINFO";//数据库表名
+
+
+    //应用信息表字段
+    public static final  String APPINFO_ID="_ID";//APPINFO 表字段
+    public static final  String APPINFO_NAME="NAME";//APPINFO 表字段
+    public static final  String APPINFO_VALUE="VALUE";//APPINFO 表字段
+    public static final  String APPINFO_RESULT="RESULT";//APPINFO 表字段
+    public static final  String APPINFO_TIME="TIME";//APPINFO 表字段
+    public static final  String APPINFO_BZ="BZ";//APPINFO 表字段
+
+
+
     //用户表字段
     public static final  String USER_ID="_ID";//USER 表字段
     public static final  String USER_NAME="NAME";//USER 表字段
@@ -50,13 +64,13 @@ public class SQLitConstant {
     public static final  String CK_TIME="TIME";
 
     //库位表字段
-    public static final  String KW_ID="_ID";
-    public static final  String KW_KWMC="KWMC";
-    public static final  String KW_KWBM="KWBM";
-    public static final  String KW_SIZE="SIZE";
-    public static final  String KW_SSCK="SSCK";
-    public static final  String KW_BZ="BZ";
-    public static final  String KW_TIME="TIME";
+    public static final  String GLDX_ID="_ID";
+    public static final  String GLDX_DXID="DXID";
+    public static final  String GLDX_DXMC="DXMC";
+    public static final  String GLDX_DXFL="DXFL";
+    public static final  String GLDX_USER="USER";
+    public static final  String GLDX_TIME="TIME";
+    public static final  String GLDX_BZ="BZ";
 
     //库从台账
     public static final  String KCTZ_ID="_ID";
@@ -73,7 +87,6 @@ public class SQLitConstant {
     public static final  String KCTZ_SL="SL";
     public static final  String KCTZ_BZ="BZ";
     public static final  String KCTZ_CK="CK";
-    public static final  String KCTZ_KW="KW";
     public static final  String KCTZ_JBR="JBR";
     public static final  String KCTZ_SIZE="SIZE";
     public static final  String KCTZ_YWID="YWID";
@@ -90,7 +103,6 @@ public class SQLitConstant {
     public static final  String KCDJ_ZDRQ="ZDRQ";
     public static final  String KCDJ_WLDW="WLDW";
     public static final  String KCDJ_CK="CK";
-    public static final  String KCDJ_KW="KW";
     public static final  String KCDJ_ZJE="ZJE";
     public static final  String KCDJ_DJZT="DJZT";
     public static final  String KCDJ_ZDR="ZDR";
@@ -130,8 +142,17 @@ public class SQLitConstant {
             USER_NAME+" TEXT,"+
             USER_JOB+" TEXT,"+
             USER_NUM+" TEXT UNIQUE,"+
-            USER_KEY+" TEXT NOT NULL,"+
-            USER_TIME+" TEXT NOT NULL)";
+            USER_KEY+" TEXT ,"+
+            USER_TIME+" TEXT )";
+
+    public static final  String CREATE_APPINFO = "CREATE TABLE IF NOT EXISTS "+
+            TABLE_APPINFO+"("
+            +APPINFO_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            APPINFO_NAME+" TEXT,"+
+            APPINFO_VALUE+" TEXT,"+
+            APPINFO_RESULT+" TEXT,"+
+            APPINFO_TIME+" TEXT,"+
+            APPINFO_BZ+" TEXT )";
 
     public static final  String CREATE_GOODS = "CREATE TABLE IF NOT EXISTS "+
             TABLE_GOODS+"("+
@@ -139,14 +160,14 @@ public class SQLitConstant {
             GOODS_WZBM+" TEXT UNIQUE,"+
             GOODS_WZMC+" TEXT,"+
             GOODS_GGXH+" TEXT,"+
-            GOODS_WZLX+" TEXT NOT NULL,"+
-            GOODS_JLDW+" TEXT NOT NULL,"+
-            GOODS_BZQ+" TEXT NOT NULL,"+
-            GOODS_CD+" TEXT NOT NULL,"+
+            GOODS_WZLX+" TEXT ,"+
+            GOODS_JLDW+" TEXT ,"+
+            GOODS_BZQ+" TEXT ,"+
+            GOODS_CD+" TEXT ,"+
             GOODS_DJ+" TEXT,"+
             GOODS_SIZE+" TEXT,"+
-            GOODS_SCRQ+" TEXT NOT NULL,"+
-            GOODS_TIME+" TEXT NOT NULL,"+
+            GOODS_SCRQ+" TEXT ,"+
+            GOODS_TIME+" TEXT ,"+
             GOODS_BZ+" TEXT)";
 
     //创建仓库
@@ -155,23 +176,23 @@ public class SQLitConstant {
             CK_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
             CK_CKBM+" TEXT UNIQUE,"+
             CK_CKMC+" TEXT,"+
+            CK_SIZE+" TEXT ,"+
             CK_ADDRESS+" TEXT,"+
-            CK_SIZE+" TEXT NOT NULL,"+
-            CK_CGY+" TEXT NOT NULL,"+
-            CK_TIME+" TEXT NOT NULL,"+
+            CK_CGY+" TEXT ,"+
+            CK_TIME+" TEXT ,"+
             CK_BZ+" TEXT)";
 
 
-    //创建库位
-    public static final  String CREATE_KW = "CREATE TABLE IF NOT EXISTS "+
-            TABLE_KW+"("+
-            KW_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-            KW_KWBM+" TEXT UNIQUE,"+
-            KW_KWMC+" TEXT,"+
-            KW_SIZE+" TEXT,"+
-            KW_SSCK+" TEXT NOT NULL,"+
-            KW_TIME+" TEXT NOT NULL,"+
-            KW_BZ+" TEXT)";
+    //创建管理对象
+    public static final  String CREATE_GLDX = "CREATE TABLE IF NOT EXISTS "+
+            TABLE_GLDX+"("+
+            GLDX_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            GLDX_DXID+" TEXT UNIQUE,"+
+            GLDX_DXMC+" TEXT,"+
+            GLDX_DXFL+" TEXT,"+
+            GLDX_USER+" TEXT,"+
+            GLDX_TIME+" TEXT,"+
+            GLDX_BZ+" TEXT)";
 
     //创建库存台账
     public static final  String CREATE_KCTZ = "CREATE TABLE IF NOT EXISTS "+
@@ -185,18 +206,17 @@ public class SQLitConstant {
             KCTZ_WZBM+" TEXT,"+
             KCTZ_WZMC+" TEXT,"+
             KCTZ_GGXH+" TEXT,"+
-            KCTZ_WZLX+" TEXT NOT NULL,"+
+            KCTZ_WZLX+" TEXT ,"+
             KCTZ_DJ+" INTEGER,"+
             KCTZ_SL+" INTEGER,"+
-            KCTZ_JLDW+" TEXT NOT NULL,"+
-            KCTZ_SIZE+" TEXT NOT NULL,"+
-            KCTZ_SCRQ+" TEXT NOT NULL,"+
-            KCTZ_CD+" TEXT NOT NULL,"+
-            KCTZ_CK+" TEXT NOT NULL,"+
-            KCTZ_KW+" TEXT NOT NULL,"+
-            KCTZ_BZQ+" TEXT NOT NULL,"+
-            KCTZ_JBR+" TEXT NOT NULL,"+
-            KCTZ_TIME+" TEXT NOT NULL,"+
+            KCTZ_JLDW+" TEXT ,"+
+            KCTZ_SIZE+" TEXT ,"+
+            KCTZ_SCRQ+" TEXT ,"+
+            KCTZ_CD+" TEXT ,"+
+            KCTZ_CK+" TEXT ,"+
+            KCTZ_BZQ+" TEXT ,"+
+            KCTZ_JBR+" TEXT ,"+
+            KCTZ_TIME+" TEXT ,"+
             KCTZ_BZ+" TEXT)";
 
 
@@ -210,7 +230,6 @@ public class SQLitConstant {
             KCDJ_DJLX+" TEXT,"+
             KCDJ_WLDW+" TEXT,"+
             KCDJ_CK+" TEXT,"+
-            KCDJ_KW+" TEXT,"+
             KCDJ_ZJE+" INTEGER,"+
             KCDJ_ZDR+" TEXT,"+
             KCDJ_DCLR+" TEXT,"+
@@ -232,18 +251,17 @@ public class SQLitConstant {
             KCMX_KCBM+" TEXT UNIQUE,"+  //库存编码
             KCMX_WZMC+" TEXT,"+
             KCMX_GGXH+" TEXT,"+
-            KCMX_WZLX+" TEXT NOT NULL,"+
-            KCMX_JLDW+" TEXT NOT NULL,"+
-            KCMX_SL+" TEXT NOT NULL,"+
-            KCMX_SIZE+" TEXT NOT NULL,"+
-            KCMX_DJ+" TEXT NOT NULL,"+
-            KCMX_ZJE+" TEXT NOT NULL,"+
-            KCMX_CK+" TEXT NOT NULL,"+
-            KCMX_KW+" TEXT NOT NULL,"+
-            KCMX_BZQ+" TEXT NOT NULL,"+
-            KCMX_CD+" TEXT NOT NULL,"+
-            KCMX_SCRQ+" TEXT NOT NULL,"+
-            KCMX_TIME+" TEXT NOT NULL,"+
+            KCMX_WZLX+" TEXT,"+
+            KCMX_JLDW+" TEXT,"+
+            KCMX_SL+" TEXT,"+
+            KCMX_SIZE+" TEXT,"+
+            KCMX_DJ+" TEXT,"+
+            KCMX_ZJE+" TEXT,"+
+            KCMX_CK+" TEXT,"+
+            KCMX_BZQ+" TEXT,"+
+            KCMX_CD+" TEXT,"+
+            KCMX_SCRQ+" TEXT,"+
+            KCMX_TIME+" TEXT ,"+
             KCMX_BZ+" TEXT)";
 
 }

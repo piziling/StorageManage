@@ -35,6 +35,8 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
     private LoadListView listView;
     private SGAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
+    private String tag;
+    private String ckName;
 
 
 
@@ -46,12 +48,21 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
         listView = (LoadListView) findViewById(R.id.select_loadlist);
         selectInfo = (TextView) findViewById(R.id.tv_select_info);
         datalist = new ArrayList<Map<String,Object>>();
-        simp_adapter = new SGAdapter(this,getData(),R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc},this);
-        //3.视图（ListView）加载适配器
-        listView.setAdapter(simp_adapter);
-        //加载监听器
-        listView.setOnItemClickListener(this);
-        listView.setOnScrollListener(this);
+        //获取上一个界面传递的值，判断操作类型
+        Intent intent = getIntent();
+        ckName = intent.getStringExtra("ck");
+        tag = intent.getStringExtra("tag");
+
+        getData();
+
+        if(datalist.size()>0){
+            simp_adapter = new SGAdapter(this,datalist,R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc},this);
+            //3.视图（ListView）加载适配器
+            listView.setAdapter(simp_adapter);
+            //加载监听器
+            listView.setOnItemClickListener(this);
+            listView.setOnScrollListener(this);
+        }
 
     }
 
@@ -71,28 +82,77 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
     }
 
     private List<Map<String,Object>> getData(){
+
+        if(tag.equals("RK")){
+            getRkInfo();
+        }else if (tag.equals("CK")){
+            getCkInfo();
+        }
+        return  datalist;
+    }
+
+    /**
+     * 入库
+     * @return
+     */
+    private boolean getRkInfo() {
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
         //ContentValues values = new ContentValues();
         Cursor cursor = db.query(SQLitConstant.TABLE_GOODS,null,null,null,null,null,null);
         if (cursor.getCount()==0){
-            return null;
+            return true;
         }
         while (cursor.moveToNext()){
             Map<String,Object> map = new HashMap<String,Object>();
-            Log.d(TAG, "SelextGoods moveTonest ");
             String wzbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZBM));
             String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_WZMC));
             String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_GGXH));
             String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.GOODS_JLDW));
+            String sl= "";
+            Cursor kcmxCursor = db.query(SQLitConstant.TABLE_KCMX,null,"WZBM=? AND CK =?",new String[]{wzbm,ckName},null,null,null);
+
+            while (kcmxCursor.moveToNext()){
+                sl = kcmxCursor.getString(kcmxCursor.getColumnIndex(SQLitConstant.KCMX_SL));
+            }
+            if(sl.equals("")){
+                sl = "0";
+            }
             map.put("wzbm",wzbm);
             map.put("wzmc",wzmc);
             map.put("ggxh","规格型号："+ggxh);
-            map.put("zkc","总库存："+0+" "+jldw);
-            Log.d(TAG, " SelextGoods moveTonest 66666"+map.toString());
+            map.put("zkc","本库存量："+sl+" "+jldw);
             datalist.add(map);
         }
         db.close();
-        return  datalist;
+        return false;
+    }
+
+    /**
+     * 出库
+     * @return
+     */
+    private boolean getCkInfo() {
+        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
+        //ContentValues values = new ContentValues();
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCMX,null,"CK=?",new String[]{ckName},null,null,null);
+        if (cursor.getCount()==0){
+            return true;
+        }
+        while (cursor.moveToNext()){
+            Map<String,Object> map = new HashMap<String,Object>();
+            String wzbm = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_WZBM));
+            String wzmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_WZMC));
+            String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_GGXH));
+            String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_JLDW));
+            String sl = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_SL));
+            map.put("wzbm",wzbm);
+            map.put("wzmc",wzmc);
+            map.put("ggxh","规格型号："+ggxh);
+            map.put("zkc","总库存："+sl+" "+jldw);
+            datalist.add(map);
+        }
+        db.close();
+        return false;
     }
 
     /***

@@ -49,7 +49,6 @@ public class AddInStorageActivity extends Activity {
     private Button wldw;
     private Button add;
     private Button ck;
-    private Button kw;
     private EditText djbh;
     private EditText jbr;
     private EditText bz;
@@ -72,7 +71,6 @@ public class AddInStorageActivity extends Activity {
         jbr =(EditText) findViewById(R.id.in_value_jbr);
         bz =(EditText) findViewById(R.id.in_value_bz);
         ck = (Button) findViewById(R.id.in_value_ck);
-        kw = (Button) findViewById(R.id.in_value_kw);
         wldw = (Button) findViewById(R.id.in_value_wldw);
         djlx = (Button) findViewById(R.id.in_value_djlx);
         add = (Button) findViewById(R.id.in_add);
@@ -108,10 +106,6 @@ public class AddInStorageActivity extends Activity {
             Toast.makeText(this,"仓库不能为空！",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if ( kw.getText().toString().equals("")) {
-            Toast.makeText(this,"库位不能为空！",Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if ( jbr.getText().toString().equals("")) {
             Toast.makeText(this,"经办人不能为空！",Toast.LENGTH_SHORT).show();
             return false;
@@ -128,13 +122,11 @@ public class AddInStorageActivity extends Activity {
      * 单据类型选择器
      */
     public void onDjlxPicker(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "采购入库", "产成品入库", "其它入库"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getRklxArray());
         picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
-        picker.setTextSize(15);
+        picker.setTextSize(18);
         picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
             @Override
             public void onOptionPicked(int index, String item) {
@@ -153,7 +145,7 @@ public class AddInStorageActivity extends Activity {
         picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
-        picker.setTextSize(15);
+        picker.setTextSize(18);
         picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
             @Override
             public void onOptionPicked(int index, String item) {
@@ -163,36 +155,16 @@ public class AddInStorageActivity extends Activity {
         picker.show();
     }
 
-    /**
-     *库位选择器、
-     */
-    public void onKwPicker(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "一号库位", "二号库位", "三号库位"
-        });
-        picker.setCycleDisable(true);
-        picker.setLineVisible(false);
-        //picker.setShadowVisible(true);
-        picker.setTextSize(15);
-        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
-            @Override
-            public void onOptionPicked(int index, String item) {
-                kw.setText(item);
-            }
-        });
-        picker.show();
-    }
+
     /**
      *  往来单位选择器
      */
     public void onWldwPicker(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "远光软件", "中国移动", "中国航天"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getWldwArray());
         picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
-        picker.setTextSize(15);
+        picker.setTextSize(18);
         picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
             @Override
             public void onOptionPicked(int index, String item) {
@@ -206,15 +178,23 @@ public class AddInStorageActivity extends Activity {
      *添加物资
      */
     public void onAdd(View view){
-        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
-        Cursor cursor = db.query(SQLitConstant.TABLE_GOODS,null,null,null,null,null,null);
-        if (cursor.getCount()==0){
-            Toast.makeText(this,"当前系统没有物资信息，请先新增！",Toast.LENGTH_LONG).show();
-            db.close();
+//        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
+//        Cursor cursor = db.query(SQLitConstant.TABLE_GOODS,null,null,null,null,null,null);
+//        if (cursor.getCount()==0){
+//            Toast.makeText(this,"当前系统没有物资信息，请先新增！",Toast.LENGTH_LONG).show();
+//            db.close();
+//            return;
+//        }
+//        db.close();
+        if ( ck.getText().toString().equals("")) {
+            Toast.makeText(this,"请选择仓库！",Toast.LENGTH_SHORT).show();
             return;
         }
-        db.close();
+
         Intent intent = new Intent(this,SelectGoodsActivity.class);
+        String ckName = ck.getText().toString();
+        intent.putExtra("ck",ckName);
+        intent.putExtra("tag","RK");
         startActivityForResult(intent,1);
     }
 
@@ -276,9 +256,9 @@ public class AddInStorageActivity extends Activity {
             kctzVO.setBz(bz.getText().toString());
             kctzVO.setJbr(jbr.getText().toString());
             kctzVO.setCk(ck.getText().toString());
-            kctzVO.setKw(kw.getText().toString());
             kctzVO.setYwrq(djrq.getText().toString());
             kctzVO.setYwmc(goodsList.get(0).getWzmc()+djlx.getText().toString());
+            kctzVO.setTzbm("RK_"+ywid+i);
             kctzVO.setYwid(ywid);
             kctzVO.setYwfx("入库");
             kctzVO.setTime(time);
@@ -373,7 +353,6 @@ public class AddInStorageActivity extends Activity {
         values.put(SQLitConstant.KCMX_SL,kctzList.get(i).getSl());
         values.put(SQLitConstant.KCMX_ZJE,kctzList.get(i).getSl()*kctzList.get(i).getDj());
         values.put(SQLitConstant.KCMX_CK,kctzList.get(i).getCk());
-        values.put(SQLitConstant.KCMX_KW,kctzList.get(i).getKw());
         values.put(SQLitConstant.KCMX_BZ,kctzList.get(i).getBz());
         values.put(SQLitConstant.KCMX_SIZE,kctzList.get(i).getSize());
         values.put(SQLitConstant.KCMX_TIME,time);
@@ -391,12 +370,11 @@ public class AddInStorageActivity extends Activity {
         String time = formatter.format(curDate);
 
         ContentValues values = new ContentValues();
-        values.put(SQLitConstant.KCDJ_DJBM,djbh.getText().toString());
+        values.put(SQLitConstant.KCDJ_DJBM,"RK_"+djbh.getText().toString());
         values.put(SQLitConstant.KCDJ_DJLX,djlx.getText().toString());
         values.put(SQLitConstant.KCDJ_WLDW,wldw.getText().toString());
         values.put(SQLitConstant.KCDJ_DJZT,"待审核");
         values.put(SQLitConstant.KCDJ_CK,ck.getText().toString());
-        values.put(SQLitConstant.KCDJ_KW,kw.getText().toString());
         values.put(SQLitConstant.KCDJ_DCLR,"whieenz");
         values.put(SQLitConstant.KCDJ_ZDR,jbr.getText().toString());
         values.put(SQLitConstant.KCDJ_BZ,bz.getText().toString());
@@ -431,7 +409,6 @@ public class AddInStorageActivity extends Activity {
         jbr.setText("");
         bz.setText("");
         ck.setText("");
-        kw.setText("");
         resultBottom.setVisibility(View.GONE);
         firstBottom.setVisibility(View.VISIBLE);
     }

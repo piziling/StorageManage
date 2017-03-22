@@ -29,7 +29,6 @@ public class KcmxVO {
     private String bzq;
     private String cd;
     private String ck;
-    private String kw;
     private double dj;
     private double zje;
     private int sl;
@@ -128,17 +127,6 @@ public class KcmxVO {
         this.ck = ck;
     }
 
-    public String getKw() {
-        return kw;
-    }
-
-    public void setKw(String kw) {
-        this.kw = kw;
-    }
-
-    public double getDj() {
-        return dj;
-    }
 
     public void setDj(double dj) {
         this.dj = dj;
@@ -200,7 +188,6 @@ public class KcmxVO {
         values.put(SQLitConstant.KCMX_SL,sl);
         values.put(SQLitConstant.KCMX_ZJE,zje);
         values.put(SQLitConstant.KCMX_CK,ck);
-        values.put(SQLitConstant.KCMX_KW,kw);
         values.put(SQLitConstant.KCMX_BZ,bz);
         values.put(SQLitConstant.KCMX_SIZE,size);
         values.put(SQLitConstant.KCMX_TIME,time);
@@ -241,7 +228,6 @@ public class KcmxVO {
         setScrq(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_SCRQ)));
         setCd(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_CD)));
         setCk(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_CK)));
-        setKw(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_KW)));
         setBz(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_BZ)));
         setBzq(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_BZQ)));
         setSl(Integer.valueOf(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_SL))));

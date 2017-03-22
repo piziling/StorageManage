@@ -14,6 +14,8 @@ import static android.R.attr.name;
 public class KctzVO {
     private String _id;
     private String wzbm;
+
+    private String tzbm;
     private String wzmc;
     private String wzlx;
     private String ggxh;
@@ -25,7 +27,6 @@ public class KctzVO {
     private int sl;
     private String bz;
     private String ck;
-    private String kw;
     private String jbr;
     private double size; //体积
     private String ywid;
@@ -40,6 +41,7 @@ public class KctzVO {
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
         values.put(SQLitConstant.KCTZ_WZBM,wzbm);
+        values.put(SQLitConstant.KCTZ_TZBM,tzbm);
         values.put(SQLitConstant.KCTZ_WZMC,wzmc);
         values.put(SQLitConstant.KCTZ_WZLX,wzlx);
         values.put(SQLitConstant.KCTZ_GGXH,ggxh);
@@ -50,7 +52,6 @@ public class KctzVO {
         values.put(SQLitConstant.KCTZ_DJ,dj);
         values.put(SQLitConstant.KCTZ_SL,sl);
         values.put(SQLitConstant.KCTZ_CK,ck);
-        values.put(SQLitConstant.KCTZ_KW,kw);
         values.put(SQLitConstant.KCTZ_BZ,bz);
         values.put(SQLitConstant.KCTZ_SIZE,size);
         values.put(SQLitConstant.KCTZ_JBR,jbr);
@@ -61,6 +62,16 @@ public class KctzVO {
         values.put(SQLitConstant.KCTZ_TIME,time);
         return  values;
     }
+
+
+    public String getTzbm() {
+        return tzbm;
+    }
+
+    public void setTzbm(String tzbm) {
+        this.tzbm = tzbm;
+    }
+
 
     public double getDj() {
         return dj;
@@ -163,14 +174,6 @@ public class KctzVO {
 
     public void setBz(String bz) {
         this.bz = bz;
-    }
-
-    public String getKw() {
-        return kw;
-    }
-
-    public void setKw(String kw) {
-        this.kw = kw;
     }
 
     public String getJbr() {

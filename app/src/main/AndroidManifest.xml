@@ -19,6 +19,7 @@
         <activity android:name=".view.activity.SelectGoodsActivity"></activity>
         <activity android:name=".view.activity.KcdjActivity"></activity>
         <activity android:name=".view.activity.KcmxActivity"></activity>
+        <activity android:name=".view.activity.KctzActivity"></activity>
         <activity android:name=".view.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 import com.xys.libzxing.zxing.encoding.EncodingUtils;
@@ -41,6 +42,7 @@ import static android.content.ContentValues.TAG;
 public class AddGoodsActivity extends Activity{
 
     private EditText wzbm;
+    private MyApp myApp;
     private EditText wzmc;
     private EditText ggxh;
     private EditText bzq;
@@ -60,6 +62,7 @@ public class AddGoodsActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goods);
         initView();
+        myApp = (MyApp) getApplication();
     }
 
     private void initView() {
@@ -89,8 +92,8 @@ public class AddGoodsActivity extends Activity{
         String str = formatter.format(curDate);
         String times[] = str.split("-");
         int year = Integer.valueOf(times[0]);
-        int month = Integer.valueOf(times[0]);
-        int day = Integer.valueOf(times[0]);
+        int month = Integer.valueOf(times[1]);
+        int day = Integer.valueOf(times[2]);
         final DatePicker picker = new DatePicker(this);
         picker.setTopPadding(2);
         picker.setRangeStart(2001, 01, 01);
@@ -127,9 +130,7 @@ public class AddGoodsActivity extends Activity{
      * @param view
      */
     public void onWzlxPicker(View view) {
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "产成品", "原材料", "其他"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getWzflArray());
         picker.setCycleDisable(false);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
@@ -148,9 +149,7 @@ public class AddGoodsActivity extends Activity{
      * @param view
      */
     public void onJldwPicker(View view) {
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "个", "件", "箱","千克","克","吨","条","件","瓶","打"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getJldwArray());
         picker.setCycleDisable(false);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);
