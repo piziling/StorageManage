@@ -142,7 +142,7 @@ public class DBManger {
 
     public static boolean initInfo(){
         boolean tag  = true;
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
         for (int i = 0; i < dxmc.length; i++) {
             ContentValues values  = new ContentValues();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -159,6 +159,17 @@ public class DBManger {
                tag = false;
             }
         }
+        ContentValues values = new ContentValues();
+        values.put(SQLitConstant.CK_CKMC,"武汉仓库");
+        values.put(SQLitConstant.CK_CKBM,MyUntls.getUniqueFromTime("CK"));
+        values.put(SQLitConstant.CK_SIZE,"1000");
+        values.put(SQLitConstant.CK_CGY,"whieenz");
+        values.put(SQLitConstant.CK_ADDRESS,"金融港");
+        long result = db.insert(SQLitConstant.TABLE_CK,null,values);
+        if(result == -1){
+            tag = false;
+        }
+
         return tag;
     }
 /**
