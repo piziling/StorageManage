@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.attr.imeExtractEnterAnimation;
 import static android.R.attr.y;
 import static android.content.ContentValues.TAG;
 
@@ -73,9 +74,14 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
             String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
             String wzxx = "";
             Cursor kctzCursor = db.query(SQLitConstant.TABLE_KCTZ,null,"YWID=?",new String[]{ywid},null,null,null);
-
+            int len = 0;
             while (kctzCursor.moveToNext()){
-                wzxx += kctzCursor.getString(kctzCursor.getColumnIndex(SQLitConstant.KCTZ_WZMC))+"|";
+                if(len++<3){
+                    wzxx += kctzCursor.getString(kctzCursor.getColumnIndex(SQLitConstant.KCTZ_WZMC))+"|";
+                }
+                if(len==3){
+                    wzxx += "等";
+                }
             }
             map.put("djlx",djlx);
             map.put("djbm","单据编号："+djbm);

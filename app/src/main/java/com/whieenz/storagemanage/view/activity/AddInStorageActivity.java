@@ -139,9 +139,7 @@ public class AddInStorageActivity extends Activity {
      * 仓库选择器
      */
     public void onCkPicker(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "武汉仓库", "北京仓库", "上海仓库"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getCkmcArray());
         picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);

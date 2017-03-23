@@ -13,6 +13,12 @@ public class UserInfo implements Serializable {
     private String key;
     private String time;
 
+    public UserInfo(String name, String job, String num) {
+        this.name = name;
+        this.job = job;
+        this.num = num;
+    }
+
     public UserInfo(String name, String job, String num, String key) {
         this.name = name;
         this.job = job;

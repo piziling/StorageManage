@@ -102,9 +102,7 @@ public class AddOutStorageActivity extends Activity {
      *
      */
     public void onCkPicker(View view){
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "武汉仓库", "北京仓库", "上海仓库"
-        });
+        OptionPicker picker = new OptionPicker(this, myApp.getCkmcArray());
         picker.setCycleDisable(true);
         picker.setLineVisible(false);
         //picker.setShadowVisible(true);

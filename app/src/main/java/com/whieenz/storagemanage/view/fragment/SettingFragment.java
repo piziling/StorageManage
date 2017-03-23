@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.UserInfo;
+import com.whieenz.storagemanage.view.activity.CkInfoActivity;
+import com.whieenz.storagemanage.view.activity.GldxActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +41,9 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
 
     private int[] imageList = {R.drawable.setting_password,
             R.drawable.setting_parameter,R.drawable.setting_manage,
-            R.drawable.setting_user_add,R.drawable.setting_parameter,
+            R.drawable.setting_user_add,R.drawable.setting_parameter,R.drawable.setting_parameter,
             R.drawable.setting_manage,R.drawable.setting_help};
-    private String[] textList = {"密码管理","设置仓库","物资类型","往来单位","入库类型","出库类型","关于"};
+    private String[] textList = {"密码管理","设置仓库","物资类型","往来单位","计量单位","入库类型","出库类型","关于"};
 
     @Nullable
     @Override
@@ -109,7 +112,32 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = listView.getItemAtPosition(i)+"";
-        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+        switch (i){
+            case 1:
+                Intent intent = new Intent(getActivity(), CkInfoActivity.class);
+                startActivity(intent);
+                break;
+            case 2:
+                startGldxActivity("WZFL");
+                break;
+            case 3:
+                startGldxActivity("WLDW");
+                break;
+            case 4:
+                startGldxActivity("JLDW");
+                break;
+            case 5:
+                startGldxActivity("RKLX");
+                break;
+            case 6:
+                startGldxActivity("CKLX");
+                break;
+        }
+    }
+
+    private void startGldxActivity(String tag) {
+        Intent intent = new Intent(getActivity(), GldxActivity.class);
+        intent.putExtra("tag",tag);
+        startActivity(intent);
     }
 }

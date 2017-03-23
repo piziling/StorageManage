@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="#ffffffff">
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_marginLeft="15dp"
+      android:gravity="center_vertical"
+      android:layout_height="46dp"
+      android:textSize="20sp"
+      android:textColor="#6E6E6E"
+      android:id="@+id/base_item_text"/>
+
+</RelativeLayout>

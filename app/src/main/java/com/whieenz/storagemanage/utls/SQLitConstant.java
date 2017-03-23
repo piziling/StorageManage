@@ -20,6 +20,12 @@ public class SQLitConstant {
     public static final  String TABLE_APPINFO="APPINFO";//数据库表名
 
 
+    public static final  String DXFL_WLDW="WLDW";//对象分类
+    public static final  String DXFL_JLDW="JLDW";//对象分类
+    public static final  String DXFL_RKLX="RKLX";//对象分类
+    public static final  String DXFL_CKLX="CKLX";//对象分类
+    public static final  String DXFL_WZFL="WZFL";//对象分类
+
     //应用信息表字段
     public static final  String APPINFO_ID="_ID";//APPINFO 表字段
     public static final  String APPINFO_NAME="NAME";//APPINFO 表字段

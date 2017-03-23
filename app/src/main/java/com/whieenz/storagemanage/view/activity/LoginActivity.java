@@ -49,7 +49,7 @@ public class LoginActivity extends Activity {
         //初始化管理对象
         initGldx();
         //获取基本信息
-        initApp();
+        myApp.initApp();
     }
 
     public void initGldx(){

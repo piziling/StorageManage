@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    tools:context="com.whieenz.storagemanage.view.activity.AddGoodsActivity">
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/first_layout"
+        android:background="@color/themeColor">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="新增仓库"
+            android:textSize="22sp"
+            android:id="@+id/tv_goods_title"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_layout"
+        android:isScrollContainer="false"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_name_key"
+                    android:textSize="18sp"
+                    android:text="仓库名称"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="45dp"
+                    android:background="@null"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/add_name_value" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_size_key"
+                    android:textSize="18sp"
+                    android:text="仓库容积"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:hint="单位/m³"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/add_size_value" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_address_key"
+                    android:textSize="18sp"
+                    android:text="仓库地址"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/add_address_value"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_cgy_key"
+                    android:textSize="18sp"
+                    android:text="仓管员"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onUserPicker"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:gravity="center_vertical|left"
+                    android:id="@+id/add_cgy_value"
+                    android:background="#00ffffff"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_bz_key"
+                    android:textSize="18sp"
+                    android:text="备注"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/add_bz_value" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/add_goods_bg">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff555555"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:onClick="onSave">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/save"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:onClick="onSave"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="保存"
+            android:textSize="24sp"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onSave"/>
+    </LinearLayout>
+</RelativeLayout>
