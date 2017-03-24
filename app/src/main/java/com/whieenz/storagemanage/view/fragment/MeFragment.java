@@ -79,7 +79,7 @@ public class MeFragment extends Fragment {
         msecondTopTv = (TextView)getView().findViewById(R.id.tv_top_secont);
         mthirdTopTv = (TextView)getView().findViewById(R.id.tv_top_third);
 
-        addBadgeView(mfirstTopTv,5);
+//        addBadgeView(mfirstTopTv,5);
 
 
         mDatas = new ArrayList<Fragment>();

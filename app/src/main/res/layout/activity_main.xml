@@ -34,7 +34,7 @@
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:orientation="horizontal"
         android:background="@drawable/tab_bg">
 
@@ -44,8 +44,8 @@
             app:icon="@drawable/me"
             app:color="@color/themeColor"
             app:text="我"
-            app:text_Size="12sp"
-            android:padding="5dp"
+            app:text_Size="10sp"
+            android:padding="6dp"
             android:id="@+id/indicator_me"
             android:layout_weight="1"/>
         <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
@@ -54,8 +54,8 @@
             app:icon="@drawable/storage"
             app:color="@color/themeColor"
             app:text="仓库"
-            app:text_Size="12sp"
-            android:padding="5dp"
+            app:text_Size="10sp"
+            android:padding="6dp"
             android:id="@+id/indicator_storage"
             android:layout_weight="1"/>
         <!--<com.whieenz.storagemanage.view.myView.ChangeColorInconWithText-->
@@ -74,8 +74,8 @@
             app:icon="@drawable/setting"
             app:color="@color/themeColor"
             app:text="设置"
-            app:text_Size="12sp"
-            android:padding="5dp"
+            app:text_Size="10sp"
+            android:padding="6dp"
             android:id="@+id/indicator_setting"
             android:layout_weight="1"/>
     </LinearLayout>

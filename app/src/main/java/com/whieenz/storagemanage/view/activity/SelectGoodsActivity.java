@@ -56,7 +56,7 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
         getData();
 
         if(datalist.size()>0){
-            simp_adapter = new SGAdapter(this,datalist,R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc},this);
+            simp_adapter = new SGAdapter(this,datalist,R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc","jldw"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc,R.id.tv_item_jldw},this,tag);
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -120,7 +120,8 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
             map.put("wzbm",wzbm);
             map.put("wzmc",wzmc);
             map.put("ggxh","规格型号："+ggxh);
-            map.put("zkc","本库存量："+sl+" "+jldw);
+            map.put("zkc",sl);
+            map.put("jldw"," "+jldw);
             datalist.add(map);
         }
         db.close();
@@ -148,7 +149,8 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
             map.put("wzbm",wzbm);
             map.put("wzmc",wzmc);
             map.put("ggxh","规格型号："+ggxh);
-            map.put("zkc","总库存："+sl+" "+jldw);
+            map.put("zkc",sl);
+            map.put("jldw"," "+jldw);
             datalist.add(map);
         }
         db.close();

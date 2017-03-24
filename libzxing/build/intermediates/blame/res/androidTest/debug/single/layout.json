@@ -1,9 +1,5 @@
 [
     {
-        "merged": "D:\\Android\\AndroidWorkspace\\MStorageManage\\libzxing\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_capture.xml",
-        "source": "D:\\Android\\AndroidWorkspace\\MStorageManage\\libzxing\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_capture.xml"
-    },
-    {
         "merged": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_capture.xml",
         "source": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_capture.xml"
     }

@@ -1,11 +1,15 @@
 package com.whieenz.storagemanage.view.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import com.whieenz.storagemanage.R;
@@ -23,6 +27,7 @@ import q.rorbin.badgeview.QBadgeView;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
+    private static final String TAG = "FragmentActivity";
     private TextView mainTitle;
     private NoScrollViewPager mainViewPage;
     private List<Fragment> mainTabs = new ArrayList<Fragment>();
@@ -52,6 +57,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initDatas();
         mainViewPage.setAdapter(mAdater);
         mainViewPage.setCurrentItem(1);
+
     }
 
     /**
@@ -115,6 +121,28 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
+
+    public void cancel(View view){
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("提示");
+        dialog.setMessage("注销当前用户？");
+        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        dialog.show();
+    }
+
     @Override
     public void onClick(View view) {
         resetOtherTabs();
@@ -160,6 +188,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      * @param num
      */
     public  void addBadgeView(View view,int num){//.setBadgeGravity(Gravity.CENTER | Gravity.TOP)
+
         int x = me.getWidth()/2-30;
         new QBadgeView(this).bindTarget(view).
                 setBadgeNumber(num).setBadgeTextSize(8,true).setBadgePadding(4f,true).

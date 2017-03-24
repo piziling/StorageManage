@@ -1,5 +1,7 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.base.MyApp;
+import com.whieenz.storagemanage.utls.DBManger;
+import com.whieenz.storagemanage.utls.SQLitConstant;
 import com.whieenz.storagemanage.view.myView.LoadListView;
 
 import java.text.SimpleDateFormat;
@@ -50,25 +55,42 @@ public class SecondTabFragment extends Fragment implements AdapterView.OnItemCli
         super.onActivityCreated(savedInstanceState);
         listView = (LoadListView)getView().findViewById(R.id.lv_listview);
         datalist = new ArrayList<Map<String,Object>>();
-        simp_adapter = new SimpleAdapter(getActivity(),getData(),R.layout.dj_item,new String[]{"djbm","djlx","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_time,R.id.tv_item_djzt});
-        //3.视图（ListView）加载适配器
-        listView.setAdapter(simp_adapter);
-        //加载监听器
-        listView.setOnItemClickListener(this);
-        listView.setOnScrollListener(this);
+        getData();
+        if(datalist.size() > 0){
+            simp_adapter = new SimpleAdapter(getActivity(),datalist,R.layout.dj_item,new String[]{"djbm","djlx","zje","jbr","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_zje,R.id.tv_item_jbr,R.id.tv_item_time,R.id.tv_item_djzt});
+            //3.视图（ListView）加载适配器
+            listView.setAdapter(simp_adapter);
+            //加载监听器
+            listView.setOnItemClickListener(this);
+            listView.setOnScrollListener(this);
+        }
     }
 
     private List<Map<String,Object>> getData(){
-        for (int i = 0; i < 20; i++) {
+        MyApp myApp = (MyApp)getActivity().getApplication();
+        String userNum = myApp.getUserInfo().getNum();
+        SQLiteDatabase db = DBManger.getIntance(getActivity()).getWritableDatabase();
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=?",new String[]{userNum},null,null,null);
+        if (cursor.getCount()==0){
+            return null;
+        }
+        while (cursor.moveToNext()){
             Map<String,Object> map = new HashMap<String,Object>();
-            map.put("djbm","单据编号：DJ"+i*1000000+i*i*5);
-            map.put("djlx","单据类型：生产出库单");
-            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String date = sDateFormat.format(new java.util.Date());
-            map.put("time",date);
-            map.put("djzt","待处理");
+            String djlx = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJLX));
+            String djbh = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJBM));
+            String time = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_TIME));
+            String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
+            String dclr = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DCLR));
+
+            map.put("djbm",djbh);
+            map.put("djlx","单据类型："+djlx);
+            map.put("time",time);
+            map.put("zje","总金额："+zje+" RMB");
+            map.put("jbr","审批人："+dclr);
+            map.put("djzt","待审批");
             datalist.add(map);
         }
+        db.close();
         return  datalist;
     }
     @Override

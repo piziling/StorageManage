@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="#ffffffff">
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="45dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="18dp"
         android:src="@drawable/setting_password"
         android:layout_centerVertical="true"
@@ -17,17 +17,18 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/setting_image"
         android:text="密码管理"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:id="@+id/setting_text"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#696969"
         android:layout_centerVertical="true"/>
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/setting_right"
-        android:layout_marginRight="10dp"
-        android:id="@+id/setting_right"
-        android:layout_centerVertical="true"/>
+    <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:src="@drawable/setting_right"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:id="@+id/setting_right"-->
+        <!--android:layout_centerVertical="true"/>-->
 
 </RelativeLayout>

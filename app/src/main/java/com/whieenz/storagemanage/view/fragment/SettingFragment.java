@@ -19,6 +19,7 @@ import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.UserInfo;
 import com.whieenz.storagemanage.view.activity.CkInfoActivity;
 import com.whieenz.storagemanage.view.activity.GldxActivity;
+import com.whieenz.storagemanage.view.activity.PassWordActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,6 +85,8 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
         }
         return  datalist;
     }
+
+
     @Override
     public void onScrollStateChanged(AbsListView absListView, int i) {
 
@@ -113,6 +116,10 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         switch (i){
+            case 0:
+                Intent intent0 = new Intent(getActivity(), PassWordActivity.class);
+                startActivity(intent0);
+                break;
             case 1:
                 Intent intent = new Intent(getActivity(), CkInfoActivity.class);
                 startActivity(intent);

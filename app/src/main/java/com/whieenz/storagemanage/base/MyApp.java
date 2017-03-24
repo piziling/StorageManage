@@ -18,7 +18,13 @@ import static android.content.ContentValues.TAG;
  */
 
 public class MyApp extends Application {
+    private static MyApp instance;
+    private int infoNums;
 
+
+    public static MyApp getInstance() {
+        return instance;
+    }
 
     private UserInfo userInfo; //用户信息
 
@@ -266,4 +272,13 @@ public class MyApp extends Application {
     public void setCkmcArray(ArrayList ckmcArray) {
         this.ckmcArray = ckmcArray;
     }
+
+    public int getInfoNums() {
+        return infoNums;
+    }
+
+    public void setInfoNums(int infoNums) {
+        this.infoNums = infoNums;
+    }
+
 }

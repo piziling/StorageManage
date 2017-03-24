@@ -58,8 +58,10 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
         datalist = new ArrayList<Map<String,Object>>();
 
         getData();
+        MyApp myApp  = (MyApp) getActivity().getApplication(); //传递消息数
+        myApp.setInfoNums(datalist.size());
         if(datalist.size() > 0){
-            simp_adapter = new SimpleAdapter(getActivity(),datalist,R.layout.dj_item,new String[]{"djbm","djlx","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_time,R.id.tv_item_djzt});
+            simp_adapter = new SimpleAdapter(getActivity(),datalist,R.layout.dj_item,new String[]{"djbm","djlx","zje","jbr","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_zje,R.id.tv_item_jbr,R.id.tv_item_time,R.id.tv_item_djzt});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -84,10 +86,14 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
             String djlx = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJLX));
             String djbh = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJBM));
             String time = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_TIME));
+            String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
+            String jbr = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZDR));
 
             map.put("djbm",djbh);
             map.put("djlx","单据类型："+djlx);
             map.put("time",time);
+            map.put("zje","总金额："+zje+" RMB");
+            map.put("jbr","经办人："+jbr);
             map.put("djzt","待处理");
             datalist.add(map);
         }

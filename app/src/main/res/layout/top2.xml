@@ -36,7 +36,7 @@
                 android:textColor="#000000"
                 android:paddingRight="15dp"
                 android:paddingTop="8dp"
-                android:text="待处理" />
+                android:text="待审批" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="3dp"
