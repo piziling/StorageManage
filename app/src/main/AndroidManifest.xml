@@ -24,6 +24,7 @@
         <activity android:name=".view.activity.AddCkActivity"></activity>
         <activity android:name=".view.activity.CkInfoActivity"></activity>
         <activity android:name=".view.activity.PassWordActivity"></activity>
+        <activity android:name=".view.activity.DjxxActivity"></activity>
         <activity android:name=".view.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

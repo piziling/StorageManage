@@ -1,29 +1,37 @@
 package com.whieenz.storagemanage.view.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.base.MyApp;
+import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.view.activity.AddGoodsActivity;
 import com.whieenz.storagemanage.view.activity.AddInStorageActivity;
 import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
 import com.whieenz.storagemanage.view.activity.KcdjActivity;
 import com.whieenz.storagemanage.view.activity.KcmxActivity;
 import com.whieenz.storagemanage.view.activity.KctzActivity;
+import com.whieenz.storagemanage.view.myView.WaterWaveView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.qqtheme.framework.picker.OptionPicker;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by heziwen on 2017/3/7.
@@ -31,6 +39,10 @@ import java.util.Map;
 
 public class StorageFragment extends Fragment implements AdapterView.OnItemClickListener{
     private GridView gridView;
+    private Button selectBtn;
+    private MyApp myApp;
+    private WaterWaveView waveView;
+
     private List<Map<String,Object>> dataList;
     private int[] icon = {R.drawable.new_goods_btn,R.drawable.goods_management_btn,
             R.drawable.new_rk_btn,R.drawable.new_ck_btn,R.drawable.new_pd_btn,
@@ -41,8 +53,8 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.stroage,container,false);
+        myApp = (MyApp) getActivity().getApplication();
+        return inflater.inflate(R.layout.storage,container,false);
 
 
     }
@@ -51,6 +63,11 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         gridView = (GridView) getView().findViewById(R.id.gv_gridview);
+        selectBtn = (Button) getView().findViewById(R.id.btn_storage_select);
+        selectBtn.setText(DBManger.getDefaultCkmc());
+        waveView = (WaterWaveView) getView().findViewById(R.id.waterWaveView);
+        updateWaveView(selectBtn.getText().toString());
+
         //1.准备数据源
         //2.新建适配器（SimpleAdepter）
         //3.GridView加载适配器
@@ -61,6 +78,44 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
         gridView.setAdapter(adapter);
         //加载监听器
         gridView.setOnItemClickListener(this);
+        selectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                OptionPicker picker = new OptionPicker(getActivity(), myApp.getCkmcArray());
+                picker.setCycleDisable(false);
+                picker.setLineVisible(false);
+                //picker.setShadowVisible(true);
+                picker.setTextSize(16);
+                picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+                    @Override
+                    public void onOptionPicked(int index, String item) {
+                        selectBtn.setText(item);
+                        updateWaveView(item);
+                    }
+                });
+                picker.show();
+            }
+        });
+    }
+
+    /**
+     * 更新比例图
+     * @param item
+     */
+    private void updateWaveView(String item) {
+        double allSize = DBManger.getCkSizeByCkmc(item);
+        double size = DBManger.getUsedCkSizeByCkmc(item);
+        if (allSize == -1){
+            allSize = 1000;
+        }
+        int progress = (int) ((size/allSize)*100);
+        waveView.setProgress(progress);
+        if (DBManger.getCkInfoByCkmc(item)!=null){
+            myApp.setmStorage(DBManger.getCkInfoByCkmc(item));
+        }
+        //更新默认仓库
+        DBManger.updateDefaultCk(item);
     }
 
     private List<Map<String,Object>> getData() {

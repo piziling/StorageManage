@@ -8,19 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.whieenz.storagemanage.view.activity.MainActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/themeColor">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:text="仓库主页"
-            android:textSize="22sp"
-            android:id="@+id/tv_main_title"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+
 
     <com.whieenz.storagemanage.view.myView.NoScrollViewPager
         android:layout_width="match_parent"

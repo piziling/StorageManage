@@ -83,6 +83,7 @@ public class AddInStorageActivity extends Activity {
         djrq.setText(str);
 
         jbr.setText(myApp.getUserInfo().getName());
+        ck.setText(myApp.getmStorage().getCkmc());
     }
 
     /**

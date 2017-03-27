@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v14\\values-v14.xml",
+        "outputFile": "E:\\Android\\AndroidProjects\\StorageManage1.3\\libzxing\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v14\\values-v14.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 201
                 },
                 "from": {
-                    "file": "E:\\Android\\AndroidProjects\\StorageManage1.1\\libzxing\\build\\intermediates\\bundles\\debug\\res\\values-v14\\values-v14.xml",
+                    "file": "E:\\Android\\AndroidProjects\\StorageManage1.3\\libzxing\\build\\intermediates\\bundles\\debug\\res\\values-v14\\values-v14.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

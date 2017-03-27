@@ -36,7 +36,7 @@ public class MyApp extends Application {
     private ArrayList ckmcArray; //物资分类信息
 
 
-
+    private CkInfoVO mStorage; //物资分类信息
     private ArrayList userArray; //物资分类信息
 
 
@@ -203,6 +203,14 @@ public class MyApp extends Application {
         return  cklxArray;
     }
 
+
+    public CkInfoVO getmStorage() {
+        return mStorage;
+    }
+
+    public void setmStorage(CkInfoVO mStorage) {
+        this.mStorage = mStorage;
+    }
 
     public ArrayList getWzflArray() {
         return wzflArray;

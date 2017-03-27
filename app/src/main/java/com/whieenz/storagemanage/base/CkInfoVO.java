@@ -10,6 +10,7 @@ public class CkInfoVO {
     private String ckbm;
     private String cgy;
     private String address;
+    private String tag;
 
     public CkInfoVO(){
 
@@ -20,6 +21,14 @@ public class CkInfoVO {
         this.ckbm = ckbm;
         this.cgy = cgy;
         this.address = address;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getCkmc() {

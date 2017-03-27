@@ -57,8 +57,8 @@ public class AddOutStorageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_out_storage);
-        initView();
         myApp = (MyApp)getApplication();
+        initView();
     }
 
     private void initView() {
@@ -79,6 +79,7 @@ public class AddOutStorageActivity extends Activity {
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
         String str = formatter.format(curDate);
         djrq.setText(str);
+        ck.setText(myApp.getmStorage().getCkmc());
     }
 
     /**
@@ -218,6 +219,19 @@ public class AddOutStorageActivity extends Activity {
          * 4.构建库从台账 然后逐个插入
          * 5.构建库存单据 逐个插入
          * 6.更新库存明细表
+         */
+
+
+        /**
+         * 1.获取返回的选择结果
+         * 2.判断选择结果 如果为空就   return
+         * 3.根据选择结果 物资编码 字段从数据库取到对应物资信息  （物资信息表）
+         * 4.构建待审批台账 然后逐个插入
+         * 5.构建待审批单据 逐个插入
+         * 6.审批通过后
+         * 7.构建库从台账 然后逐个插入
+         * 8.构建库存单据 逐个插入
+         * 9.更新库存明细表
          */
         if(resultlists==null||resultlists.size()<1){
             Toast.makeText(this, "请添加要入库的物资信息！", Toast.LENGTH_SHORT).show();

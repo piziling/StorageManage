@@ -28,12 +28,8 @@ import q.rorbin.badgeview.QBadgeView;
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private static final String TAG = "FragmentActivity";
-    private TextView mainTitle;
     private NoScrollViewPager mainViewPage;
     private List<Fragment> mainTabs = new ArrayList<Fragment>();
-    private String[] mTitles = new String[]{
-            "我的工作台","仓库主页","设置"
-    };
 
     private FragmentPagerAdapter mAdater;
     private List<ChangeColorInconWithText> mTabIndicators = new ArrayList<ChangeColorInconWithText>();
@@ -88,7 +84,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      */
     private void initView() {
         mainViewPage = (NoScrollViewPager) findViewById(R.id.main_viewPage);
-        mainTitle = (TextView) findViewById(R.id.tv_main_title);
 
         mainTabs.add(meFragment);
         mainTabs.add(storageFragment);
@@ -170,7 +165,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void whenIndicatorChange(int i) {
         mTabIndicators.get(i).setIconAlpha(1.0f);
         mainViewPage.setCurrentItem(i);
-        mainTitle.setText(mTitles[i]);
     }
 
     /**

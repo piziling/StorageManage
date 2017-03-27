@@ -6,6 +6,21 @@
     android:orientation="vertical"
     android:background="#ffffffff">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/themeColor">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="仓库主页"
+            android:textSize="22sp"
+            android:id="@+id/btn_storage_select"
+            android:background="#00ffffff"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
     <!--
         android:numColumns="" 每一行显示多少列
         android:horizontalSpacing="" 两列之间的距离

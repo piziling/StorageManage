@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.whieenz.storagemanage.base.CkInfoVO;
 import com.whieenz.storagemanage.base.GoodsVO;
 import com.whieenz.storagemanage.base.UserInfo;
 import com.whieenz.storagemanage.view.activity.MainActivity;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.R.attr.name;
 import static android.content.ContentValues.TAG;
 
 /**
@@ -169,9 +171,95 @@ public class DBManger {
         if(result == -1){
             tag = false;
         }
-
+        values.clear();
+        values.put(SQLitConstant.APPINFO_TIME,MyUntls.getNowTime());
+        values.put(SQLitConstant.APPINFO_VALUE,"武汉仓库");
+        values.put(SQLitConstant.APPINFO_NAME,"DEFAULT_CK");
+        values.put(SQLitConstant.APPINFO_BZ,"初始化");
+        long result0 = db.insert(SQLitConstant.TABLE_APPINFO,null,values);
+        if(result0 == -1){
+            tag = false;
+        }
         return tag;
     }
+
+
+    /**
+     * 根据仓库名称获取仓库SIZE
+     * @param name
+     * @return
+     */
+    public  static CkInfoVO getCkInfoByCkmc(String name){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        CkInfoVO ckInfo  = null;
+        Cursor cursor = db.query(SQLitConstant.TABLE_CK,null,SQLitConstant.CK_CKMC+"=?",
+                new String[]{name},null,null,null);
+        while(cursor.moveToNext()){
+            String size  = cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_SIZE));
+            String ckmc  = cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_CKMC));
+            String ckbm  = cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_CKBM));
+            String cgy  = cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_CGY));
+            String address  = cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_ADDRESS));
+            ckInfo = new CkInfoVO(ckbm,ckmc,size,cgy,address);
+        }
+        return ckInfo;
+    }
+
+    /**
+     * 根据仓库名称获取仓库SIZE
+     * @param name
+     * @return
+     */
+    public  static double getCkSizeByCkmc(String name){
+        double result = -1;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.query(SQLitConstant.TABLE_CK,null,SQLitConstant.CK_CKMC+"=?",
+                new String[]{name},null,null,null);
+        while(cursor.moveToNext()){
+            result  = Double.valueOf(cursor.getString(cursor.getColumnIndex(SQLitConstant.CK_SIZE)));
+        }
+        return result;
+    }
+
+    /**
+     * 根据仓库名称获取本仓库已经使用的SIZE
+     * @param name
+     * @return
+     */
+    public  static double getUsedCkSizeByCkmc(String name){
+        double result = 0;
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCMX,null,SQLitConstant.KCMX_CK+"=?",
+                new String[]{name},null,null,null);
+        while(cursor.moveToNext()){
+            result  += Double.valueOf(cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_SIZE)));
+        }
+        return result;
+    }
+
+    /**
+     * 更新默认仓库
+     * @param name
+     */
+    public static void updateDefaultCk(String name){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SQLitConstant.APPINFO_TIME,MyUntls.getNowTime());
+        values.put(SQLitConstant.APPINFO_VALUE,name);
+        db.update(SQLitConstant.TABLE_APPINFO,values,SQLitConstant.APPINFO_NAME+"=?",new String[]{"DEFAULT_CK"});
+    }
+
+    public static String getDefaultCkmc(){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String ckmc = "";
+        Cursor cursor = db.query(SQLitConstant.TABLE_APPINFO,null,SQLitConstant.APPINFO_NAME+"=?",new String[]{"DEFAULT_CK"},null,null,null);
+        while (cursor.moveToNext()){
+            ckmc = cursor.getString(cursor.getColumnIndex(SQLitConstant.APPINFO_VALUE));
+        }
+        return ckmc;
+    }
+
+
 /**
  * String table :查询的表名
  * String[] columns :查询的表中的字段名称 null 表示查询所有

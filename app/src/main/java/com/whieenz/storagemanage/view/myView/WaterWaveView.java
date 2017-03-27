@@ -51,7 +51,7 @@ public class WaterWaveView extends View {
      */
     private Rect mRectTips = new Rect();
 
-    private String mTipString = "占用库位";
+    private String mTipString = "已占用";
 
     /**
      * View中心点的坐标
@@ -135,6 +135,11 @@ public class WaterWaveView extends View {
         mPaintWater.setColor(Color.parseColor("#FF45A348"));
         mPaintWater.setStyle(Paint.Style.FILL);
 
+    }
+
+    @Override
+    public boolean callOnClick() {
+        return super.callOnClick();
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
+import com.whieenz.storagemanage.view.activity.DjxxActivity;
 import com.whieenz.storagemanage.view.myView.LoadListView;
 import com.whieenz.storagemanage.view.myView.ReFlashListView;
 
@@ -128,10 +130,10 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = listView.getItemAtPosition(i)+"";
-        HashMap<String,String> map=(HashMap<String,String>)listView.getItemAtPosition(i);
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
         String djbm=map.get("djbm");
-        String time=map.get("time");
-        Toast.makeText(getActivity(),"position:"+i+"\ndjbm:"+djbm+"\ntime:"+time,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), DjxxActivity.class);
+        intent.putExtra("djbh",djbm);
+        startActivity(intent);
     }
 }
