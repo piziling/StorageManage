@@ -34,6 +34,7 @@ public class KctzVO {
     private String ywrq;
     private String ywfx;
     private String time;
+    private String djzt;
 
 
 
@@ -54,6 +55,7 @@ public class KctzVO {
         values.put(SQLitConstant.KCTZ_CK,ck);
         values.put(SQLitConstant.KCTZ_BZ,bz);
         values.put(SQLitConstant.KCTZ_SIZE,size);
+        values.put(SQLitConstant.KCTZ_DJZT,djzt);
         values.put(SQLitConstant.KCTZ_JBR,jbr);
         values.put(SQLitConstant.KCTZ_YWFX,ywfx);
         values.put(SQLitConstant.KCTZ_YWID,ywid);
@@ -63,6 +65,13 @@ public class KctzVO {
         return  values;
     }
 
+    public String getDjzt() {
+        return djzt;
+    }
+
+    public void setDjzt(String djzt) {
+        this.djzt = djzt;
+    }
 
     public String getTzbm() {
         return tzbm;

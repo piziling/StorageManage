@@ -20,7 +20,9 @@ import com.whieenz.storagemanage.base.GoodsVO;
 import com.whieenz.storagemanage.base.KcmxVO;
 import com.whieenz.storagemanage.base.KctzVO;
 import com.whieenz.storagemanage.base.MyApp;
+import com.whieenz.storagemanage.base.UserInfo;
 import com.whieenz.storagemanage.utls.DBManger;
+import com.whieenz.storagemanage.utls.MyUntls;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 
 import java.text.SimpleDateFormat;
@@ -46,13 +48,15 @@ public class AddOutStorageActivity extends Activity {
     private Button add;
     private Button ck;
     private EditText djbh;
-    private EditText jbr;
+    private Button jbr;
+    private Button dclr;
     private EditText bz;
 
     private View firstBottom;
     private View resultBottom;
     private TextView  resultTv;
     private List<Map<String, String>> resultlists;
+    private ArrayList userInfos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +68,8 @@ public class AddOutStorageActivity extends Activity {
     private void initView() {
         djrq =(TextView) findViewById(R.id.out_value_djrq);
         djbh =(EditText) findViewById(R.id.out_value_djbh);
-        jbr =(EditText) findViewById(R.id.out_value_jbr);
+        jbr =(Button) findViewById(R.id.out_value_jbr);
+        dclr =(Button) findViewById(R.id.out_value_dclr);
         bz =(EditText) findViewById(R.id.out_value_bz);
         ck = (Button) findViewById(R.id.out_value_ck);
         wldw = (Button) findViewById(R.id.out_value_wldw);
@@ -80,8 +85,48 @@ public class AddOutStorageActivity extends Activity {
         String str = formatter.format(curDate);
         djrq.setText(str);
         ck.setText(myApp.getmStorage().getCkmc());
+
+        userInfos = new ArrayList();
+        for (int i = 0; i < myApp.getUserArray().size(); i++) {
+            UserInfo user = (UserInfo)myApp.getUserArray().get(i);
+            userInfos.add(user.getName());
+        }
     }
 
+    /**
+     * 经办人信息选择  // 默认登录用户
+     */
+    public void onJbrPicker(View view){
+        OptionPicker picker = new OptionPicker(this, userInfos);
+        picker.setCycleDisable(true);
+        picker.setLineVisible(false);
+        //picker.setShadowVisible(true);
+        picker.setTextSize(18);
+        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+            @Override
+            public void onOptionPicked(int index, String item) {
+                jbr.setText(item);
+            }
+        });
+        picker.show();
+    }
+    /**
+     * 待处理人选择
+     */
+    public void onDclrPicker(View view){
+        OptionPicker picker = new OptionPicker(this, userInfos);
+        picker.setCycleDisable(true);
+        picker.setLineVisible(false);
+        //picker.setShadowVisible(true);
+        picker.setTextSize(18);
+        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
+            @Override
+            public void onOptionPicked(int index, String item) {
+                dclr.setText(item);
+            }
+        });
+        picker.show();
+    }
     /**
      *
      */
@@ -139,10 +184,6 @@ public class AddOutStorageActivity extends Activity {
      * @return
      */
     private boolean checkIsNull() {
-        if ( djbh.getText().toString().equals("")) {
-            Toast.makeText(this,"单据编码不能为空！",Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if ( djlx.getText().toString().equals("")) {
             Toast.makeText(this,"类型不能为空！",Toast.LENGTH_SHORT).show();
             return false;
@@ -267,8 +308,8 @@ public class AddOutStorageActivity extends Activity {
         Boolean tag = true;
         for (int i = 0; i < kctzList.size(); i++) {
             long kctzResult = db.insert(SQLitConstant.TABLE_KCTZ,null,kctzList.get(i).getContentValues());
-            //更新库从明细信息
-            updateKcmxInfo(kctzList, db, i);
+//            //更新库从明细信息
+//            updateKcmxInfo(kctzList, db, i);
 
             if (kctzResult == -1 ){
                 tag = false;
@@ -337,13 +378,13 @@ public class AddOutStorageActivity extends Activity {
         String time = formatter.format(curDate);
 
         ContentValues values = new ContentValues();
-        values.put(SQLitConstant.KCDJ_DJBM,"CK_"+djbh.getText().toString());
+        values.put(SQLitConstant.KCDJ_DJBM,"CK_"+getDjbm());
         values.put(SQLitConstant.KCDJ_DJLX,djlx.getText().toString());
         values.put(SQLitConstant.KCDJ_WLDW,wldw.getText().toString());
         values.put(SQLitConstant.KCDJ_DJZT,"待审核");
         values.put(SQLitConstant.KCDJ_CK,ck.getText().toString());
         //values.put(SQLitConstant.KCDJ_KW,kw.getText().toString());
-        values.put(SQLitConstant.KCDJ_DCLR,"whieenz");
+        values.put(SQLitConstant.KCDJ_DCLR,dclr.getText().toString());
         values.put(SQLitConstant.KCDJ_ZDR,jbr.getText().toString());
         values.put(SQLitConstant.KCDJ_BZ,bz.getText().toString());
         values.put(SQLitConstant.KCDJ_YWID,ywid);
@@ -354,6 +395,14 @@ public class AddOutStorageActivity extends Activity {
         values.put(SQLitConstant.KCDJ_TIME,time);
         values.put(SQLitConstant.KCDJ_ZJE,zje);
         return  values;
+    }
+
+    /**
+     * 获取单据编码
+     * @return
+     */
+    private String getDjbm(){
+        return  djbh.getText().toString().equals("")? MyUntls.getUniqueFromTime(""):djbh.getText().toString();
     }
     /**
      * 构建库存台账VO
@@ -397,6 +446,7 @@ public class AddOutStorageActivity extends Activity {
         kctzVO.setTzbm("CK_"+ywid+i);
         kctzVO.setYwid(ywid);
         kctzVO.setYwfx("出库");
+        kctzVO.setDjzt("待审核");
         kctzVO.setTime(time);
         return kctzVO;
     }

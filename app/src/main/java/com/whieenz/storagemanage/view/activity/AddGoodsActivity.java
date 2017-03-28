@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
+import com.whieenz.storagemanage.utls.MyUntls;
 import com.whieenz.storagemanage.utls.SQLitConstant;
 import com.xys.libzxing.zxing.encoding.EncodingUtils;
 
@@ -174,7 +175,7 @@ public class AddGoodsActivity extends Activity{
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date curDate = new Date(System.currentTimeMillis());//获取当前时间
         String time = formatter.format(curDate);
-        values.put("WZBM",wzbm.getText().toString());
+        values.put("WZBM",getWzbm());
         values.put("WZMC",wzmc.getText().toString());
         values.put("GGXH",ggxh.getText().toString());
         values.put("WZLX",wzlx.getText().toString());
@@ -187,6 +188,14 @@ public class AddGoodsActivity extends Activity{
         values.put("BZ",  bz.getText().toString());
         values.put("TIME",time);
         return  values;
+    }
+
+    /**
+     * 获取单据编码
+     * @return
+     */
+    private String getWzbm(){
+        return  wzbm.getText().toString().equals("")? MyUntls.getUniqueFromTime(""):wzbm.getText().toString();
     }
 
     /**
@@ -238,10 +247,6 @@ public class AddGoodsActivity extends Activity{
      * @return
      */
     private boolean checkIsNull() {
-        if ( wzbm.getText().toString().equals("")) {
-            Toast.makeText(this,"物资编码不能为空！",Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if ( wzmc.getText().toString().equals("")) {
             Toast.makeText(this,"物资名称不能为空！",Toast.LENGTH_SHORT).show();
             return false;
@@ -303,17 +308,17 @@ public class AddGoodsActivity extends Activity{
      */
     private String getQRcodeText() {
         String input = QRTAG;
-        input = input +";"+getEdittext().get("wzbm");
-        input = input +";"+getEdittext().get("wzmc");
-        input = input +";"+getEdittext().get("ggxh");
-        input = input +";"+getEdittext().get("wzlx");
-        input = input +";"+getEdittext().get("jldw");
-        input = input +";"+getEdittext().get("dj");
-        input = input +";"+getEdittext().get("size");
-        input = input +";"+getEdittext().get("scrq");
-        input = input +";"+getEdittext().get("bzq");
-        input = input +";"+getEdittext().get("cd");
-        input = input +";"+getEdittext().get("bz");
+        input = input +";"+getEdittext().get("WZBM");
+        input = input +";"+getEdittext().get("WZMC");
+        input = input +";"+getEdittext().get("GGXH");
+        input = input +";"+getEdittext().get("WZLX");
+        input = input +";"+getEdittext().get("JLDW");
+        input = input +";"+getEdittext().get("DJ");
+        input = input +";"+getEdittext().get("SIZE");
+        input = input +";"+getEdittext().get("SCRQ");
+        input = input +";"+getEdittext().get("BZQ");
+        input = input +";"+getEdittext().get("CD");
+        input = input +";"+getEdittext().get("BZ");
         Log.d(TAG, "getQRcodeText: 二维码的字符串"+input);
         return input;
     }

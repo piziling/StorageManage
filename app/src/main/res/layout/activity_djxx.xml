@@ -22,6 +22,9 @@
         android:id="@+id/djxx_layout"
         android:layout_below="@+id/djxx_top_layout">
         <TextView
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/djxx_layout_djbh"
@@ -29,9 +32,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:id="@+id/djxx_layout_djrq"
             android:text="单据日期："/>
         <TextView
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/djxx_layout_time"
@@ -39,59 +46,74 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:id="@+id/djxx_layout_djlx"
             android:text="单据类型："/>
-        <RelativeLayout
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:id="@+id/djxx_layout_wldw"
                 android:text="往来单位："/>
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:id="@+id/djxx_layout_ck"
                 android:text="仓库："/>
-        </RelativeLayout>
-        <RelativeLayout
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:id="@+id/djxx_layout_zsl"
                 android:text="总数量："/>
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_weight="1"
                 android:id="@+id/djxx_layout_zdr"
                 android:text="制单人："/>
-        </RelativeLayout>
-        <RelativeLayout
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/djxx_layout_zje"
                 android:text="总金额："/>
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_weight="1"
                 android:id="@+id/djxx_layout_dclr"
                 android:text="待处理人："/>
-        </RelativeLayout>
+        </LinearLayout>
 
         <TextView
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/djxx_layout_bz"
+            android:layout_marginBottom="10dp"
             android:text="备注："/>
 
     </LinearLayout>
@@ -114,6 +136,7 @@
             android:text="回退"
             android:layout_weight="1"
             android:textColor="#ffffff"
+            android:onClick="doBack"
             android:textSize="20sp"
             android:background="@color/redBtnColor"/>
         <Button
@@ -123,6 +146,7 @@
             android:layout_weight="1"
             android:textColor="#ffffff"
             android:textSize="20sp"
+            android:onClick="doYes"
             android:background="@color/themeColor"/>
 
     </LinearLayout>

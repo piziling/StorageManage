@@ -68,9 +68,9 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
 
     private List<Map<String,Object>> getData(){
         MyApp myApp = (MyApp)getActivity().getApplication();
-        String userNum = myApp.getUserInfo().getNum();
+        String userName = myApp.getUserInfo().getName();
         SQLiteDatabase db = DBManger.getIntance(getActivity()).getWritableDatabase();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=?",new String[]{userNum},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=? AND DJZT = ? OR DCLR =? AND DJZT = ?",new String[]{userName,"已完成",userName,"已完成"},null,null,null);
         if (cursor.getCount()==0){
             return null;
         }

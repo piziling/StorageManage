@@ -63,6 +63,7 @@
                android:background="@drawable/et_bg"
                android:layout_marginRight="15dp"
                android:id="@+id/in_value_djbh"
+               android:hint="若未填将自动生成编码"
                android:textSize="18sp" />
        </LinearLayout>
        <LinearLayout
@@ -149,14 +150,41 @@
                android:id="@+id/in_key_jbr"
                android:textSize="18sp"
                android:text="经办人"/>
-           <EditText
+           <Button
                android:layout_width="wrap_content"
                android:layout_weight="1"
                android:layout_marginLeft="5dp"
                android:layout_height="38dp"
-               android:background="@drawable/et_bg"
+               android:background="#00ffffff"
+               android:gravity="center_vertical|left"
+               android:onClick="onJbrPicker"
                android:layout_marginRight="15dp"
                android:id="@+id/in_value_jbr"
+               android:textSize="18sp" />
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:gravity="center_vertical"
+           android:orientation="horizontal"
+           android:background="@drawable/add_goods_bg">
+           <TextView
+               android:layout_marginLeft="5dp"
+               android:layout_width="80dp"
+               android:layout_height="wrap_content"
+               android:id="@+id/in_key_dclr"
+               android:textSize="18sp"
+               android:text="审核人"/>
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_weight="1"
+               android:layout_marginLeft="5dp"
+               android:layout_height="38dp"
+               android:background="#00ffffff"
+               android:gravity="center_vertical|left"
+               android:onClick="onDclrPicker"
+               android:layout_marginRight="15dp"
+               android:id="@+id/in_value_dclr"
                android:textSize="18sp" />
        </LinearLayout>
        <LinearLayout

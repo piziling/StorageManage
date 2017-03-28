@@ -79,6 +79,7 @@
                     android:layout_marginLeft="5dp"
                     android:background="@null"
                     android:layout_weight="1"
+                    android:hint="若未填将自动生成编码"
                     android:textColor="@color/textColor"
                     android:id="@+id/goods_value_wzbm" />
             </LinearLayout>

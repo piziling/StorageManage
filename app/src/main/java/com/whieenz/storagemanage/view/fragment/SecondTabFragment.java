@@ -68,9 +68,9 @@ public class SecondTabFragment extends Fragment implements AdapterView.OnItemCli
 
     private List<Map<String,Object>> getData(){
         MyApp myApp = (MyApp)getActivity().getApplication();
-        String userNum = myApp.getUserInfo().getNum();
+        String userName = myApp.getUserInfo().getName();
         SQLiteDatabase db = DBManger.getIntance(getActivity()).getWritableDatabase();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=?",new String[]{userNum},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=? AND DJZT=? ",new String[]{userName,"待审核"},null,null,null);
         if (cursor.getCount()==0){
             return null;
         }

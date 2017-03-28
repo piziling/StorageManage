@@ -100,6 +100,7 @@ public class SQLitConstant {
     public static final  String KCTZ_YWRQ="YWRQ";
     public static final  String KCTZ_YWFX="YWFX";
     public static final  String KCTZ_TIME="TIME";
+    public static final  String KCTZ_DJZT="DJZT";
 
     //库存单据
     public static final  String KCDJ_ID="_ID";
@@ -222,6 +223,7 @@ public class SQLitConstant {
             KCTZ_CK+" TEXT ,"+
             KCTZ_BZQ+" TEXT ,"+
             KCTZ_JBR+" TEXT ,"+
+            KCTZ_DJZT+" TEXT ,"+
             KCTZ_TIME+" TEXT ,"+
             KCTZ_BZ+" TEXT)";
 
