@@ -1,6 +1,7 @@
 package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -84,7 +85,7 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
                 }
             }
             map.put("djlx",djlx);
-            map.put("djbm","单据编号："+djbm);
+            map.put("djbm",djbm);
             map.put("djrq","制单时间："+djrq);
             map.put("djzt","单据状态："+djzt);
             map.put("zje","总金额："+zje+"RMB");
@@ -109,6 +110,10 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String djbm=map.get("djbm");
+        Intent intent = new Intent(this, DjxxActivity.class);
+        intent.putExtra("djbh",djbm);
+        startActivity(intent);
     }
 }

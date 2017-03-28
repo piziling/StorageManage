@@ -12,19 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
-import com.whieenz.storagemanage.view.activity.DjxxActivity;
+import com.whieenz.storagemanage.view.activity.DjshActivity;
 import com.whieenz.storagemanage.view.myView.LoadListView;
-import com.whieenz.storagemanage.view.myView.ReFlashListView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -132,7 +128,7 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
         String djbm=map.get("djbm");
-        Intent intent = new Intent(getActivity(), DjxxActivity.class);
+        Intent intent = new Intent(getActivity(), DjshActivity.class);
         intent.putExtra("djbh",djbm);
         startActivity(intent);
     }

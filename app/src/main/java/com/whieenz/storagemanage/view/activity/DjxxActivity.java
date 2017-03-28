@@ -33,7 +33,7 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by heziwen on 2017/3/27.
+ * Created by heziwen on 2017/3/28.
  */
 
 public class DjxxActivity extends Activity implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
@@ -138,205 +138,16 @@ public class DjxxActivity extends Activity implements AdapterView.OnItemClickLis
             String ggxh = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_GGXH));
             String sl   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_SL));
             String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_JLDW));
-            String ck   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_CK));
-            String bzq  = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_BZQ));
-            String scrq = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_SCRQ));
-            String cd   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_CD));
-            String size = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_SIZE));
-            String dj   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_DJ));
-            String wzlx = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_WZLX));
-            String bz   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_BZ));
             map.put("wzmc",wzmc);
             map.put("wzbm","物资编码："+wzbm);
             map.put("ggxh","规格型号："+ggxh);
             map.put("sltj","数量： "+sl+" "+jldw);
             datalist.add(map);
-            KctzVO kctzVO = new KctzVO();
-            kctzVO.setWzmc(wzmc);
-            kctzVO.setWzbm(wzbm);
-            kctzVO.setWzlx(wzlx);
-            kctzVO.setGgxh(ggxh);
-            kctzVO.setSl(Integer.valueOf(sl));
-            kctzVO.setJldw(jldw);
-            kctzVO.setCk(ck);
-            kctzVO.setCd(cd);
-            kctzVO.setBzq(bzq);
-            kctzVO.setBz(bz);
-            kctzVO.setScrq(scrq);
-            kctzVO.setSize(Double.valueOf(size));
-            kctzVO.setDj(Double.valueOf(dj));
-            kctzList.add(kctzVO);
             this.sl += Integer.valueOf(sl);
         }
         this.zsl.setText("总数量：  "+String.valueOf(sl));
         db.close();
         return  datalist;
-    }
-
-    /**
-     * 审核通过
-     * @param view
-     */
-    public void doYes(View view){
-        /**
-         * 1.更新KCDJ  DJZT 已完成  更新 Time  DJBM  YWID
-         * 2.更新KCTZ  DJZT 已完成  更新 time  YWID
-         * 3.更新KCMX  WZBM
-         */
-        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(SQLitConstant.KCDJ_DJZT,"已完成");
-        values.put(SQLitConstant.KCDJ_TIME, MyUntls.getNowTime());
-        // 1.更新KCDJ  DJZT 已完成  更新 Time  DJBM  YWID
-        int djResult = db.update(SQLitConstant.TABLE_KCDJ,values,SQLitConstant.KCDJ_DJBM+"=?",new String[]{djbm});
-        if (djResult<=0){
-            Toast.makeText(this,"更新库存单据失败！",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        values.clear();
-        values.put(SQLitConstant.KCTZ_DJZT,"已完成");
-        values.put(SQLitConstant.KCTZ_TIME, MyUntls.getNowTime());
-        // 2.更新KCTZ  DJZT 已完成  更新 time  YWID
-        int tzResult = db.update(SQLitConstant.TABLE_KCTZ,values,SQLitConstant.KCTZ_YWID+"=?",new String[]{ywid});
-        if (tzResult <= 0){
-            Toast.makeText(this,"更新库存台账失败！",Toast.LENGTH_SHORT).show();
-        }
-        // 3.更新KCMX  WZBM
-
-        if (ywfx.equals("入库")){
-            boolean isRk = updateKcmxInfoWhenRK(db);
-            if (isRk){
-                Toast.makeText(this,"审批完成！",Toast.LENGTH_SHORT).show();
-            }
-        }
-        if (ywfx.equals("出库")){
-            boolean isCk = updateKcmxInfoWhenCK(db);
-            if (isCk){
-                Toast.makeText(this,"审批完成！",Toast.LENGTH_SHORT).show();
-            }
-        }
-
-
-    }
-
-    /**
-     * 回退
-     * @param view
-     */
-    public void doBack(View view){
-
-    }
-
-    /**
-     * 更新库从明细信息
-     *
-     * @param db  数据库连接
-     *
-     */
-    private boolean updateKcmxInfoWhenRK(SQLiteDatabase db) {
-        //更新库从明细
-        for (int i = 0; i < kctzList.size(); i++) {
-
-            String sql = "SELECT * FROM KCMX WHERE WZBM = ? AND CK = ?";
-            Cursor cursor = DBManger.QueryDataBySql(db,sql,
-                    new String[]{kctzList.get(i).getWzbm(), kctzList.get(i).getCk()});
-            KcmxVO kcmxVO = new KcmxVO();
-            Log.e(TAG, "updateKcmxInfo: cursor : " +cursor.getCount());
-            boolean isExist = false;
-            if (cursor.moveToNext()){
-                Log.e(TAG, "cursor.moveToNext() : " );
-                isExist = true;
-                kcmxVO.getKcmxVOfromCursor(cursor);
-            }
-
-            if (isExist&&kcmxVO!=null&&!kcmxVO.getWzbm().equals("")){ //判断是否取到值(同一仓库存在该物资 -->更新)
-                ContentValues kcmxValues = new ContentValues();
-                kcmxValues.put(SQLitConstant.KCMX_SL,kcmxVO.getSl()+kctzList.get(i).getSl());
-                kcmxValues.put(SQLitConstant.KCMX_ZJE,kcmxVO.getZje()+kctzList.get(i).getSl()*kctzList.get(i).getDj());
-                kcmxValues.put(SQLitConstant.KCMX_SIZE,kcmxVO.getSize()+kctzList.get(i).getSize());
-                int result = db.update(SQLitConstant.TABLE_KCMX,kcmxValues,
-                        " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
-                if (result<=0){
-                    Toast.makeText(this,"更新库存明细:"+kctzList.get(i).getWzmc()+"失败！",Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            }else {   //同一仓库不存在该物资 -->新增
-                ContentValues values = getKcmxContentValues(i);
-                long kcmxResult = db.insert(SQLitConstant.TABLE_KCMX,null,values);
-                if(kcmxResult == -1){
-                    Toast.makeText(this,"新增库存明细:"+kctzList.get(i).getWzmc()+"失败！",Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 更新库从明细信息
-     * @param db  数据库连接
-     */
-    private boolean updateKcmxInfoWhenCK(SQLiteDatabase db) {
-        for (int i = 0; i < kctzList.size(); i++) {
-            //更新库从明细
-            String sql = "SELECT * FROM KCMX WHERE WZBM = ? AND CK = ?";
-            Cursor cursor = DBManger.QueryDataBySql(db,sql,
-                    new String[]{kctzList.get(i).getWzbm(),kctzList.get(i).getCk()});
-            KcmxVO kcmxVO = new KcmxVO();
-            Log.e(TAG, "updateKcmxInfo: cursor : " +cursor.getCount());
-            boolean isExist = false;
-            if (cursor.moveToNext()){
-                Log.e(TAG, "cursor.moveToNext() : " );
-                isExist = true;
-                kcmxVO.getKcmxVOfromCursor(cursor);
-            }
-
-            if (isExist&&kcmxVO!=null&&!kcmxVO.getWzbm().equals("")){ //判断是否取到值(同一仓库存在该物资 -->更新)
-                ContentValues kcmxValues = new ContentValues();
-                kcmxValues.put(SQLitConstant.KCMX_SL,kcmxVO.getSl()-kctzList.get(i).getSl());
-                kcmxValues.put(SQLitConstant.KCMX_ZJE,kcmxVO.getZje()-kctzList.get(i).getSl()*kctzList.get(i).getDj());
-                kcmxValues.put(SQLitConstant.KCMX_SIZE,kcmxVO.getSize()-kctzList.get(i).getSize());
-                db.update(SQLitConstant.TABLE_KCMX,kcmxValues,
-                        " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
-            }else {   //同一仓库不存在该物资 -->报错
-                Toast.makeText(this,"提交出库失败，所选物资库存不足！",Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-        }
-        return  true;
-    }
-
-
-    /**
-     * 获取库存明细插入数据格式  ContentValues
-     * @param i
-     * @return
-     */
-    @NonNull
-    private ContentValues getKcmxContentValues(int i) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
-        String time = formatter.format(curDate);
-
-        ContentValues values = new ContentValues();
-        values.put(SQLitConstant.KCMX_WZBM,kctzList.get(i).getWzbm());
-        values.put(SQLitConstant.KCMX_KCBM,kctzList.get(i).getCk()+kctzList.get(i).getWzbm());
-        values.put(SQLitConstant.KCMX_WZMC,kctzList.get(i).getWzmc());
-        values.put(SQLitConstant.KCMX_WZLX,kctzList.get(i).getWzlx());
-        values.put(SQLitConstant.KCMX_GGXH,kctzList.get(i).getGgxh());
-        values.put(SQLitConstant.KCMX_JLDW,kctzList.get(i).getJldw());
-        values.put(SQLitConstant.KCMX_SCRQ,kctzList.get(i).getScrq());
-        values.put(SQLitConstant.KCMX_BZQ,kctzList.get(i).getBzq());
-        values.put(SQLitConstant.KCMX_CD,kctzList.get(i).getCd());
-        values.put(SQLitConstant.KCMX_DJ,kctzList.get(i).getDj());
-        values.put(SQLitConstant.KCMX_SL,kctzList.get(i).getSl());
-        values.put(SQLitConstant.KCMX_ZJE,kctzList.get(i).getSl()*kctzList.get(i).getDj());
-        values.put(SQLitConstant.KCMX_CK,kctzList.get(i).getCk());
-        values.put(SQLitConstant.KCMX_BZ,kctzList.get(i).getBz());
-        values.put(SQLitConstant.KCMX_SIZE,kctzList.get(i).getSize());
-        values.put(SQLitConstant.KCMX_TIME,time);
-        return values;
     }
 
 

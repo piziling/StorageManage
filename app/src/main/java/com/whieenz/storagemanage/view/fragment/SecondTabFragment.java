@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
+import com.whieenz.storagemanage.view.activity.DjshActivity;
+import com.whieenz.storagemanage.view.activity.DjxxActivity;
 import com.whieenz.storagemanage.view.myView.LoadListView;
 
 import java.text.SimpleDateFormat;
@@ -121,7 +124,12 @@ public class SecondTabFragment extends Fragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = listView.getItemAtPosition(i)+"";
-        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+//        String text = listView.getItemAtPosition(i)+"";
+//        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String djbm=map.get("djbm");
+        Intent intent = new Intent(getActivity(), DjxxActivity.class);
+        intent.putExtra("djbh",djbm);
+        startActivity(intent);
     }
 }

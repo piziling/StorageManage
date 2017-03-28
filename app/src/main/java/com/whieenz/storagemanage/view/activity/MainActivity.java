@@ -4,13 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.view.myView.ChangeColorInconWithText;
@@ -53,7 +53,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initDatas();
         mainViewPage.setAdapter(mAdater);
         mainViewPage.setCurrentItem(1);
-
     }
 
     /**
@@ -144,7 +143,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (view.getId()){
             case R.id.indicator_me:
                 whenIndicatorChange(0);
-                addBadgeView(me,8);
+//                addBadgeView(me,8);
                 break;
             case R.id.indicator_storage:
                 whenIndicatorChange(1);
@@ -195,5 +194,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 
     }
+
+
+
+
+
 }
 

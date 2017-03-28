@@ -1,5 +1,6 @@
 package com.whieenz.storagemanage.view.fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,15 +14,15 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.utls.SQLitConstant;
+import com.whieenz.storagemanage.view.activity.DjshActivity;
+import com.whieenz.storagemanage.view.activity.DjxxActivity;
 import com.whieenz.storagemanage.view.myView.LoadListView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,7 +122,12 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = listView.getItemAtPosition(i)+"";
-        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+//        String text = listView.getItemAtPosition(i)+"";
+//        Toast.makeText(getActivity(),"position"+i+"text="+text,Toast.LENGTH_SHORT).show();
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String djbm=map.get("djbm");
+        Intent intent = new Intent(getActivity(), DjxxActivity.class);
+        intent.putExtra("djbh",djbm);
+        startActivity(intent);
     }
 }
