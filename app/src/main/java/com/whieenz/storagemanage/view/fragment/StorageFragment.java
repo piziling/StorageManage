@@ -103,7 +103,7 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
      * 更新比例图
      * @param item
      */
-    private void updateWaveView(String item) {
+    public void updateWaveView(String item) {
         double allSize = DBManger.getCkSizeByCkmc(item);
         double size = DBManger.getUsedCkSizeByCkmc(item);
         if (allSize == -1){

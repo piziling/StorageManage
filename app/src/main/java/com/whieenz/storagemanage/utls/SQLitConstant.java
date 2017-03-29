@@ -94,6 +94,7 @@ public class SQLitConstant {
     public static final  String KCTZ_BZ="BZ";
     public static final  String KCTZ_CK="CK";
     public static final  String KCTZ_JBR="JBR";
+    public static final  String KCTZ_ZJE="ZJE";
     public static final  String KCTZ_SIZE="SIZE";
     public static final  String KCTZ_YWID="YWID";
     public static final  String KCTZ_YWMC="YWMC";
@@ -218,6 +219,7 @@ public class SQLitConstant {
             KCTZ_SL+" INTEGER,"+
             KCTZ_JLDW+" TEXT ,"+
             KCTZ_SIZE+" TEXT ,"+
+            KCTZ_ZJE+" TEXT ,"+
             KCTZ_SCRQ+" TEXT ,"+
             KCTZ_CD+" TEXT ,"+
             KCTZ_CK+" TEXT ,"+

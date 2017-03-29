@@ -4,12 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 import android.view.View;
 
 import com.whieenz.storagemanage.R;
@@ -42,7 +39,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     MeFragment meFragment = new MeFragment();
     StorageFragment storageFragment = new StorageFragment();
-    //        PicFragment picFragment = new PicFragment();
+    // PicFragment picFragment = new PicFragment();
     SettingFragment settingFragment =new SettingFragment();
 
     @Override
@@ -86,7 +83,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         mainTabs.add(meFragment);
         mainTabs.add(storageFragment);
-//        mainTabs.add(picFragment);
+//      mainTabs.add(picFragment);
         mainTabs.add(settingFragment);
 
         initIndicator();

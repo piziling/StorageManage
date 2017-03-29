@@ -57,6 +57,7 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
     private int  sl;
     private List<KctzVO> kctzList;
     private View shenpiLayout;
+    private boolean isYes = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,8 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
         getData();
         if (datalist.size() > 0) {
             simp_adapter = new SimpleAdapter(this, datalist, R.layout.djzbxx_item,
-                    new String[]{"wzmc", "wzbm", "ggxh", "sltj"},
-                    new int[]{R.id.tv_kcmx_wzmc, R.id.tv_kcmx_wzbm, R.id.tv_kcmx_ggxh, R.id.tv_kcmx_sltj});
+                    new String[]{"wzmc", "wzbm", "ggxh", "sltj","ywid"},
+                    new int[]{R.id.tv_kcmx_wzmc, R.id.tv_kcmx_wzbm, R.id.tv_kcmx_ggxh, R.id.tv_kcmx_sltj, R.id.tv_kcmx_ywid});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -149,9 +150,10 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
             String wzlx = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_WZLX));
             String bz   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_BZ));
             map.put("wzmc",wzmc);
-            map.put("wzbm","物资编码："+wzbm);
+            map.put("wzbm",wzbm);
             map.put("ggxh","规格型号："+ggxh);
             map.put("sltj","数量： "+sl+" "+jldw);
+            map.put("ywid",ywid);
             datalist.add(map);
             KctzVO kctzVO = new KctzVO();
             kctzVO.setWzmc(wzmc);
@@ -210,6 +212,7 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
             if (isRk){
                 Toast.makeText(this,"审批完成！",Toast.LENGTH_SHORT).show();
                 shenpiLayout.setVisibility(View.GONE);
+                isYes = true;
             }
         }
         if (ywfx.equals("出库")){
@@ -217,6 +220,8 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
             if (isCk){
                 Toast.makeText(this,"审批完成！",Toast.LENGTH_SHORT).show();
                 shenpiLayout.setVisibility(View.GONE);
+                isYes = true;
+
             }
         }
 
@@ -356,6 +361,23 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String wzbm= map.get("wzbm");
+        String ywid= map.get("ywid");
+        Intent intent = new Intent(this, KcxxActivity.class);
+        intent.putExtra("WZBM",wzbm);
+        intent.putExtra("YWID",ywid);
+        intent.putExtra("TAG","KCTZ");
+        startActivity(intent);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (isYes){
+            Intent intent =new Intent(this,CkInfoActivity.class);
+            intent.putExtra("TAG","YES");
+            setResult(RESULT_OK,intent);
+        }
+        super.onBackPressed();
     }
 }

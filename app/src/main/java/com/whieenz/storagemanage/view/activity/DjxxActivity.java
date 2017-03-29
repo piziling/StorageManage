@@ -65,8 +65,8 @@ public class DjxxActivity extends Activity implements AdapterView.OnItemClickLis
         getData();
         if (datalist.size() > 0) {
             simp_adapter = new SimpleAdapter(this, datalist, R.layout.djzbxx_item,
-                    new String[]{"wzmc", "wzbm", "ggxh", "sltj"},
-                    new int[]{R.id.tv_kcmx_wzmc, R.id.tv_kcmx_wzbm, R.id.tv_kcmx_ggxh, R.id.tv_kcmx_sltj});
+                    new String[]{"wzmc", "wzbm", "ggxh", "sltj","ywid"},
+                    new int[]{R.id.tv_kcmx_wzmc, R.id.tv_kcmx_wzbm, R.id.tv_kcmx_ggxh, R.id.tv_kcmx_sltj,R.id.tv_kcmx_ywid});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -139,9 +139,10 @@ public class DjxxActivity extends Activity implements AdapterView.OnItemClickLis
             String sl   = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_SL));
             String jldw = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCTZ_JLDW));
             map.put("wzmc",wzmc);
-            map.put("wzbm","物资编码："+wzbm);
+            map.put("wzbm",wzbm);
             map.put("ggxh","规格型号："+ggxh);
             map.put("sltj","数量： "+sl+" "+jldw);
+            map.put("ywid",ywid);
             datalist.add(map);
             this.sl += Integer.valueOf(sl);
         }
@@ -163,6 +164,13 @@ public class DjxxActivity extends Activity implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String wzbm= map.get("wzbm");
+        String ywid= map.get("ywid");
+        Intent intent = new Intent(this, KcxxActivity.class);
+        intent.putExtra("WZBM",wzbm);
+        intent.putExtra("YWID",ywid);
+        intent.putExtra("TAG","KCTZ");
+        startActivity(intent);
     }
 }

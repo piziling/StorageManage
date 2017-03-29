@@ -1,6 +1,7 @@
 package com.whieenz.storagemanage.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -68,11 +69,11 @@ public class KcmxActivity extends Activity implements AbsListView.OnScrollListen
             String ck = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_CK));
             String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCMX_ZJE));
             map.put("wzmc",wzmc);
-            map.put("wzbm","物资编码："+wzbm);
+            map.put("wzbm",wzbm);
             map.put("ggxh","规格型号："+ggxh);
             map.put("sltj","库存： "+sl+" "+jldw);
             map.put("zje","总金额： "+zje+"RMB");
-            map.put("ckxx","所在仓库："+ck);
+            map.put("ckxx",ck);
             datalist.add(map);
         }
         db.close();
@@ -93,6 +94,13 @@ public class KcmxActivity extends Activity implements AbsListView.OnScrollListen
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
+        String wzbm= map.get("wzbm");
+        String ck= map.get("ckxx");
+        Intent intent = new Intent(this, KcxxActivity.class);
+        intent.putExtra("WZBM",wzbm);
+        intent.putExtra("CK",ck);
+        intent.putExtra("TAG","KCMX");
+        startActivity(intent);
     }
 }

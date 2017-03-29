@@ -438,6 +438,7 @@ public class AddOutStorageActivity extends Activity {
         kctzVO.setDj(goodsList.get(0).getDj());
         kctzVO.setSize(goodsList.get(0).getSize()*Integer.valueOf(resultlists.get(i).get("num")));
         kctzVO.setSl(Integer.valueOf(resultlists.get(i).get("num")));
+        kctzVO.setZje(Integer.valueOf(resultlists.get(i).get("num"))*goodsList.get(0).getDj());
         kctzVO.setBz(bz.getText().toString());
         kctzVO.setJbr(jbr.getText().toString());
         kctzVO.setCk(ck.getText().toString());

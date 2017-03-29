@@ -26,7 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
+import static android.view.View.Y;
 
 /**
  * Created by whieenz on 2017/3/4.
@@ -38,6 +40,7 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
     private LoadListView listView;
     private SimpleAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
+    private int clickItem;
 
     @Nullable
     @Override
@@ -126,10 +129,28 @@ public class FirstTabFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        clickItem = i;
         HashMap<String,String> map= (HashMap<String,String>)listView.getItemAtPosition(i);
         String djbm=map.get("djbm");
         Intent intent = new Intent(getActivity(), DjshActivity.class);
         intent.putExtra("djbh",djbm);
-        startActivity(intent);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String result  = data.getStringExtra("TAG");
+                    if(result.equals("YES")){
+                        datalist.remove(clickItem);
+                        simp_adapter.notifyDataSetChanged();
+                    }
+                }
+                break;
+        }
     }
 }

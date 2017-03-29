@@ -23,6 +23,7 @@ public class KctzVO {
     private String scrq;
     private String bzq;
     private double dj;
+    private double zje;
     private String cd;
     private int sl;
     private String bz;
@@ -63,6 +64,14 @@ public class KctzVO {
         values.put(SQLitConstant.KCTZ_YWRQ,ywrq);
         values.put(SQLitConstant.KCTZ_TIME,time);
         return  values;
+    }
+
+    public double getZje() {
+        return zje;
+    }
+
+    public void setZje(double zje) {
+        this.zje = zje;
     }
 
     public String getDjzt() {
