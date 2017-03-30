@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SimpleAdapter;
+
 
 import com.whieenz.storagemanage.R;
 import com.whieenz.storagemanage.base.MyApp;
 import com.whieenz.storagemanage.utls.DBManger;
+import com.whieenz.storagemanage.utls.DJAdapter;
 import com.whieenz.storagemanage.utls.SQLitConstant;
-import com.whieenz.storagemanage.view.activity.DjshActivity;
 import com.whieenz.storagemanage.view.activity.DjxxActivity;
 import com.whieenz.storagemanage.view.myView.LoadListView;
 
@@ -37,8 +37,7 @@ import static android.content.ContentValues.TAG;
  */
 public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
     private LoadListView listView;
-    private ArrayAdapter<String > arry_adapter;
-    private SimpleAdapter simp_adapter;
+    private DJAdapter simp_adapter;
     private List<Map<String,Object>> datalist;
 
     @Nullable
@@ -58,7 +57,7 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
         datalist = new ArrayList<Map<String,Object>>();
         getData();
         if(datalist.size() > 0){
-            simp_adapter = new SimpleAdapter(getActivity(),datalist,R.layout.dj_item,new String[]{"djbm","djlx","zje","jbr","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_zje,R.id.tv_item_jbr,R.id.tv_item_time,R.id.tv_item_djzt});
+            simp_adapter = new DJAdapter(getActivity(),datalist,R.layout.dj_item,new String[]{"djbm","djlx","zje","jbr","time","djzt"},new int[]{R.id.tv_item_djbm,R.id.tv_item_djlx,R.id.tv_item_zje,R.id.tv_item_jbr,R.id.tv_item_time,R.id.tv_item_djzt});
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
@@ -71,7 +70,9 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
         MyApp myApp = (MyApp)getActivity().getApplication();
         String userName = myApp.getUserInfo().getName();
         SQLiteDatabase db = DBManger.getIntance(getActivity()).getWritableDatabase();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,SQLitConstant.KCDJ_ZDR+"=? AND DJZT = ? OR DCLR =? AND DJZT = ?",new String[]{userName,"已完成",userName,"已完成"},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,
+                SQLitConstant.KCDJ_ZDR+"=? AND DJZT = ? OR DCLR =? AND DJZT = ? OR DCLR =? AND DJZT = ?  OR ZDR=?  AND DJZT = ?",
+                new String[]{userName,"已完成",userName,"已完成",userName,"未通过",userName,"未通过"},null,null," TIME DESC");
         if (cursor.getCount()==0){
             return null;
         }
@@ -82,13 +83,14 @@ public class ThirdTabFragment extends Fragment implements AdapterView.OnItemClic
             String time = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_TIME));
             String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
             String jbr = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZDR));
+            String djzt = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_DJZT));
 
             map.put("djbm",djbh);
             map.put("djlx","单据类型："+djlx);
             map.put("time",time);
             map.put("zje","总金额："+zje+" RMB");
             map.put("jbr","经办人："+jbr);
-            map.put("djzt","已完成");
+            map.put("djzt",djzt);
             datalist.add(map);
         }
         db.close();

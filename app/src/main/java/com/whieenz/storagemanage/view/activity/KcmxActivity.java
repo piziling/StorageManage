@@ -55,7 +55,7 @@ public class KcmxActivity extends Activity implements AbsListView.OnScrollListen
     private List<Map<String,Object>> getData(){
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
         //ContentValues values = new ContentValues();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCMX,null,null,null,null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCMX,null,null,null,null,null," TIME DESC");
         if (cursor.getCount()==0){
             return null;
         }

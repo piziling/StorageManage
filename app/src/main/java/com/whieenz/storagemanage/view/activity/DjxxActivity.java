@@ -126,7 +126,7 @@ public class DjxxActivity extends Activity implements AdapterView.OnItemClickLis
     private List<Map<String,Object>> getData(){
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
         //ContentValues values = new ContentValues();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCTZ,null,SQLitConstant.KCTZ_YWID+"=?",new String[]{ywid},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCTZ,null,SQLitConstant.KCTZ_YWID+"=?",new String[]{ywid},null,null," TIME DESC");
         if (cursor.getCount()==0){
             return null;
         }

@@ -204,6 +204,7 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
         int tzResult = db.update(SQLitConstant.TABLE_KCTZ,values,SQLitConstant.KCTZ_YWID+"=?",new String[]{ywid});
         if (tzResult <= 0){
             Toast.makeText(this,"更新库存台账失败！",Toast.LENGTH_SHORT).show();
+            return;
         }
         // 3.更新KCMX  WZBM
 
@@ -224,7 +225,7 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
 
             }
         }
-
+    db.close();
 
     }
 
@@ -233,7 +234,28 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
      * @param view
      */
     public void doBack(View view){
-
+        SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SQLitConstant.KCDJ_DJZT,"未通过");
+        values.put(SQLitConstant.KCDJ_TIME, MyUntls.getNowTime());
+        // 1.更新KCDJ  DJZT 已完成  更新 Time  DJBM  YWID
+        int djResult = db.update(SQLitConstant.TABLE_KCDJ,values,SQLitConstant.KCDJ_DJBM+"=?",new String[]{djbm});
+        if (djResult<=0){
+            Toast.makeText(this,"更新库存单据失败！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        values.clear();
+        values.put(SQLitConstant.KCTZ_DJZT,"未通过");
+        values.put(SQLitConstant.KCTZ_TIME, MyUntls.getNowTime());
+        // 2.更新KCTZ  DJZT 已完成  更新 time  YWID
+        int tzResult = db.update(SQLitConstant.TABLE_KCTZ,values,SQLitConstant.KCTZ_YWID+"=?",new String[]{ywid});
+        if (tzResult <= 0){
+            Toast.makeText(this,"更新库存台账失败！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        db.close();
+        isYes = true;
+        Toast.makeText(this,"操作成功！",Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -291,28 +313,38 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
             String sql = "SELECT * FROM KCMX WHERE WZBM = ? AND CK = ?";
             Cursor cursor = DBManger.QueryDataBySql(db,sql,
                     new String[]{kctzList.get(i).getWzbm(),kctzList.get(i).getCk()});
+
             KcmxVO kcmxVO = new KcmxVO();
-            Log.e(TAG, "updateKcmxInfo: cursor : " +cursor.getCount());
             boolean isExist = false;
             if (cursor.moveToNext()){
                 Log.e(TAG, "cursor.moveToNext() : " );
                 isExist = true;
                 kcmxVO.getKcmxVOfromCursor(cursor);
             }
-
+            int count = kcmxVO.getSl();
+            Log.e(TAG, "updateKcmxInfo: count :   " +count);
             if (isExist&&kcmxVO!=null&&!kcmxVO.getWzbm().equals("")){ //判断是否取到值(同一仓库存在该物资 -->更新)
-                ContentValues kcmxValues = new ContentValues();
-                kcmxValues.put(SQLitConstant.KCMX_SL,kcmxVO.getSl()-kctzList.get(i).getSl());
-                kcmxValues.put(SQLitConstant.KCMX_ZJE,kcmxVO.getZje()-kctzList.get(i).getSl()*kctzList.get(i).getDj());
-                kcmxValues.put(SQLitConstant.KCMX_SIZE,kcmxVO.getSize()-kctzList.get(i).getSize());
-                db.update(SQLitConstant.TABLE_KCMX,kcmxValues,
-                        " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
+               if (count>kctzList.get(i).getSl()){
+                   ContentValues kcmxValues = new ContentValues();
+                   kcmxValues.put(SQLitConstant.KCMX_SL,kcmxVO.getSl()-kctzList.get(i).getSl());
+                   kcmxValues.put(SQLitConstant.KCMX_ZJE,kcmxVO.getZje()-kctzList.get(i).getSl()*kctzList.get(i).getDj());
+                   kcmxValues.put(SQLitConstant.KCMX_SIZE,kcmxVO.getSize()-kctzList.get(i).getSize());
+                   db.update(SQLitConstant.TABLE_KCMX,kcmxValues,
+                           " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
+               }else if(count == kctzList.get(i).getSl()){
+                   db.delete(SQLitConstant.TABLE_KCMX,
+                           " WZBM =?  AND  CK =? ",new String[]{kcmxVO.getWzbm(),kcmxVO.getCk()});
+               }else{
+                   Toast.makeText(this,"提交出库失败，所选物资库存不足！",Toast.LENGTH_SHORT).show();
+                   return false;
+               }
             }else {   //同一仓库不存在该物资 -->报错
                 Toast.makeText(this,"提交出库失败，所选物资库存不足！",Toast.LENGTH_SHORT).show();
                 return false;
             }
 
         }
+        db.close();
         return  true;
     }
 

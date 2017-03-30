@@ -67,7 +67,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/textview_border"
+        android:background="@drawable/blue_tv_border"
         android:text="已完成"
         android:textSize="14sp"
         android:textColor="@color/themeColor"

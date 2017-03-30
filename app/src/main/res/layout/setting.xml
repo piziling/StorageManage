@@ -59,7 +59,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
-            android:background="@drawable/textview_border"
+            android:background="@drawable/blue_tv_border"
             android:clickable="true"
             android:onClick="cancel"
             android:padding="4dp"/>

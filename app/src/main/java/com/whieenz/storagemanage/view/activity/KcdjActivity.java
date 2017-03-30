@@ -61,7 +61,7 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
     private List<Map<String,Object>> getData(){
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
         //ContentValues values = new ContentValues();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,null,null,null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCDJ,null,null,null,null,null," TIME DESC");
         if (cursor.getCount()==0){
             return null;
         }
@@ -74,7 +74,7 @@ public class KcdjActivity extends Activity implements AbsListView.OnScrollListen
             String ywid = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_YWID));
             String zje = cursor.getString(cursor.getColumnIndex(SQLitConstant.KCDJ_ZJE));
             String wzxx = "";
-            Cursor kctzCursor = db.query(SQLitConstant.TABLE_KCTZ,null,"YWID=?",new String[]{ywid},null,null,null);
+            Cursor kctzCursor = db.query(SQLitConstant.TABLE_KCTZ,null,"YWID=?",new String[]{ywid},null,null," TIME DESC");
             int len = 0;
             while (kctzCursor.moveToNext()){
                 if(len++<3){

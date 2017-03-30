@@ -56,7 +56,7 @@ public class KctzActivity extends Activity implements AbsListView.OnScrollListen
 
     private List<Map<String,Object>> getData(){
         SQLiteDatabase db = DBManger.getIntance(this).getWritableDatabase();
-        Cursor cursor = db.query(SQLitConstant.TABLE_KCTZ,null,SQLitConstant.KCTZ_DJZT+"=?",new String[]{"已完成"},null,null,null);
+        Cursor cursor = db.query(SQLitConstant.TABLE_KCTZ,null,SQLitConstant.KCTZ_DJZT+"=?",new String[]{"已完成"},null,null," TIME DESC");
         if (cursor.getCount()==0){
             return null;
         }
