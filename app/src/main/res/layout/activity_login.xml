@@ -53,21 +53,25 @@
         android:layout_marginRight="15dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="15dp">
-        <TextView
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#00BFFF"
-            android:text="忘记密码？"
-            android:onClick="findKey"/>
+            android:textSize="15sp"
+            android:paddingLeft="0dp"
+            android:id="@+id/cb_save_pw"
+            android:layout_centerVertical="true"
+            android:text="记住密码" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注册新账户"
+            android:layout_centerVertical="true"
             android:textColor="#00BFFF"
+            android:textSize="15sp"
             android:onClick="doRegister"
             android:clickable="true"
             android:layout_alignParentRight="true"

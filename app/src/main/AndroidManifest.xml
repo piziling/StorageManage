@@ -27,7 +27,8 @@
         <activity android:name=".view.activity.DjshActivity"></activity>
         <activity android:name=".view.activity.DjxxActivity"></activity>
         <activity android:name=".view.activity.KcxxActivity"></activity>
-        <activity android:name=".view.activity.LoginActivity">
+        <activity android:name=".view.activity.LoginActivity"></activity>
+        <activity android:name=".view.activity.LoadingAcitvity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
