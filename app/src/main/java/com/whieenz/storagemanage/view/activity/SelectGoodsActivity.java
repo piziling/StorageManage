@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -22,9 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.R.id.list;
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by heziwen on 2017/3/17.
@@ -56,7 +52,7 @@ public class SelectGoodsActivity extends Activity implements SGAdapter.SGAdapter
         getData();
 
         if(datalist.size()>0){
-            simp_adapter = new SGAdapter(this,datalist,R.layout.goods_item,new String[]{"wzmc","wzbm","ggxh","zkc","jldw"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc,R.id.tv_item_jldw},this,tag);
+            simp_adapter = new SGAdapter(this,datalist,R.layout.select_goods_item,new String[]{"wzmc","wzbm","ggxh","zkc","jldw"},new int[]{R.id.tv_item_wzmc,R.id.tv_item_wzbm,R.id.tv_item_ggxh,R.id.tv_item_zkc,R.id.tv_item_jldw},this,tag);
             //3.视图（ListView）加载适配器
             listView.setAdapter(simp_adapter);
             //加载监听器
