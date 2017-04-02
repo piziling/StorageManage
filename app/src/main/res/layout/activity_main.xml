@@ -29,7 +29,7 @@
         <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:icon="@drawable/me"
+            app:icon="@drawable/user_e"
             app:color="@color/themeColor"
             app:text="我"
             app:text_Size="10sp"
@@ -39,7 +39,7 @@
         <com.whieenz.storagemanage.view.myView.ChangeColorInconWithText
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:icon="@drawable/storage"
+            app:icon="@drawable/home"
             app:color="@color/themeColor"
             app:text="仓库"
             app:text_Size="10sp"

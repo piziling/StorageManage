@@ -22,6 +22,7 @@ import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
 import com.whieenz.storagemanage.view.activity.KcdjActivity;
 import com.whieenz.storagemanage.view.activity.KcmxActivity;
 import com.whieenz.storagemanage.view.activity.KctzActivity;
+import com.whieenz.storagemanage.view.activity.WzxxActivity;
 import com.whieenz.storagemanage.view.myView.WaterWaveView;
 
 import java.util.ArrayList;
@@ -44,11 +45,10 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
     private WaterWaveView waveView;
 
     private List<Map<String,Object>> dataList;
-    private int[] icon = {R.drawable.new_goods_btn,R.drawable.goods_management_btn,
-            R.drawable.new_rk_btn,R.drawable.new_ck_btn,R.drawable.new_pd_btn,
-            R.drawable.new_db_btn,R.drawable.bddj_btn,R.drawable.djmx_btn,
-            R.drawable.server_dj_btn};
-    private String[] iconName = {"新增物资","物资管理","新增入库","新增出库","库存盘点","新增调拨","库存台账","库存单据","历史记录"};
+    private int[] icon = {R.drawable.new_goods_btn,R.drawable.goods_mxs,
+            R.drawable.goods_management_btn,R.drawable.new_rk_btn,R.drawable.qrcode,R.drawable.new_ck_btn,
+            R.drawable.new_pd_btn, R.drawable.kcmx,R.drawable.kcdj};
+    private String[] iconName = {"新增物资","物资管理","仓库信息","新增入库","扫一扫","新增出库","库存台账","库存明细","库存单据"};
     private SimpleAdapter adapter;
     @Nullable
     @Override
@@ -136,18 +136,21 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 startActivity(new Intent(getActivity(),AddGoodsActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(getActivity(),KcmxActivity.class));
-                break;
-            case 2:
-                startActivity(new Intent(getActivity(),AddInStorageActivity.class));
+                startActivity(new Intent(getActivity(),WzxxActivity.class));
                 break;
             case 3:
+                startActivity(new Intent(getActivity(),AddInStorageActivity.class));
+                break;
+            case 5:
                 startActivity(new Intent(getActivity(),AddOutStorageActivity.class));
                 break;
             case 6:
                 startActivity(new Intent(getActivity(), KctzActivity.class));
                 break;
             case 7:
+                startActivity(new Intent(getActivity(),KcmxActivity.class));
+                break;
+            case 8:
                 startActivity(new Intent(getActivity(),KcdjActivity.class));
                 break;
         }
