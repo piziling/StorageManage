@@ -35,7 +35,8 @@ public class WaterWaveView extends View {
     private Paint mPaintText;
     private Paint mPaintTextTips;
     private Paint mPaintWater;
-
+    private String outColor = "#84e2f2";
+    private String inColor = "#0bb3d0";
     /**
      * 当前进度，或者百分比
      */
@@ -104,7 +105,7 @@ public class WaterWaveView extends View {
     private void initView() {
         mPaintOutCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintOutCircle.setDither(true);
-        mPaintOutCircle.setColor(Color.parseColor("#8F45A348"));
+        mPaintOutCircle.setColor(Color.parseColor(outColor));
         mPaintOutCircle.setStyle(Paint.Style.STROKE);
         mPaintOutCircle.setStrokeWidth(mStrokeWidth);
 
@@ -116,7 +117,7 @@ public class WaterWaveView extends View {
 
         mPaintInnerCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintInnerCircle.setDither(true);
-        mPaintInnerCircle.setColor(Color.parseColor("#8F45A348"));
+        mPaintInnerCircle.setColor(Color.parseColor(outColor));
         mPaintInnerCircle.setStyle(Paint.Style.FILL);
 
         mPaintText = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -132,7 +133,7 @@ public class WaterWaveView extends View {
 
         mPaintWater = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintWater.setDither(true);
-        mPaintWater.setColor(Color.parseColor("#FF45A348"));
+        mPaintWater.setColor(Color.parseColor(inColor));
         mPaintWater.setStyle(Paint.Style.FILL);
 
     }

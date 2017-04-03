@@ -47,8 +47,6 @@ public class LoginActivity extends Activity {
         uesrName = (EditText) findViewById(R.id.user_name);
         uesrKey = (EditText) findViewById(R.id.user_key);
         checkBox = (CheckBox) findViewById(R.id.cb_save_pw);
-        uesrKey.setText("111");
-        uesrName.setText("whieenz");
     }
 
 

@@ -255,6 +255,7 @@ public class DjshActivity extends Activity implements AdapterView.OnItemClickLis
         }
         db.close();
         isYes = true;
+        shenpiLayout.setVisibility(View.GONE);
         Toast.makeText(this,"操作成功！",Toast.LENGTH_SHORT).show();
     }
 

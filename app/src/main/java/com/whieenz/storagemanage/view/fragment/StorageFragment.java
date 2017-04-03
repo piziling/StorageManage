@@ -19,6 +19,7 @@ import com.whieenz.storagemanage.utls.DBManger;
 import com.whieenz.storagemanage.view.activity.AddGoodsActivity;
 import com.whieenz.storagemanage.view.activity.AddInStorageActivity;
 import com.whieenz.storagemanage.view.activity.AddOutStorageActivity;
+import com.whieenz.storagemanage.view.activity.CkInfoActivity;
 import com.whieenz.storagemanage.view.activity.KcdjActivity;
 import com.whieenz.storagemanage.view.activity.KcmxActivity;
 import com.whieenz.storagemanage.view.activity.KctzActivity;
@@ -45,9 +46,9 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
     private WaterWaveView waveView;
 
     private List<Map<String,Object>> dataList;
-    private int[] icon = {R.drawable.new_goods_btn,R.drawable.goods_mxs,
+    private int[] icon = {R.drawable.new_goods_btn,R.drawable.server_dj_btn,
             R.drawable.goods_management_btn,R.drawable.new_rk_btn,R.drawable.qrcode,R.drawable.new_ck_btn,
-            R.drawable.new_pd_btn, R.drawable.kcmx,R.drawable.kcdj};
+            R.drawable.new_pd_btn, R.drawable.myorder,R.drawable.historyorder};
     private String[] iconName = {"新增物资","物资管理","仓库信息","新增入库","扫一扫","新增出库","库存台账","库存明细","库存单据"};
     private SimpleAdapter adapter;
     @Nullable
@@ -137,6 +138,10 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 break;
             case 1:
                 startActivity(new Intent(getActivity(),WzxxActivity.class));
+                break;
+            case 2:
+                Intent intent = new Intent(getActivity(), CkInfoActivity.class);
+                startActivity(intent);
                 break;
             case 3:
                 startActivity(new Intent(getActivity(),AddInStorageActivity.class));
