@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.whieenz.storagemanage.R;
+import com.whieenz.storagemanage.utls.MyUntls;
 import com.whieenz.storagemanage.view.myView.ChangeColorInconWithText;
 import com.whieenz.storagemanage.view.fragment.MeFragment;
 import com.whieenz.storagemanage.view.myView.NoScrollViewPager;
@@ -23,6 +24,9 @@ import java.util.List;
 
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
+
+import static android.R.id.list;
+import static com.whieenz.storagemanage.utls.MyUntls.splitString;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
@@ -214,6 +218,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         } else {
             finish();
             System.exit(0);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Bundle bundle = data.getExtras();
+            String result = bundle.get("result").toString();
+            List<String> resultList = MyUntls.splitString(result);
+            if(resultList.get(0).toString().equals("WHIEENZ")&&resultList.size()>11){
+                Intent intent = new Intent(this,ScanyResultActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
         }
     }
 }

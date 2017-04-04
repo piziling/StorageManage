@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    tools:context="com.whieenz.storagemanage.view.activity.AddGoodsActivity">
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/first_layout"
+        android:background="@color/themeColor">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:text="扫描结果"
+            android:textSize="22sp"
+            android:id="@+id/tv_goods_title"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_layout"
+        android:isScrollContainer="false"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/goods_key_wzmc"
+                    android:textSize="18sp"
+                    android:text="物资名称"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="38dp"
+                    android:background="@null"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/goods_value_wzmc" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_wzbm"
+                    android:textSize="18sp"
+                    android:text="物资编码"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/goods_value_wzbm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_ggxh"
+                    android:textSize="18sp"
+                    android:text="规格型号"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/goods_value_ggxh"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_wzlx"
+                    android:textSize="18sp"
+                    android:text="物资类型"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:gravity="center_vertical|left"
+                    android:id="@+id/goods_value_wzlx"
+                    android:background="#00ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_jldw"
+                    android:textSize="18sp"
+                    android:text="计量单位"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|left"
+                    android:id="@+id/goods_value_jldw"
+                    android:background="#00ffffff"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_dj"
+                    android:textSize="18sp"
+                    android:text="物资单价"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:layout_weight="1"
+                    android:id="@+id/goods_value_dj"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_size"
+                    android:textSize="18sp"
+                    android:text="物资体积"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:layout_weight="1"
+                    android:id="@+id/goods_value_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_goods_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_scrq"
+                    android:textSize="18sp"
+                    android:text="生产日期"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:gravity="center_vertical|left"
+                    android:id="@+id/goods_value_scrq"
+                    android:background="#00ffffff"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_bzq"
+                    android:textSize="18sp"
+                    android:text="保质期"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:layout_weight="1"
+                    android:id="@+id/goods_value_bzq"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_goods_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_cd"
+                    android:textSize="18sp"
+                    android:text="产地"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:layout_weight="1"
+                    android:id="@+id/goods_value_cd" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/add_goods_bg">
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="38dp"
+                    android:id="@+id/goods_key_bz"
+                    android:textSize="18sp"
+                    android:text="备注"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColor"
+                    android:id="@+id/goods_value_bz" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/add_goods_bg">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff555555"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:onClick="onSave">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/save"
+            android:background="#00000000"
+            android:scaleType="centerInside"
+            android:onClick="onSave"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="保存"
+            android:textSize="24sp"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onSave"/>
+    </LinearLayout>
+</RelativeLayout>

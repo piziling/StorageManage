@@ -23,8 +23,10 @@ import com.whieenz.storagemanage.view.activity.CkInfoActivity;
 import com.whieenz.storagemanage.view.activity.KcdjActivity;
 import com.whieenz.storagemanage.view.activity.KcmxActivity;
 import com.whieenz.storagemanage.view.activity.KctzActivity;
+import com.whieenz.storagemanage.view.activity.MainActivity;
 import com.whieenz.storagemanage.view.activity.WzxxActivity;
 import com.whieenz.storagemanage.view.myView.WaterWaveView;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -140,11 +142,14 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 startActivity(new Intent(getActivity(),WzxxActivity.class));
                 break;
             case 2:
-                Intent intent = new Intent(getActivity(), CkInfoActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), CkInfoActivity.class));
                 break;
             case 3:
                 startActivity(new Intent(getActivity(),AddInStorageActivity.class));
+                break;
+            case 4:
+                Intent intent = new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(intent,0);
                 break;
             case 5:
                 startActivity(new Intent(getActivity(),AddOutStorageActivity.class));
@@ -160,4 +165,6 @@ public class StorageFragment extends Fragment implements AdapterView.OnItemClick
                 break;
         }
     }
+
+
 }
