@@ -228,7 +228,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             Bundle bundle = data.getExtras();
             String result = bundle.get("result").toString();
             List<String> resultList = MyUntls.splitString(result);
-            if(resultList.get(0).toString().equals("WHIEENZ")&&resultList.size()>11){
+            if(resultList.get(0).toString().equals("WHIEENZ")&&resultList.size()>9){
                 Intent intent = new Intent(this,ScanyResultActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);

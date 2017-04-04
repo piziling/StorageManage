@@ -14,6 +14,7 @@ import static android.R.attr.data;
 import static com.whieenz.storagemanage.R.id.goods_value_bz;
 import static com.whieenz.storagemanage.R.id.goods_value_bzq;
 import static com.whieenz.storagemanage.R.id.goods_value_cd;
+import static com.whieenz.storagemanage.R.id.goods_value_dj;
 import static com.whieenz.storagemanage.R.id.goods_value_ggxh;
 import static com.whieenz.storagemanage.R.id.goods_value_jldw;
 import static com.whieenz.storagemanage.R.id.goods_value_scrq;
@@ -52,6 +53,7 @@ public class ScanyResultActivity extends Activity {
         wzlxTV = (TextView) findViewById(goods_value_wzlx);
         ggxhTV = (TextView) findViewById(goods_value_ggxh);
         jldwTV = (TextView) findViewById(goods_value_jldw);
+        wzdjTV = (TextView) findViewById(goods_value_dj);
         sizeTV = (TextView) findViewById(goods_value_size);
         scrqTV = (TextView) findViewById(goods_value_scrq);
         bzqTV = (TextView) findViewById(goods_value_bzq);
@@ -61,18 +63,19 @@ public class ScanyResultActivity extends Activity {
         Bundle bundle = intent.getExtras();
         String result = bundle.get("result").toString();
         List<String> resultList = MyUntls.splitString(result);
-        wzbmTV.setText(resultList.get(1));
-        wzmcTV.setText(resultList.get(2));
-        wzlxTV.setText(resultList.get(3));
-        ggxhTV.setText(resultList.get(4));
+        wzmcTV.setText(resultList.get(1));
+        wzbmTV.setText(resultList.get(2));
+        ggxhTV.setText(resultList.get(3));
+        wzlxTV.setText(resultList.get(4));
         jldwTV.setText(resultList.get(5));
-        sizeTV.setText(resultList.get(6));
-        scrqTV.setText(resultList.get(7));
-        bzqTV.setText(resultList.get(8));
-        cdTV.setText(resultList.get(9));
-        bzTV.setText(resultList.get(10));
-
-
+        wzdjTV.setText(resultList.get(6));
+        sizeTV.setText(resultList.get(7));
+        scrqTV.setText(resultList.get(8));
+        bzqTV.setText(resultList.get(9));
+        cdTV.setText(resultList.get(10));
+        if(resultList.size()>11){
+            bzTV.setText(resultList.get(11));
+        }
     }
 
 

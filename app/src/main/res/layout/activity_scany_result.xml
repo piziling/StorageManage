@@ -43,9 +43,10 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="38dp"
+                    android:gravity="center_vertical"
                     android:id="@+id/goods_key_wzmc"
                     android:textSize="18sp"
                     android:text="物资名称"/>
@@ -66,10 +67,11 @@
                 android:background="@drawable/add_goods_bg">
 
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_wzbm"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:text="物资编码"/>
 
@@ -88,8 +90,9 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
+                    android:gravity="center_vertical"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_ggxh"
                     android:textSize="18sp"
@@ -97,6 +100,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_height="38dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
@@ -111,10 +115,11 @@
                 android:background="@drawable/add_goods_bg">
 
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_wzlx"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:text="物资类型"/>
 
@@ -135,10 +140,11 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_jldw"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:text="计量单位"/>
 
@@ -158,8 +164,9 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
+                    android:gravity="center_vertical"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_dj"
                     android:textSize="18sp"
@@ -179,8 +186,9 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
+                    android:gravity="center_vertical"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_size"
                     android:textSize="18sp"
@@ -200,9 +208,10 @@
                 android:background="@drawable/add_goods_bg"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
+                    android:gravity="center_vertical"
                     android:id="@+id/goods_key_scrq"
                     android:textSize="18sp"
                     android:text="生产日期"/>
@@ -223,11 +232,12 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_bzq"
                     android:textSize="18sp"
+                    android:gravity="center_vertical"
                     android:text="保质期"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -235,6 +245,7 @@
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/textColor"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:id="@+id/goods_value_bzq"/>
             </LinearLayout>
 
@@ -246,10 +257,11 @@
                 android:background="@drawable/add_goods_bg"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_cd"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:text="产地"/>
                 <TextView
@@ -257,12 +269,10 @@
                     android:layout_height="38dp"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/textColor"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:id="@+id/goods_value_cd" />
             </LinearLayout>
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -270,10 +280,11 @@
                 android:orientation="horizontal"
                 android:background="@drawable/add_goods_bg">
                 <TextView
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="7dp"
                     android:layout_width="80dp"
                     android:layout_height="38dp"
                     android:id="@+id/goods_key_bz"
+                    android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:text="备注"/>
                 <TextView
@@ -281,6 +292,7 @@
                     android:layout_height="38dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:textColor="@color/textColor"
                     android:id="@+id/goods_value_bz" />
             </LinearLayout>
@@ -298,24 +310,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ff555555"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:onClick="onSave">
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/save"
-            android:background="#00000000"
-            android:scaleType="centerInside"
-            android:onClick="onSave"/>
+        android:layout_alignParentBottom="true">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
-            android:text="保存"
+            android:text="出库"
+            android:textSize="24sp"
+            android:layout_weight="1"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onOutStorage"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="入库"
+            android:layout_weight="1"
             android:textSize="24sp"
             android:textColor="#ffffffff"
             android:background="#00555555"
-            android:onClick="onSave"/>
+            android:onClick="onInStorage"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="新增"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onAddGoods"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="取消"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:textColor="#ffffffff"
+            android:background="#00555555"
+            android:onClick="onCancel"/>
     </LinearLayout>
 </RelativeLayout>

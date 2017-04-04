@@ -308,8 +308,8 @@ public class AddGoodsActivity extends Activity{
      */
     private String getQRcodeText() {
         String input = QRTAG;
-        input = input +";"+getEdittext().get("WZBM");
         input = input +";"+getEdittext().get("WZMC");
+        input = input +";"+getEdittext().get("WZBM");
         input = input +";"+getEdittext().get("GGXH");
         input = input +";"+getEdittext().get("WZLX");
         input = input +";"+getEdittext().get("JLDW");
